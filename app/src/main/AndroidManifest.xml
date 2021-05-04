@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartCookie">
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".StepWithTimer"></activity>
+        <activity android:name=".Steps" />
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
