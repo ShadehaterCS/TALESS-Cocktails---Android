@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_nav"
+    app:startDestination="@id/mainMenu2">
+
+    <fragment
+        android:id="@+id/favourites"
+        android:name="com.authandroid_smartcookies.smartcookie.Favourites"
+        android:label="fragment_favourites"
+        tools:layout="@layout/fragment_favourites" />
+    <fragment
+        android:id="@+id/converters"
+        android:name="com.authandroid_smartcookies.smartcookie.Converters"
+        android:label="fragment_converters"
+        tools:layout="@layout/fragment_converters" />
+    <fragment
+        android:id="@+id/settings"
+        android:name="com.authandroid_smartcookies.smartcookie.settings"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/mainMenu2"
+        android:name="com.authandroid_smartcookies.smartcookie.MainMenu"
+        android:label="fragment_main_menu"
+        tools:layout="@layout/fragment_main_menu" />
+</navigation>

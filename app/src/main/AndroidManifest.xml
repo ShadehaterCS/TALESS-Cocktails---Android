@@ -9,15 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartCookie">
-        <activity android:name=".StepWithTimer"></activity>
-        <activity android:name=".Steps" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".HomeActivity">
             android:label="SmartCookie"
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN"/>
             </intent-filter>
+        </activity>
+        <activity android:name=".StepWithTimer" />
+        <activity android:name=".Steps" />
+        <activity android:name=".MainActivity">
+
         </activity>
     </application>
 
