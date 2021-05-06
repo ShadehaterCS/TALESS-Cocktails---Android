@@ -16,17 +16,23 @@
         android:text="Step One Text "
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.193"
-        tools:layout_editor_absoluteX="30dp" />
+        app:layout_constraintVertical_bias="0.193" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="100dp"
         android:layout_height="64dp"
+        android:layout_marginTop="36dp"
         android:text="Step 2"
         app:cornerRadius="100px"
-        tools:layout_editor_absoluteX="288dp"
-        tools:layout_editor_absoluteY="584dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.916"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine2"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

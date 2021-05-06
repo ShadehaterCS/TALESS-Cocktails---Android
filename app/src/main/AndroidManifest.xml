@@ -11,7 +11,14 @@
         android:theme="@style/Theme.SmartCookie">
         <activity android:name=".StepWithTimer"></activity>
         <activity android:name=".Steps" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity">
+            android:label="SmartCookie"
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
