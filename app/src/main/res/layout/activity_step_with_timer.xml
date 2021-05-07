@@ -6,46 +6,60 @@
     android:layout_height="match_parent"
     tools:context=".StepWithTimer">
 
-    <EditText
-        android:id="@+id/editTextTextMultiLine3"
-        android:layout_width="340dp"
-        android:layout_height="524dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
-        android:text="------Recipe's Step with Timer------"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="41dp" />
-
     <Button
-        android:id="@+id/button3"
-        android:layout_width="146dp"
-        android:layout_height="78dp"
-        android:text="Next Step"
-        app:cornerRadius="100px"
-        tools:layout_editor_absoluteX="235dp"
-        tools:layout_editor_absoluteY="585dp" />
-
-    <Button
-        android:id="@+id/button4"
+        android:id="@+id/countdown_button"
         android:layout_width="148dp"
         android:layout_height="45dp"
         android:text="Start Timer"
         app:cornerRadius="100px"
-        tools:layout_editor_absoluteX="36dp"
-        tools:layout_editor_absoluteY="640dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.186"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.956" />
+
+    <Button
+        android:id="@+id/countdown_button2"
+        android:layout_width="137dp"
+        android:layout_height="73dp"
+        android:text="Next Step"
+        app:cornerRadius="100px"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.941"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.873" />
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="115dp"
-        android:layout_height="67dp"
+        android:id="@+id/countdown_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="sans-serif-condensed-light"
-        android:text="30sec"
+        android:text="30"
         android:textAlignment="center"
         android:textSize="36sp"
-        tools:layout_editor_absoluteX="49dp"
-        tools:layout_editor_absoluteY="585dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.211"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.878" />
+
+    <TextView
+        android:id="@+id/secText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="sec"
+        android:textAlignment="center"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.314"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.878" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
