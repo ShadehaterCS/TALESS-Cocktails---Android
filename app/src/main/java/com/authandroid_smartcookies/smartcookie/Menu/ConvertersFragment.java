@@ -31,12 +31,11 @@ public class ConvertersFragment extends Fragment {
 
         String[] from = {"gr","ml","oz","teaspoons","tablespoons"};
 
-        Spinner spinner = (Spinner) view.findViewById(R.id.spinner_from);
-        ArrayAdapter first = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,from);
+        ArrayAdapter first = new ArrayAdapter<String>(this.getContext(),R.layout.support_simple_spinner_dropdown_item,from);
         from_sp.setAdapter(first);
 
         String[] to   = {"gr","ml","oz","teaspoons","tablespoons"};
-        ArrayAdapter  second = new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item,to);
+        ArrayAdapter  second = new ArrayAdapter<String>(this.getContext(),R.layout.support_simple_spinner_dropdown_item,to);
         to_sp.setAdapter(second);
 
         convert.setOnClickListener(v -> {
