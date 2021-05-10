@@ -22,9 +22,9 @@ public class HomeActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
-       /*BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         NavController navController = Navigation.findNavController(this,  R.id.fragment);
-        NavigationUI.setupWithNavController(bottomNavigationView, navController);*/
+        NavigationUI.setupWithNavController(bottomNavigationView, navController);
 
 
     }

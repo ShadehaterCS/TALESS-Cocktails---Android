@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_nav"
-    app:startDestination="@id/mainMenu2">
+    app:startDestination="@id/mainMenu">
 
     <fragment
         android:id="@+id/favourites"
@@ -21,7 +21,7 @@
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
     <fragment
-        android:id="@+id/mainMenu2"
+        android:id="@+id/mainMenu"
         android:name="com.authandroid_smartcookies.smartcookie.MainMenu"
         android:label="fragment_main_menu"
         tools:layout="@layout/fragment_main_menu" />
