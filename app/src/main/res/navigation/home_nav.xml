@@ -7,22 +7,22 @@
 
     <fragment
         android:id="@+id/favourites"
-        android:name="com.authandroid_smartcookies.smartcookie.Favourites"
+        android:name="com.authandroid_smartcookies.smartcookie.Menu.FavoritesFragment"
         android:label="fragment_favourites"
         tools:layout="@layout/fragment_favourites" />
     <fragment
         android:id="@+id/converters"
-        android:name="com.authandroid_smartcookies.smartcookie.Converters"
+        android:name="com.authandroid_smartcookies.smartcookie.Menu.ConvertersFragment"
         android:label="fragment_converters"
         tools:layout="@layout/fragment_converters" />
     <fragment
         android:id="@+id/settings"
-        android:name="com.authandroid_smartcookies.smartcookie.settings"
+        android:name="com.authandroid_smartcookies.smartcookie.Menu.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/mainMenu"
-        android:name="com.authandroid_smartcookies.smartcookie.MainMenu"
+        android:name="com.authandroid_smartcookies.smartcookie.Menu.MainMenuFragment"
         android:label="fragment_main_menu"
         tools:layout="@layout/fragment_main_menu" />
 </navigation>

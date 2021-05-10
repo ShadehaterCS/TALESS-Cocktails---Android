@@ -1,4 +1,4 @@
-package com.authandroid_smartcookies.smartcookie;
+package com.authandroid_smartcookies.smartcookie.Menu;
 
 import android.os.Bundle;
 
@@ -8,12 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.authandroid_smartcookies.smartcookie.R;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link MainMenu#newInstance} factory method to
+ * Use the {@link MainMenuFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MainMenu extends Fragment {
+public class MainMenuFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +26,7 @@ public class MainMenu extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public MainMenu() {
+    public MainMenuFragment() {
         // Required empty public constructor
     }
 
@@ -37,8 +39,8 @@ public class MainMenu extends Fragment {
      * @return A new instance of fragment MainMenu.
      */
     // TODO: Rename and change types and number of parameters
-    public static MainMenu newInstance(String param1, String param2) {
-        MainMenu fragment = new MainMenu();
+    public static MainMenuFragment newInstance(String param1, String param2) {
+        MainMenuFragment fragment = new MainMenuFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
