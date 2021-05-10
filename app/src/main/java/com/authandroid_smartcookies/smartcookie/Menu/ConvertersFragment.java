@@ -1,9 +1,12 @@
 package com.authandroid_smartcookies.smartcookie.Menu;
 import java.lang.Math;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,23 +16,23 @@ import android.widget.TextView;
 import com.authandroid_smartcookies.smartcookie.R;
 
 
-public class ConvertersFragment extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+public class ConvertersFragment extends Fragment {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        View view  = inflater.inflate(R.layout.fragment_converters, container, false);
 
-        EditText amounts = findViewById(R.id.input);
-        Spinner from_sp = findViewById(R.id.spinner_from);
-        Spinner to_sp   = findViewById(R.id.spinner_to);
-        Button convert = findViewById(R.id.convert);
-        Button clear   = findViewById(R.id.clear);
-        TextView result  = findViewById(R.id.result);
-
+        EditText amounts = view.findViewById(R.id.input);
+        Spinner from_sp = view.findViewById(R.id.spinner_from);
+        Spinner to_sp   = view.findViewById(R.id.spinner_to);
+        Button convert = view.findViewById(R.id.convert);
+        Button clear   = view.findViewById(R.id.clear);
+        TextView result  = view.findViewById(R.id.result);
 
         String[] from = {"gr","ml","oz","teaspoons","tablespoons"};
-        ArrayAdapter first= new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item,from);
+
+        Spinner spinner = (Spinner) view.findViewById(R.id.spinner_from);
+        ArrayAdapter first = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,from);
         from_sp.setAdapter(first);
 
         String[] to   = {"gr","ml","oz","teaspoons","tablespoons"};
@@ -37,8 +40,6 @@ public class ConvertersFragment extends AppCompatActivity {
         to_sp.setAdapter(second);
 
         convert.setOnClickListener(v -> {
-
-
             String test = amounts.getText().toString();
 
             if (TextUtils.isEmpty(test)) {
@@ -130,6 +131,7 @@ public class ConvertersFragment extends AppCompatActivity {
                 }
 
             }
+
         });
 
         clear.setOnClickListener(v -> {
@@ -139,5 +141,6 @@ public class ConvertersFragment extends AppCompatActivity {
             to_sp.setSelection(0);
         });
 
+        return view;
     }
 }
