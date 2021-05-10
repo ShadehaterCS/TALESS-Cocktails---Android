@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import com.authandroid_smartcookies.smartcookie.R;
 
-
 public class ConvertersFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                 Bundle savedInstanceState) {
@@ -46,7 +45,7 @@ public class ConvertersFragment extends Fragment {
 
             } else {
                 Double amount = Double.parseDouble(amounts.getText().toString());
-                //    gr
+                //gr
                 if (from_sp.getSelectedItem().toString().equals("gr") && to_sp.getSelectedItem().toString().equals("gr")) {
                     result.setText(("This is equivalent to : " + amount + " gr"));
                 } else if (from_sp.getSelectedItem().toString().equals("gr") && to_sp.getSelectedItem().toString().equals("ml")) {
@@ -61,8 +60,7 @@ public class ConvertersFragment extends Fragment {
                     amount = amount * 0.0666666666666667;
                     result.setText(("This is equivalent to : " + Math.round(amount * 100.0) / 100.0 + " teaspoons"));
                 }
-                //  ml
-
+                //ml
                 else if (from_sp.getSelectedItem().toString().equals("ml") && to_sp.getSelectedItem().toString().equals("gr")) {
                     result.setText(("This is equivalent to : " + amount + " gr"));
                 } else if (from_sp.getSelectedItem().toString().equals("ml") && to_sp.getSelectedItem().toString().equals("ml")) {
@@ -77,7 +75,7 @@ public class ConvertersFragment extends Fragment {
                     amount = amount * 0.0676280454;
                     result.setText(("This is equivalent to : " + Math.round(amount * 100.0) / 100.0 + " tablespoons"));
                 }
-                //  oz
+                //oz
                 else if (from_sp.getSelectedItem().toString().equals("oz") && to_sp.getSelectedItem().toString().equals("gr")) {
                     amount = amount * 28.3495231;
                     result.setText(("This is equivalent to : " + Math.round(amount * 100.0) / 100.0 + " gr"));
@@ -93,7 +91,7 @@ public class ConvertersFragment extends Fragment {
                     amount = amount * 2;
                     result.setText(("This is equivalent to : " + Math.round(amount * 100.0) / 100.0 + " tablespoons"));
                 }
-                //  teaspoons
+                //teaspoons
                 else if (from_sp.getSelectedItem().toString().equals("teaspoons") && to_sp.getSelectedItem().toString().equals("gr")) {
                     amount = amount * 28.3495231;
                     result.setText(("This is equivalent to : " + Math.round(amount * 100.0) / 100.0 + " gr"));
@@ -109,7 +107,7 @@ public class ConvertersFragment extends Fragment {
                     amount = amount * 2;
                     result.setText(("This is equivalent to : " + Math.round(amount * 100.0) / 100.0 + " tablespoons"));
                 }
-                //  tablespoons
+                //tablespoons
                 else if (from_sp.getSelectedItem().toString().equals("teaspoons") && to_sp.getSelectedItem().toString().equals("gr")) {
                     amount = amount * 12.781700527272;
                     result.setText(("This is equivalent to : " + Math.round(amount * 100.0) / 100.0 + " gr"));
@@ -128,9 +126,7 @@ public class ConvertersFragment extends Fragment {
                 } else {
                     result.setText(("ERROR - No such a thing"));
                 }
-
             }
-
         });
 
         clear.setOnClickListener(v -> {

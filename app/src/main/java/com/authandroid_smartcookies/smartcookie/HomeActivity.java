@@ -11,9 +11,12 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
+import com.authandroid_smartcookies.smartcookie.Database.DBHandler;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Objects;
+import java.util.UUID;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -28,7 +31,5 @@ public class HomeActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this,  R.id.fragment);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
     }
-
-
 }
 

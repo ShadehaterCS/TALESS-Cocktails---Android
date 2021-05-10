@@ -8,17 +8,22 @@ public class CocktailRecipe {
     private String _title;
     private String _imageID;
     private String _description;
+    private String _drink;
     private String _timer;
 
     public CocktailRecipe(String _id, String _title, String _imageID,
-                          String _description, String _timer) {
+                          String _description, String _drink, String _timer) {
         this._id = _id;
         this._title = _title;
         this._imageID = _imageID;
         this._description = _description;
         this._timer = _timer;
-
+        this._drink = _drink;
     }
+
+    public String get_drink() { return _drink; }
+
+    public void set_drink(String _drink) { this._drink = _drink; }
 
     public String get_id() {
         return _id;
