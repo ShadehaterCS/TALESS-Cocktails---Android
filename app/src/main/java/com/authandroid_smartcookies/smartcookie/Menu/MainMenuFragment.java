@@ -12,19 +12,27 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
-import com.authandroid_smartcookies.smartcookie.Database.DBHandler;
 import com.authandroid_smartcookies.smartcookie.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import android.database.sqlite.SQLiteOpenHelper;
 
 public class MainMenuFragment extends Fragment {
-
-    DBHandler dbhandler;
+    RecyclerView recyclerView;
+    FloatingActionButton add_button;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        recyclerView=requireActivity().findViewById(R.id.recyclerview);
+        add_button=requireActivity().findViewById(R.id.add_button);
+
+
 
         return inflater.inflate(R.layout.fragment_main_menu, container, false);
+
+
     }
 
     @Override
@@ -40,10 +48,6 @@ public class MainMenuFragment extends Fragment {
         });
     }
 
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        dbhandler = new DBHandler(this.getContext(), null, null, 1);
-    }
+
 
 }
