@@ -28,7 +28,7 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String SQL_CREATE_RECIPE_TABLE =
             "CREATE TABLE " +
                 TABLE_NAME + "(" +
-                    COLUMN_ID + " TEXT PRIMARY KEY," +
+                    COLUMN_ID + " INT PRIMARY KEY," +
                     COLUMN_TITLE + " TEXT," +
                     COLUMN_IMAGEID + " TEXT," +
                     COLUMN_DESCRIPTION + " TEXT," +
@@ -43,7 +43,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     public void addRecipe(CocktailRecipe recipe){
         ContentValues values = new ContentValues();
-        values.put(COLUMN_ID, recipe.get_id());
+        values.put(COLUMN_ID, 1);
         values.put(COLUMN_TITLE, recipe.get_title());
         values.put(COLUMN_IMAGEID, recipe.get_imageID());
         values.put(COLUMN_DESCRIPTION, recipe.get_description());
