@@ -13,7 +13,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
-import com.authandroid_smartcookies.smartcookie.Database.DBHandler;
+import com.authandroid_smartcookies.smartcookie.Database.MyDatabaseHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Objects;
