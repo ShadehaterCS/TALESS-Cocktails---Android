@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,14 +13,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
+import com.authandroid_smartcookies.smartcookie.Database.DBHandler;
 import com.authandroid_smartcookies.smartcookie.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import android.database.sqlite.SQLiteOpenHelper;
 
 public class MainMenuFragment extends Fragment {
     RecyclerView recyclerView;
     FloatingActionButton add_button;
+
+    DBHandler dbHandler;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,9 +42,9 @@ public class MainMenuFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         TextView tv = requireActivity().findViewById(R.id.textView4);
-        dbhandler = new DBHandler(this.getContext());
+        dbHandler = new DBHandler(this.getContext());
         tv.setOnClickListener(v -> {
-            CocktailRecipe g = dbhandler.getRecipePlease();
+            CocktailRecipe g = dbHandler.getRecipePlease();
             if (g != null)
                 tv.setText(g.get_title());
         });
