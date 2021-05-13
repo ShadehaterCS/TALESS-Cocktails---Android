@@ -1,12 +1,13 @@
 package com.authandroid_smartcookies.smartcookie.DataClasses;
 
 public class Ingredients {
-    private String recipeId;
+    private int id;
+    private int recipeId;
     private String[] ingredients;
     private String[] measure;
     private int[] ingredientValue;
 
-    public Ingredients(String recipeId, String[] ingredients, String[] measure, int[] ingredientValue) {
+    public Ingredients(int recipeId, String[] ingredients, String[] measure, int[] ingredientValue) {
         this.recipeId = recipeId;
         this.ingredients = ingredients;
         this.measure = measure;
@@ -27,14 +28,6 @@ public class Ingredients {
 
     public void setMeasure(String[] measure) {
         this.measure = measure;
-    }
-
-    public String getRecipeId() {
-        return recipeId;
-    }
-
-    public void setRecipeId(String recipeId) {
-        this.recipeId = recipeId;
     }
 
     public int[] getIngredientValue() {

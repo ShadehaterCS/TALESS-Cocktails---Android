@@ -9,14 +9,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ListView;
+import android.widget.TextView;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
 import com.authandroid_smartcookies.smartcookie.Database.DBHandler;
 import com.authandroid_smartcookies.smartcookie.R;
-
-import java.util.UUID;
 
 public class MainMenuFragment extends Fragment {
 
@@ -30,21 +27,23 @@ public class MainMenuFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_main_menu, container, false);
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        TextView tv = requireActivity().findViewById(R.id.addrecipebutton);
+        dbhandler = new DBHandler(this.getContext());
+        tv.setOnClickListener(v -> {
+            CocktailRecipe g = dbhandler.getRecipePlease();
+            if (g != null)
+                tv.setText(g.get_title());
+        });
+    }
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        dbhandler = new DBHandler(this.getContext(), null,null, 1);
+        dbhandler = new DBHandler(this.getContext(), null, null, 1);
     }
 
-    private void addrecipe(DBHandler db){
-        CocktailRecipe recipe = new CocktailRecipe(
-                UUID.randomUUID().toString(),
-                "Classic Aviation Cocktail",
-                "0",
-                "1",
-                "20",
-                "gin");
-        db.addRecipe(recipe);
-    }
 }
