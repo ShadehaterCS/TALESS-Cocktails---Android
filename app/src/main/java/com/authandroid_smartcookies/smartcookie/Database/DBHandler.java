@@ -1,17 +1,21 @@
 package com.authandroid_smartcookies.smartcookie.Database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.provider.ContactsContract;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
 
 import java.io.File;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class DBHandler extends SQLiteOpenHelper {
-    public static final int DATABASE_VERSION = 1;
-    public static final String DATABASE_NAME = "SmartCookie.db";
+    public static final int DATABASE_VERSION = 3;
+    public static final String DATABASE_NAME = "database.db";
     public static String DB_PATH;
 
     public DBHandler(Context context, String name,
@@ -26,58 +30,31 @@ public class DBHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String q1 = "CREATE TABLE RECIPES (\n" +
-                "    id integer primary key,\n" +
-                "    title varchar,\n" +
-                "    description varchar,\n" +
-                "    steps varchar,\n" +
-                "    drink varchar,\n" +
-                "    imageid varchar,\n" +
-                "    color varchar,\n" +
-                "    timer int)";
-        String q2 = "CREATE TABLE RECIPE_INGREDIENTS (\n" +
-                "    id integer primary key,\n" +
-                "    recipeId integer,\n" +
-                "    ingredients varchar,\n" +
-                "    measure varchar,\n" +
-                "    ingredients_values varchar)";
+        //SQL Create Table statements
+        for (String statement : TableCreateSQL.getSQLStrings())
+            db.execSQL(statement);
 
-        String q3 = "insert into recipes (title, description,steps, drink, imageid, color, timer)\n" +
-                "values ('Classic Aviation', \n" +
-                "'The Aviation cocktail is a 1900''s mixed drink with a lovely purple hue! This sweet tart classic cocktail is so tasty, it''s now back in style.',\n" +
-                "'LOL AINT GOT IT BRO',\n" +
-                " 'gin', 'NaN', 'FFFFFF',30)";
-
-        db.execSQL(q1);
-        db.execSQL(q2);
-
-        //template first row
-        db.execSQL(q3);
+        //Recipe Values to be inserted
+        for (ContentValues recipeValues : RecipeInsertStrings.getAllRecipeQueries())
+            db.insert("RECIPES", null, recipeValues);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS RECIPES");
+        db.execSQL("DROP TABLE IF EXISTS RECIPE_INGREDIENTS");
+        db.execSQL("DROP TABLE IF EXISTS FAVORITES");
         onCreate(db);
     }
 
     public CocktailRecipe getRecipePlease() {
         SQLiteDatabase db = this.getReadableDatabase();
-
         String query = "SELECT * FROM RECIPES";
         Cursor cursor = db.rawQuery(query, null);
-        CocktailRecipe recipe = new CocktailRecipe();
-        if (cursor.moveToFirst()) {
-            recipe.set_id(Integer.parseInt(cursor.getString(0)));
-            recipe.set_title(cursor.getString(1));
-            recipe.set_description(cursor.getString(2));
-            recipe.set_steps(cursor.getString(3));
-            recipe.set_drink(cursor.getString(4));
-            recipe.set_imageid(cursor.getString(5));
-            recipe.set_color(cursor.getString(6));
-            recipe.set_timer(Integer.parseInt(cursor.getString(7)));
-            cursor.close();
-        } else
-            recipe = null;
+        cursor.moveToFirst();
+        CocktailRecipe recipe = DataclassTransformations.transformToCocktailRecipe(cursor,true);
+        cursor = db.rawQuery(query, null);
+        ArrayList<CocktailRecipe> recipes = DataclassTransformations.transformToCocktailRecipeList(cursor);
 
         return recipe;
     }
