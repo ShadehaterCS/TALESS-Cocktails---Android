@@ -17,12 +17,11 @@ public class DBHandler extends SQLiteOpenHelper {
     public DBHandler(Context context, String name,
                      SQLiteDatabase.CursorFactory factory, int DATA) {
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
-        DB_PATH = context.getPackageName()+"/databases/";
     }
 
     public DBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-
+        DB_PATH = context.getPackageName() + "/databases/SmartCookie.db";
     }
 
     @Override
@@ -43,8 +42,17 @@ public class DBHandler extends SQLiteOpenHelper {
                 "    measure varchar,\n" +
                 "    ingredients_values varchar)";
 
+        String q3 = "insert into recipes (title, description,steps, drink, imageid, color, timer)\n" +
+                "values ('Classic Aviation', \n" +
+                "'The Aviation cocktail is a 1900''s mixed drink with a lovely purple hue! This sweet tart classic cocktail is so tasty, it''s now back in style.',\n" +
+                "'LOL AINT GOT IT BRO',\n" +
+                " 'gin', 'NaN', 'FFFFFF',30)";
+
         db.execSQL(q1);
         db.execSQL(q2);
+
+        //template first row
+        db.execSQL(q3);
     }
 
     @Override
@@ -59,18 +67,14 @@ public class DBHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query, null);
         CocktailRecipe recipe = new CocktailRecipe();
         if (cursor.moveToFirst()) {
-            cursor.moveToFirst();
-            String[] s = cursor.getColumnNames();
-
             recipe.set_id(Integer.parseInt(cursor.getString(0)));
             recipe.set_title(cursor.getString(1));
             recipe.set_description(cursor.getString(2));
             recipe.set_steps(cursor.getString(3));
             recipe.set_drink(cursor.getString(4));
             recipe.set_imageid(cursor.getString(5));
-
-/*          recipe.set_color(cursor.getString(6));
-            recipe.set_timer(Integer.parseInt(cursor.getString(7)));*/
+            recipe.set_color(cursor.getString(6));
+            recipe.set_timer(Integer.parseInt(cursor.getString(7)));
             cursor.close();
         } else
             recipe = null;

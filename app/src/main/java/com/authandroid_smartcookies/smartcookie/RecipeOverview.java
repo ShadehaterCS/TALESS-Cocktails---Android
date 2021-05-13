@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import java.io.IOException;
+
 public class RecipeOverview extends AppCompatActivity {
 
     Button ContinueButton;
@@ -17,12 +19,11 @@ public class RecipeOverview extends AppCompatActivity {
         setContentView(R.layout.recipeoverview);
         ContinueButton = findViewById(R.id.Continuetorecipebutton);
 
-        ContinueButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent= new Intent(RecipeOverview.this , Steps.class);
-                startActivity(intent);
-            }
+        ContinueButton.setOnClickListener(v -> {
+            Intent intent= new Intent(RecipeOverview.this , Steps.class);
+            startActivity(intent);
         });
     }
+
+
 }

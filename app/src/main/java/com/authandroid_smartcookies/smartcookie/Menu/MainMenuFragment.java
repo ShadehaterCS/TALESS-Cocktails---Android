@@ -31,7 +31,7 @@ public class MainMenuFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        TextView tv = requireActivity().findViewById(R.id.addrecipebutton);
+        TextView tv = requireActivity().findViewById(R.id.textView4);
         dbhandler = new DBHandler(this.getContext());
         tv.setOnClickListener(v -> {
             CocktailRecipe g = dbhandler.getRecipePlease();

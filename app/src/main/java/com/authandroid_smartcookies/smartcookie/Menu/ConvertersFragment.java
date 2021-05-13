@@ -1,12 +1,18 @@
 package com.authandroid_smartcookies.smartcookie.Menu;
 import java.lang.Math;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +20,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.authandroid_smartcookies.smartcookie.R;
+
+import static android.content.Context.INPUT_METHOD_SERVICE;
+import static androidx.core.content.ContextCompat.getSystemService;
 
 public class ConvertersFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -137,5 +146,17 @@ public class ConvertersFragment extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        //Open keyboard and focus the edit text element
+
+        EditText amounts = requireActivity().findViewById(R.id.input);
+        requireActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        InputMethodManager methodManager = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        methodManager.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
+        amounts.requestFocus();
     }
 }
