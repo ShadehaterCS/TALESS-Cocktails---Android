@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".RecipeOverview"
+    android:background="#E6E1C3">
 
     <TextView
         android:id="@+id/textView"
@@ -13,6 +14,7 @@
         android:layout_marginTop="36dp"
         android:fontFamily="monospace"
         android:text="Recipe"
+        android:textAlignment="center"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

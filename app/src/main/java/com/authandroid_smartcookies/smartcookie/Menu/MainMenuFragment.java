@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
 import com.authandroid_smartcookies.smartcookie.Database.DBHandler;
@@ -29,14 +30,6 @@ public class MainMenuFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_main_menu, container, false);
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        Button button = requireActivity().findViewById(R.id.addrecipebutton);
-        button.setOnClickListener(v -> {
-            addrecipe(dbhandler);
-        });
-    }
 
     @Override
     public void onAttach(@NonNull Context context) {

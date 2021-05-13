@@ -18,7 +18,7 @@
         </activity>
         <activity android:name=".StepWithTimer" />
         <activity android:name=".Steps" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".RecipeOverview">
 
         </activity>
     </application>
