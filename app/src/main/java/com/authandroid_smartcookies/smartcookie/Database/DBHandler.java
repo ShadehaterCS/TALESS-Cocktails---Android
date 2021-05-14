@@ -51,7 +51,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 +"'The Aviation cocktail is a 1900''s mixed drink with a lovely purple hue! This sweet tart classic cocktail is so tasty, it''s now back in style.',\n"
                 +"'1.Add the gin, lemon juice, maraschino liqueur, and crème de violette to a cocktail shaker. Fill it with ice and shake it for 30sec.2.Strain into a cocktail glass. Garnish with a Luxardo cherry, if desired.', \n"
                 +"'Gin',"
-                +"'Aviation.jpg',"
+                +"'ic_aviation.jpg',"
                 +"'Purple',"
                 +"'165 calories',"
                 +"'5 minutes',"
@@ -66,7 +66,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 +"'The Floradora is a classic gin cocktail everyone will love! Raspberry, lime, and bubbly ginger beer are the perfect pairing with floral gin.',\n"
                 +"'1.In a highball glass or stemmed glass, add the gin, raspberry syrup or Chambord, and lime juice.2.Fill with ice and top with ginger beer. Garnish with a lime wedge and raspberry, if desired.', \n"
                 +"'Gin',"
-                +"'Floradora.jpg',"
+                +"'ic_floradora.jpg',"
                 +"'Rose',"
                 +"'196 calories',"
                 +"'3 minutes',"
@@ -81,7 +81,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 +"'The Floradora is a classic gin cocktail everyone will love! Raspberry, lime, and bubbly ginger beer are the perfect pairing with floral gin.',\n"
                 +"'1.If time allows, chill the clamato juice and vodka. Shake the clamato juice before pouring.2.In a pitcher, combine the clamato juice, lemon juice, Worcestershire sauce, horseradish, Tabasco, celery salt and black pepper. Stir. Serve immediately or refrigerate up to 1 day.3.To serve, on a plate place a mixture of roughly half kosher salt and half Old Bay seasoning (or celery salt). Cut a notch in a lemon wedge, then run it around the rim of a glass. Dip the edge of the rim into a plate of salt.4.To each glass, add 2 ounces (1/4 cup) of vodka and 1/2 cup of bloody caesar mix and stir gently to combine. Fill the glass with ice and add the garnishes.', \n"
                 +"'Vodka',"
-                +"'Bloody Caesar.jpg',"
+                +"'ic_bloody_caesar.jpg',"
                 +"'Rose',"
                 +"'160 calories',"
                 +"'5 minutes',"
@@ -96,7 +96,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 +"'Here are the ingredients you need to make the Blue Hawaii! Its ocean-tinted hue is thanks to blue curacao liqueur.',\n"
                 +"'1.Place the rum, vodka, blue curacao, pineapple juice, lime juice, lemon juice and simple syrup in a cocktail shaker. Add 2 handfuls of ice and shake until cold.2.Strain the drink into a hurricane glass filled with crushed ice. Garnish with a pineapple wedge and cherry.', \n"
                 +"'Vodka',"
-                +"'Blue Hawaii.jpg',"
+                +"'ic_blue_hawaii.jpg',"
                 +"'Blue',"
                 +"'336 calories',"
                 +"'5 minutes',"
@@ -110,7 +110,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 +"'The retro Brown Derby cocktail pairs bourbon whiskey with grapefruit and honey syrup: it’s sweet, citrusy and refreshing!',\n"
                 +"'1.Add the bourbon, grapefruit juice, and honey syrup to a cocktail shaker. Fill it with ice and shake it until cold.2.Strain into a cocktail glass. If desired, garnish with a grapefruit slice.', \n"
                 +"'Bourbon',"
-                +"'Brown Derby.jpg',"
+                +"'ic_brown_derby.jpg',"
                 +"'Orange',"
                 +"'182 calories',"
                 +"'5 minutes',"
@@ -124,7 +124,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 +"'Looking for a standout bourbon cocktail? This blackberry bourbon smash is refreshing and perfect for parties, featuring blackberries, lime, and fresh mint.',\n"
                 +"'1.Place the lime, berries, and mint leaves in cocktail shaker. Muddle (gently mash) them 4 to 5 times to extract their flavor.2.Add the bourbon, maple syrup and 4 ice cubes. Shake until cold, then pour everything into a glass. If desired, add a splash of soda water. Serve with crushed ice.', \n"
                 +"'Bourbon',"
-                +"'Blackberry Bourbon Smash.jpg',"
+                +"'ic_blackberry_bourbon_smash.jpg',"
                 +"'Crimson',"
                 +"'70 calories',"
                 +"'5 minutes',"
@@ -138,7 +138,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 +"'One of the most classic sour cocktails! This daiquiri recipe has the perfect balance of boozy, tart and sweet with rum, lime and sweetener.',\n"
                 +"'1.Add the rum, lime juice, and syrup to a cocktail shaker. Fill it with ice and shake until cold.2.Strain into a cocktail glass. Serve garnished with a lime slice.', \n"
                 +"'White rum',"
-                +"'Classic Daiquiri.jpg',"
+                +"'ic_classic_daiquiri.jpg',"
                 +"'White',"
                 +"'152 calories',"
                 +"'5 minutes',"
@@ -152,7 +152,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 +"'Here’s the best limoncello cocktail: a Mojito! The lemon liqueur makes a incredibly refreshing drink paired with rum and fresh mint.',\n"
                 +"'1.In a cocktail shaker, muddle the mint leaves with the lime juice and syrup.2.Add the limoncello and rum and fill the cocktail shaker with ice. Shake until cold.3.Fill a hurricane or highball glass with ice, then strain in the liquid. Top off the glass with soda water. Garnish with additional mint leaves.', \n"
                 +"'White rum',"
-                +"'Limoncello Mojito.jpg',"
+                +"'ic_limoncello_mojito.jpg',"
                 +"'Light green',"
                 +"'125 calories',"
                 +"'5 minutes',"
@@ -166,7 +166,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 +"'Swap out the vodka in a Bloody Mary for tequila, and you’ve got the Bloody Maria! This simple change makes for a Mexican style spin on the drink.',\n"
                 +"'1.If time allows, chill the tomato juice and tequila. Shake the tomato juice before pouring.2.In a large cocktail shaker, combine the tomato juice, lemon juice, Worcestershire sauce, horseradish, hot sauce, celery salt and black pepper. Shake well to combine (without ice). Strain into a quart mason jar or small pitcher.3.To serve, on a plate place a mixture of roughly half kosher salt and half Old Bay seasoning (or chili powder). Cut a notch in a lime wedge, then run it around the rim of a glass. Dip the edge of the rim into a plate of salt.4.To each glass, add 2 ounces (1/4 cup) of tequila and 1/2 cup of Bloody Maria mix and stir gently to combine. Fill the glass with ice and add the garnishes. Squeeze in the lime wedge before serving.', \n"
                 +"'Tequila',"
-                +"'Bloody Maria.jpg',"
+                +"'ic_bloody_maria.jpg',"
                 +"'Red',"
                 +"'160  calories',"
                 +"'5 minutes',"
@@ -180,7 +180,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 +"'This agave margarita recipe is sweetened to perfection with agave nectar, giving this classic cocktail a little upgrade!',\n"
                 +"'1.Cut a notch in a lime wedge, then run the lime around the rim of a glass. Dip the edge of the rim into a plate of salt.2.Place all ingredients in a cocktail shaker with 1 handful ice cubes and shake until cold.3.Strain the margarita into the glass with the salted rim. Fill the glass with ice and serve.', \n"
                 +"'Tequila',"
-                +"'Agave Margarita.jpg',"
+                +"'ic_agave_margarita.jpg',"
                 +"'White',"
                 +"'144 calories',"
                 +"'5 minutes',"
@@ -188,9 +188,6 @@ public class DBHandler extends SQLiteOpenHelper {
         /*
             2 ounces tequila reposado|1 1/2 ounces fresh lime juice|1/2 ounce agave nectar|1/2 ounce Triple Sec|Kosher salt or flaky sea salt, for the rim|Ice, for serving
         */
-
-
-
 
         db.execSQL(q1);
         db.execSQL(q2);
