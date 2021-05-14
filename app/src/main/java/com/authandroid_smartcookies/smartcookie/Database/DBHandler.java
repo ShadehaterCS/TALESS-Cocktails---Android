@@ -189,9 +189,6 @@ public class DBHandler extends SQLiteOpenHelper {
             2 ounces tequila reposado|1 1/2 ounces fresh lime juice|1/2 ounce agave nectar|1/2 ounce Triple Sec|Kosher salt or flaky sea salt, for the rim|Ice, for serving
         */
 
-
-
-
         db.execSQL(q1);
         db.execSQL(q2);
 
