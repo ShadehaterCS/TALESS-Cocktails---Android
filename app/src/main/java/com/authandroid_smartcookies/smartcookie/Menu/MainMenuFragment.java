@@ -30,11 +30,7 @@ public class MainMenuFragment extends Fragment {
         recyclerView=requireActivity().findViewById(R.id.recyclerview);
 
 
-
-
         return inflater.inflate(R.layout.fragment_main_menu, container, false);
-
-
     }
 
     @Override
@@ -43,6 +39,7 @@ public class MainMenuFragment extends Fragment {
 
         TextView tv = requireActivity().findViewById(R.id.textView4);
         dbHandler = new DBHandler(this.getContext());
+        dbHandler.getReadableDatabase();
         tv.setOnClickListener(v -> {
             CocktailRecipe g = dbHandler.getRecipePlease();
             if (g != null)
