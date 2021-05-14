@@ -1,7 +1,6 @@
 package com.authandroid_smartcookies.smartcookie.Menu;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -43,7 +42,6 @@ public class MainMenuFragment extends Fragment {
         TextView tv = requireActivity().findViewById(R.id.textView4);
         db.getReadableDatabase();
         tv.setOnClickListener(v -> {
-            SQLiteDatabase sql = db.checkDatabase();
             CocktailRecipe g = db.getRecipePlease();
             if (g != null)
                 tv.setText(g.get_title());
