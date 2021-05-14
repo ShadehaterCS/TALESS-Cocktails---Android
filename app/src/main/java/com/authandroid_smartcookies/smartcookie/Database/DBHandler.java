@@ -7,8 +7,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
 
-import java.io.File;
-
 public class DBHandler extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "SmartCookie.db";
