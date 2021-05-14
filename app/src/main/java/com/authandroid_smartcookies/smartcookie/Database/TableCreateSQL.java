@@ -21,6 +21,9 @@ public class TableCreateSQL {
             "recipeid integer)";
 
     public static String[] getSQLStrings(){
-        return new String[] { CREATE_RECIPES_TABLE, CREATE_RECIPE_INGREDIENTS_TABLE, CREATE_FAVORITES_TABLE };
+        return new String[] {
+                CREATE_RECIPES_TABLE,
+                CREATE_RECIPE_INGREDIENTS_TABLE,
+                CREATE_FAVORITES_TABLE };
     }
 }

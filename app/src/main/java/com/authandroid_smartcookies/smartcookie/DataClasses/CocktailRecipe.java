@@ -14,6 +14,8 @@ public class CocktailRecipe {
     private int _timer;
 
     public CocktailRecipe() {
+        _id = -1;
+        _timer = -1;
     }
 
     public CocktailRecipe(int _id, String _title, String _description, String _steps, String _drink, String _imageid, String _color, int _timer) {
@@ -100,4 +102,6 @@ public class CocktailRecipe {
     public void set_timer(int _timer) {
         this._timer = _timer;
     }
+
+
 }
