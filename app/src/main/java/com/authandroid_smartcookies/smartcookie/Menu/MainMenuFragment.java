@@ -28,7 +28,7 @@ public class MainMenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         recyclerView=requireActivity().findViewById(R.id.recyclerview);
-        add_button=requireActivity().findViewById(R.id.add_button);
+
 
 
 
