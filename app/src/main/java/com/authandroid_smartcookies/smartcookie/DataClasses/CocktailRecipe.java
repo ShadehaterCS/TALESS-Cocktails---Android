@@ -1,5 +1,4 @@
 package com.authandroid_smartcookies.smartcookie.DataClasses;
-
 /*
 Data class for cocktail recipes, only getter and setters, no utilities
  */
@@ -11,6 +10,8 @@ public class CocktailRecipe {
     private String _drink;
     private String _imageid;
     private String _color;
+    private String _calories;
+    private String _preptime;
     private int _timer;
 
     public CocktailRecipe() {
@@ -18,7 +19,7 @@ public class CocktailRecipe {
         _timer = -1;
     }
 
-    public CocktailRecipe(int _id, String _title, String _description, String _steps, String _drink, String _imageid, String _color, int _timer) {
+    public CocktailRecipe(int _id, String _title, String _description, String _steps, String _drink, String _imageid, String _color, String _calories, String _preptime, int _timer) {
         this._id = _id;
         this._title = _title;
         this._description = _description;
@@ -26,6 +27,8 @@ public class CocktailRecipe {
         this._drink = _drink;
         this._imageid = _imageid;
         this._color = _color;
+        this._calories = _calories;
+        this._preptime = _preptime;
         this._timer = _timer;
     }
 
@@ -36,6 +39,8 @@ public class CocktailRecipe {
         this._drink = _drink;
         this._imageid = _imageid;
         this._color = _color;
+        this._calories = _calories;
+        this._preptime = _preptime;
         this._timer = _timer;
     }
 
@@ -94,6 +99,20 @@ public class CocktailRecipe {
     public void set_color(String _color) {
         this._color = _color;
     }
+
+    public String get_calories() {
+        return _calories;
+    }
+
+    public void set_calories(String _calories) {
+        this._calories = _calories;
+    }
+
+    public String get_preptime() {
+        return _preptime;
+    }
+
+    public void set_preptime(String _preptime) {this._preptime = _preptime;}
 
     public int get_timer() {
         return _timer;

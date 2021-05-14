@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 
 public class MyDatabaseHelper extends SQLiteOpenHelper{
 
+
     private Context context;
     private static final String DATABASE_NAME= "smartcookie.db";
     private static final int DATABASE_VERSION= 1;
@@ -19,6 +20,8 @@ public class MyDatabaseHelper extends SQLiteOpenHelper{
     private static final String COLUMN_MAINLIQ="mainliquor";
     private static final String COLUMN_IMAGEID="imageid";
     private static final String COLUMN_COLOR="colorofcocktail";
+    private static final String COLUMN_CALORIES = "calories";
+    private static final String COLUMN_PREPTIME = "preptime";
     private static final String COLUMN_TIMER="timer";
 
     public MyDatabaseHelper(@Nullable Context context ) {
@@ -28,14 +31,16 @@ public class MyDatabaseHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         String query= "CREATE TABLE"+ TABLE_NAME +
-                        " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                        COLUMN_TITLE + " TEXT " +
-                        COLUMN_DESCRIPTION +" TEXT " +
-                        COLUMN_STEPS + " TEXT " +
-                        COLUMN_MAINLIQ + " TEXT " +
-                        COLUMN_IMAGEID + " INTEGER " +
-                        COLUMN_COLOR + " TEXT " +
-                        COLUMN_TIMER + " INTEGER;";
+                " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                COLUMN_TITLE + " TEXT " +
+                COLUMN_DESCRIPTION +" TEXT " +
+                COLUMN_STEPS + " TEXT " +
+                COLUMN_MAINLIQ + " TEXT " +
+                COLUMN_IMAGEID + " INTEGER " +
+                COLUMN_COLOR + " TEXT " +
+                COLUMN_CALORIES + " TEXT " +
+                COLUMN_PREPTIME + " TEXT " +
+                COLUMN_TIMER + " INTEGER;";
         db.execSQL(query);
 
     }
