@@ -17,6 +17,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //clearApplicationDataDebugOnly();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 

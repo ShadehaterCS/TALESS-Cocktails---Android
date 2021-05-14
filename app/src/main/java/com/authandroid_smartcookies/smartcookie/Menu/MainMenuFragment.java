@@ -1,6 +1,7 @@
 package com.authandroid_smartcookies.smartcookie.Menu;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
 import com.authandroid_smartcookies.smartcookie.Database.DBHandler;
+import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
 import com.authandroid_smartcookies.smartcookie.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -21,7 +23,7 @@ public class MainMenuFragment extends Fragment {
     RecyclerView recyclerView;
     FloatingActionButton add_button;
 
-    DBHandler dbHandler;
+    SenpaiDB db;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -30,6 +32,7 @@ public class MainMenuFragment extends Fragment {
         recyclerView=requireActivity().findViewById(R.id.recyclerview);
         add_button=requireActivity().findViewById(R.id.add_button);
 
+        db = new SenpaiDB(this.getContext());
         return inflater.inflate(R.layout.fragment_main_menu, container, false);
     }
 
@@ -38,15 +41,13 @@ public class MainMenuFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         TextView tv = requireActivity().findViewById(R.id.textView4);
-        dbHandler = new DBHandler(this.getContext());
-        dbHandler.getReadableDatabase();
+        db.getReadableDatabase();
         tv.setOnClickListener(v -> {
-            CocktailRecipe g = dbHandler.getRecipePlease();
+            SQLiteDatabase sql = db.checkDatabase();
+            CocktailRecipe g = db.getRecipePlease();
             if (g != null)
                 tv.setText(g.get_title());
         });
     }
-
-
 
 }
