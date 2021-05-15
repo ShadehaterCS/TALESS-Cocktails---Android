@@ -25,7 +25,9 @@ public class Launcher extends AppCompatActivity {
                     WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
             );
         }
-
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
         launcher_shaker = AnimationUtils.loadAnimation(this,R.anim.shaker);
 
 
