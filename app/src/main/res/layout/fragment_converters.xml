@@ -5,7 +5,7 @@
     android:id="@+id/converters"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Menu.ConvertersFragment" >
+    tools:context=".Menu.ConvertersFragment">
 
     <TextView
         android:id="@+id/title"
@@ -45,26 +45,26 @@
         app:layout_constraintVertical_bias="0.389" />
 
     <Button
-        android:id="@+id/convert"
+        android:id="@+id/clear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="64dp"
-        android:text="Convert"
+        android:layout_marginBottom="72dp"
+        android:text="Clear"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/clear"
+        app:layout_constraintEnd_toStartOf="@+id/convert"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/clear"
+        android:id="@+id/convert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="64dp"
-        android:text="Clear"
+        android:layout_marginBottom="72dp"
+        android:text="Convert"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/convert" />
+        app:layout_constraintStart_toEndOf="@+id/clear" />
 
     <Spinner
         android:id="@+id/spinner_to"
