@@ -12,16 +12,19 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
+import com.authandroid_smartcookies.smartcookie.Database.DataclassTransformations;
 import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
 import com.authandroid_smartcookies.smartcookie.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 public class MainMenuFragment extends Fragment {
     RecyclerView recyclerView;
     FloatingActionButton add_button;
-
     SenpaiDB db;
-
+    Random random = new Random();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -37,14 +40,29 @@ public class MainMenuFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        //If database doesn't exist, create it and always open the connection
+        if (!db.openDatabase())
+            db.createDatabase(requireContext().getApplicationContext());
+        db.openDatabase();
+
         TextView tv = requireActivity().findViewById(R.id.textView4);
         tv.setOnClickListener(v -> {
-            db.createDatabase(requireContext().getApplicationContext());
-            db.openDatabase();
-            CocktailRecipe g = db.getRecipePlease();
-            if (g != null)
-                tv.setText(g.get_title());
+            ArrayList<CocktailRecipe> recipes = getRandomRecipes();
+            db.removeRecipeFromFavorites(recipes.get(0));
+            if (!recipes.isEmpty())
+                tv.setText(recipes.get(random.nextInt(recipes.size())).get_title());
         });
+    }
+
+    private ArrayList<CocktailRecipe> getRandomRecipes(){
+        ArrayList<CocktailRecipe> allRecipes = db.getAllRecipes();
+        ArrayList<CocktailRecipe> recipes = new ArrayList<>();
+        for (int i=0;i<5;i++){
+            int rand = random.nextInt(allRecipes.size());
+            recipes.add(allRecipes.get(rand));
+            allRecipes.remove(rand);
+        }
+        return recipes;
     }
 
 }

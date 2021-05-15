@@ -27,7 +27,6 @@ public class DataclassTransformations {
  */
     public static CocktailRecipe transformToCocktailRecipe(Cursor cursor,boolean single) {
         CocktailRecipe recipe = new CocktailRecipe();
-
         recipe.set_id(Integer.parseInt(cursor.getString(0)));
         recipe.set_title(cursor.getString(1));
         recipe.set_description(cursor.getString(2));
@@ -35,7 +34,9 @@ public class DataclassTransformations {
         recipe.set_drink(cursor.getString(4));
         recipe.set_imageid(cursor.getString(5));
         recipe.set_color(cursor.getString(6));
-        recipe.set_timer(Integer.parseInt(cursor.getString(7)));
+        recipe.set_calories(cursor.getString(7));
+        recipe.set_preptime(cursor.getString(8));
+        recipe.set_timer(Integer.parseInt(cursor.getString(9)));
         if (single)
             cursor.close();
         return recipe;
