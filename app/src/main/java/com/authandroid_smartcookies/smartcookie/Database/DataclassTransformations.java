@@ -41,34 +41,4 @@ public class DataclassTransformations {
         return recipe;
     }
 
-    /*
-    Use this for easier creation of insertion statements
-    @ex String[] test = new String[] { "Aviation", "gin" .... };
-     */
-    public static ContentValues transformStringArrayToContentValues(String[] sValues){
-        ContentValues values = new ContentValues();
-        values.put("title", sValues[0]);
-        values.put("description", sValues[1]);
-        values.put("steps", sValues[2]);
-        values.put("drink", sValues[3]);
-        values.put("imageid", sValues[4]);
-        values.put("color",  sValues[5]);
-        values.put("timer", sValues[6]);
-
-        return values;
-    }
-
-    public static ContentValues transformRecipeToContentValues(CocktailRecipe recipe){
-        ContentValues values = new ContentValues();
-        values.put("title", recipe.get_title());
-        values.put("description", recipe.get_description());
-        values.put("steps", recipe.get_steps());
-        values.put("drink", recipe.get_drink());
-        values.put("imageid", recipe.get_imageid());
-        values.put("color",  recipe.get_color());
-        values.put("timer", String.valueOf(recipe.get_timer()));
-
-        return values;
-    }
-
 }

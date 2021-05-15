@@ -7,7 +7,6 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 
-import com.authandroid_smartcookies.smartcookie.Database.DBHandler;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.IOException;
