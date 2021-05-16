@@ -1,24 +1,21 @@
 package com.authandroid_smartcookies.smartcookie.Menu.Home;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
-import com.authandroid_smartcookies.smartcookie.Database.DataclassTransformations;
 import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
 import com.authandroid_smartcookies.smartcookie.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -40,11 +37,6 @@ public class MainMenuFragment extends Fragment {
         super.onCreate(savedInstanceState);
         //If database doesn't exist, create it and always open the connection
         db = SenpaiDB.getInstance(this.requireContext());
-        if (!db.openDatabase()) {
-            db.createDatabase(requireContext().getApplicationContext());
-            db.openDatabase();
-        }
-        dataset = db.getAllRecipes();
     }
 
     @Override
@@ -55,11 +47,15 @@ public class MainMenuFragment extends Fragment {
         root.setTag(TAG);
         recyclerView=root.findViewById(R.id.recyclerview);
         mLayoutManager = new LinearLayoutManager(getActivity());
-        adapter = new RecipeAdapter(dataset);
-        recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(mLayoutManager);
 
+        new async(this).execute();
         return root;
+    }
+
+    private void setAdapter(ArrayList<CocktailRecipe> recipes){
+        adapter = new RecipeAdapter(recipes);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -79,4 +75,28 @@ public class MainMenuFragment extends Fragment {
         return recipes;
     }
 
+    private class async extends AsyncTask <Void, Void, Void>{
+        private final MainMenuFragment fragment;
+        private ArrayList<CocktailRecipe> recipes;
+
+        public async(MainMenuFragment fragment){
+            this.fragment = fragment;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            if (!db.openDatabase()) {
+                db.createDatabase(requireContext().getApplicationContext());
+                db.openDatabase();
+            }
+            recipes = db.getAllRecipes();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            super.onPostExecute(unused);
+            fragment.setAdapter(recipes);
+        }
+    }
 }
