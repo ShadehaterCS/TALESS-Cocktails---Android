@@ -21,6 +21,7 @@ import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
 import com.authandroid_smartcookies.smartcookie.HomeActivity;
 import com.authandroid_smartcookies.smartcookie.Launcher;
 import com.authandroid_smartcookies.smartcookie.R;
+import com.bumptech.glide.Glide;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -54,8 +55,10 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         holder.favorited = favorites.contains(recipe.get_id());
         holder.getTitleTV().setText(recipe.get_title());
         holder.getDescTV().setText(recipe.get_description());
-        holder.getImgView().setImageBitmap(
-                scaleImage(holder.view.getContext(), 1080, 1080, recipe.get_imageid()));
+        int d = holder.view.getContext().getResources()
+                .getIdentifier(recipe.get_imageid(), "drawable",
+                        holder.view.getContext().getPackageName());
+        Glide.with(holder.view).load(d).into(holder.getImgView());
 
         holder.getFavoriteButton().setOnClickListener(v -> {
             if (holder.favorited)
