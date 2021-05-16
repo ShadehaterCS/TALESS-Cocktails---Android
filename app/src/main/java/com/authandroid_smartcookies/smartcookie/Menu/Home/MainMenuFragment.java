@@ -17,7 +17,7 @@ import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
 import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
 import com.authandroid_smartcookies.smartcookie.R;
 
-import java.lang.reflect.Array;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -36,6 +36,7 @@ public class MainMenuFragment extends Fragment {
         super.onCreate(savedInstanceState);
         //If database doesn't exist, create it and always open the connection
         db = SenpaiDB.getInstance(this.requireContext());
+        new async(this).execute();
     }
 
     @Override
@@ -48,13 +49,14 @@ public class MainMenuFragment extends Fragment {
         mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
 
-        new async(this).execute();
+
         return root;
     }
 
     private void setAdapter(ArrayList<CocktailRecipe> recipes){
+        assert recyclerView != null;
         dataset = recipes;
-        adapter = new RecipeAdapter(dataset);
+        adapter = new RecipeAdapter(requireContext(), dataset);
         recyclerView.setAdapter(adapter);
     }
 
@@ -64,23 +66,12 @@ public class MainMenuFragment extends Fragment {
 
     }
 
-    private ArrayList<CocktailRecipe> getRandomRecipes(){
-        ArrayList<CocktailRecipe> allRecipes = db.getAllRecipes();
-        ArrayList<CocktailRecipe> recipes = new ArrayList<>();
-        for (int i=0;i<5;i++){
-            int rand = random.nextInt(allRecipes.size());
-            recipes.add(allRecipes.get(rand));
-            allRecipes.remove(rand);
-        }
-        return recipes;
-    }
-
     private class async extends AsyncTask <Void, Void, Void>{
-        private final MainMenuFragment fragment;
+        private final WeakReference<MainMenuFragment> fragment;
         private ArrayList<CocktailRecipe> recipes;
 
         public async(MainMenuFragment fragment){
-            this.fragment = fragment;
+            this.fragment = new WeakReference<>(fragment);
         }
 
         @Override
@@ -96,7 +87,7 @@ public class MainMenuFragment extends Fragment {
         @Override
         protected void onPostExecute(Void unused) {
             super.onPostExecute(unused);
-            fragment.setAdapter(recipes);
+            fragment.get().setAdapter(recipes);
         }
     }
 }

@@ -14,7 +14,8 @@
         android:id="@+id/converters"
         android:name="com.authandroid_smartcookies.smartcookie.Menu.ConvertersFragment"
         android:label="fragment_converters"
-        tools:layout="@layout/fragment_converters" />
+        tools:layout="@layout/fragment_converters"
+        />
     <fragment
         android:id="@+id/settings"
         android:name="com.authandroid_smartcookies.smartcookie.Menu.SettingsFragment"

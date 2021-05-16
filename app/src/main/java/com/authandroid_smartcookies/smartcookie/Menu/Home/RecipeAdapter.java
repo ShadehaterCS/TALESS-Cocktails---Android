@@ -1,6 +1,7 @@
 package com.authandroid_smartcookies.smartcookie.Menu.Home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -17,19 +18,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
 import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
+import com.authandroid_smartcookies.smartcookie.HomeActivity;
+import com.authandroid_smartcookies.smartcookie.Launcher;
 import com.authandroid_smartcookies.smartcookie.R;
 
 import java.io.File;
 import java.util.ArrayList;
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder> {
-    /*TODO
-    change favorite list in RAM rather than querering the db every time
-     */
     private final ArrayList<CocktailRecipe> recipes;
+    private final ArrayList<Integer> favorites;
+    private final SenpaiDB db;
 
-    public RecipeAdapter(ArrayList<CocktailRecipe> recipes) {
+
+    public RecipeAdapter(Context context, ArrayList<CocktailRecipe> recipes) {
         this.recipes = recipes;
+        db = SenpaiDB.getInstance(context);
+        favorites = db.getFavorites();
     }
 
     @NonNull
@@ -43,15 +48,14 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     //Fill the view
     @Override
     public void onBindViewHolder(@NonNull RecipeAdapter.ViewHolder holder, int position) {
-        SenpaiDB db = SenpaiDB.getInstance(holder.view.getContext());
+
         CocktailRecipe recipe = recipes.get(position);
 
-        holder.favorited = db.isRecipeFavorited(recipe);
-
+        holder.favorited = favorites.contains(recipe.get_id());
         holder.getTitleTV().setText(recipe.get_title());
         holder.getDescTV().setText(recipe.get_description());
         holder.getImgView().setImageBitmap(
-                scaleImage(holder.view.getContext(), 200, 200, recipe.get_imageid()));
+                scaleImage(holder.view.getContext(), 1080, 1080, recipe.get_imageid()));
 
         holder.getFavoriteButton().setOnClickListener(v -> {
             if (holder.favorited)
@@ -61,6 +65,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             holder.favorited = !holder.favorited;
             holder.setFavoriteButtonImage(v, holder.favorited);
         });
+
         holder.setFavoriteButtonImage(holder.getFavoriteButton(), holder.favorited);
     }
 
@@ -83,6 +88,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         private final ImageView imgView;
         private final View view;
         private final ImageButton favoriteButton;
+        public CocktailRecipe recipe;
+
         public boolean favorited;
 
         public ViewHolder(View view) {
@@ -92,6 +99,12 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             descTV = view.findViewById(R.id.descriptionTextView);
             imgView = view.findViewById(R.id.cocktailImage);
             favoriteButton = view.findViewById(R.id.imageButton);
+
+            //To handle moving to a new activity
+            view.setOnClickListener(v -> {
+                Intent intent = new Intent(v.getContext(), HomeActivity.class);
+                v.getContext().startActivity(intent);
+            });
         }
 
         private void setFavoriteButtonImage(View v, boolean favorited) {
@@ -99,7 +112,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
                 v.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.ic_favorite_button_on));
             else
                 v.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.ic_favorite_button_off));
-
         }
 
         public ImageButton getFavoriteButton() {

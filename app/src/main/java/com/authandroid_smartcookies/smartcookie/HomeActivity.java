@@ -25,6 +25,7 @@ public class HomeActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         NavController navController = Navigation.findNavController(this,  R.id.fragment);
+
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
     }
 
@@ -43,7 +44,5 @@ public class HomeActivity extends AppCompatActivity {
         super.onDestroy();
         SenpaiDB.getInstance(this.getApplicationContext()).close();
     }
-
-
 }
 
