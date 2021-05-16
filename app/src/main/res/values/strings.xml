@@ -2,4 +2,7 @@
     <string name="app_name">SmartCookie</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="main_menu_header">Welcome to Cocktails</string>
+    <string name="recycler_view_mainmenuitem_title">Title</string>
+    <string name="recycler_view_mainmenuitem_description">This is a fake description. Simulating lots of words rather than just one</string>
 </resources>

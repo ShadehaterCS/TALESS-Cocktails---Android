@@ -23,14 +23,15 @@ public class SenpaiDB extends SQLiteOpenHelper {
     private static final String TAG = "SENPAI";
     public static String DB_PATH;
     public static String DB_NAME = "database.db";
-    public static final int DATABASE_VERSION = 4;
+    public static final int DATABASE_VERSION = 6;
 
     public static SenpaiDB instance;
     private SQLiteDatabase database;
 
     /*
     Using singleton pattern to avoid leaks and constant openings
-     */
+    */
+
     public static SenpaiDB getInstance(Context context) {
         if (instance == null) {
             instance = new SenpaiDB(context.getApplicationContext());

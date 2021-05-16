@@ -7,6 +7,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 
+import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.IOException;
@@ -36,5 +37,13 @@ public class HomeActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SenpaiDB.getInstance(this.getApplicationContext()).close();
+    }
+
+
 }
 
