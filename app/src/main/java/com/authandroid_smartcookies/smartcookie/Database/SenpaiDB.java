@@ -1,7 +1,9 @@
 package com.authandroid_smartcookies.smartcookie.Database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -14,39 +16,76 @@ import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class SenpaiDB extends SQLiteOpenHelper {
     private static final String TAG = "SENPAI";
     public static String DB_PATH;
     public static String DB_NAME = "database.db";
-    public static final int DATABASE_VERSION = 3;
-    public Context CONTEXT;
+    public static final int DATABASE_VERSION = 4;
 
-    public SenpaiDB(@NonNull Context context){
+    public static SenpaiDB instance;
+    private SQLiteDatabase database;
+
+    /*
+    Using singleton pattern to avoid leaks and constant openings
+     */
+    public static SenpaiDB getInstance(Context context) {
+        if (instance == null) {
+            instance = new SenpaiDB(context.getApplicationContext());
+        }
+        return instance;
+    }
+
+    public boolean openDatabase() {
+        try {
+            String path = DB_PATH + DB_NAME;
+            database = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READWRITE);
+            return true;
+        } catch (SQLException s) {
+            s.printStackTrace();
+            return false;
+        }
+    }
+
+    public synchronized void close() {
+        if (database != null)
+            database.close();
+        super.close();
+    }
+
+    public SenpaiDB(@NonNull Context context) {
         super(context, DB_NAME, null, DATABASE_VERSION);
-        DB_PATH = context.getFilesDir().getPath() + BuildConfig.APPLICATION_ID + "/databases/";
-        CONTEXT = context;
+        DB_PATH = "/data/data/" + context.getPackageName() + "/" + "databases/";
     }
 
     public SenpaiDB(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
         assert context != null;
         DB_PATH = context.getFilesDir().getPath();
-        CONTEXT = context;
+    }
+
+    public void createDatabase(Context context) {
+        this.getReadableDatabase();
+        try {
+            copyDatabase(context);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new Error("Error copying database");
+        }
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        copyDatabase(CONTEXT);
     }
-
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS Recipe");
-        db.execSQL("DROP TABLE IF EXISTS Ingridient");
-        db.execSQL("DROP TABLE IF EXISTS Ingridient_on_Recipe");
-        onCreate(db);
+        db.execSQL("DROP TABLE IF EXISTS RECIPES");
+        db.execSQL("DROP TABLE IF EXISTS INGREDIENTS");
+        db.execSQL("DROP TABLE IF EXISTS INGREDIENT_ON_RECIPE");
+        db.execSQL("DROP TABLE IF EXISTS FAVORITES");
     }
 
     public static void copyDatabase(Context context) {
@@ -69,34 +108,35 @@ public class SenpaiDB extends SQLiteOpenHelper {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
-    public CocktailRecipe getRecipePlease() {
-        String a = this.getDatabaseName();
+    public ArrayList<CocktailRecipe> findAllBasedOnDrink(String drink) {
+        assert database != null;
         SQLiteDatabase db = this.getReadableDatabase();
-        /*String query = "SELECT * FROM Recipe";
+        String query = "SELECT * FROM RECIPES WHERE drink = " + drink;
         Cursor cursor = db.rawQuery(query, null);
-        CocktailRecipe recipe = new CocktailRecipe();
-        if (cursor.moveToFirst()) {
-            recipe.set_id(Integer.parseInt(cursor.getString(0)));
-            recipe.set_title(cursor.getString(1));
-            recipe.set_description(cursor.getString(2));
-            recipe.set_steps(cursor.getString(3));
-            recipe.set_drink(cursor.getString(4));
-            recipe.set_imageid(cursor.getString(5));
-            recipe.set_color(cursor.getString(6));
-            recipe.set_calories(cursor.getString(7));
-            recipe.set_preptime(cursor.getString(8));
-            recipe.set_timer(Integer.parseInt(cursor.getString(9)));
-            cursor.close();
-        } else
-            recipe = null;*/
-        return new CocktailRecipe();
+        cursor.moveToFirst();
+        return DataclassTransformations.transformToCocktailRecipeList(cursor);
     }
 
-    public SQLiteDatabase checkDatabase(){
-        return SQLiteDatabase.openDatabase(DB_PATH + DB_NAME, null,
-                SQLiteDatabase.OPEN_READWRITE);
+    public ArrayList<CocktailRecipe> getAllRecipes() {
+        assert database != null;
+        String query = "SELECT * FROM RECIPES";
+        Cursor cursor = database.rawQuery(query, null);
+        cursor.moveToFirst();
+        return DataclassTransformations.transformToCocktailRecipeList(cursor);
     }
+
+    public boolean insertRecipeIntoFavorites(CocktailRecipe recipe) {
+        assert database != null;
+        database.execSQL("INSERT INTO FAVORITES(recipeid) values ("  +recipe.get_id() +")" );
+        return true;
+    }
+
+    public boolean removeRecipeFromFavorites(CocktailRecipe recipe) {
+        assert database != null;
+        database.execSQL("delete from FAVORITES where recipeid =" + recipe.get_id());
+        return true;
+    }
+
 }

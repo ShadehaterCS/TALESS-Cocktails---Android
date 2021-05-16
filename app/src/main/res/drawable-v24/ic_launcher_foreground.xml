@@ -1,11 +1,25 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:aapt="http://schemas.android.com/aapt"
-    android:width="108dp"
-    android:height="108dp"
-    android:viewportWidth="108"
-    android:viewportHeight="108">
+    android:width="512dp"
+    android:height="512dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
     <path
-        android:fillColor="#FF0000"
-        android:pathData="M65.3,45.828l3.8,-6.6c0.2,-0.4 0.1,-0.9 -0.3,-1.1c-0.4,-0.2 -0.9,-0.1 -1.1,0.3l-3.9,6.7c-6.3,-2.8 -13.4,-2.8 -19.7,0l-3.9,-6.7c-0.2,-0.4 -0.7,-0.5 -1.1,-0.3C38.8,38.328 38.7,38.828 38.9,39.228l3.8,6.6C36.2,49.428 31.7,56.028 31,63.928h46C76.3,56.028 71.8,49.428 65.3,45.828zM43.4,57.328c-0.8,0 -1.5,-0.5 -1.8,-1.2c-0.3,-0.7 -0.1,-1.5 0.4,-2.1c0.5,-0.5 1.4,-0.7 2.1,-0.4c0.7,0.3 1.2,1 1.2,1.8C45.3,56.528 44.5,57.328 43.4,57.328L43.4,57.328zM64.6,57.328c-0.8,0 -1.5,-0.5 -1.8,-1.2s-0.1,-1.5 0.4,-2.1c0.5,-0.5 1.4,-0.7 2.1,-0.4c0.7,0.3 1.2,1 1.2,1.8C66.5,56.528 65.6,57.328 64.6,57.328L64.6,57.328z"
-        />
+        android:pathData="M512,486.4c0,14.136 -11.464,25.6 -25.6,25.6H25.6C11.464,512 0,500.536 0,486.4V40.96c0,-14.136 11.464,-25.6 25.6,-25.6h460.8c14.136,0 25.6,11.464 25.6,25.6V486.4z"
+        android:fillColor="#2D8B99"/>
+
+    <path
+        android:pathData="M275.092,269.01l117.725,-145.884l-250.471,0l117.893,146.094l0,92.682l-77.824,48.348l170.327,0l-77.65,-48.246z"
+        android:fillColor="#FFFFFF"/>
+    <path
+        android:pathData="M373.745,123.126l-212.332,0l106.168,131.563z"
+        android:fillColor="#D8EDEE"/>
+    <path
+        android:pathData="M206.162,179.63l61.419,76.114l61.42,-76.114z"
+        android:fillColor="#FBD800"/>
+    <path
+        android:pathData="M302.387,158.515m-21.468,0a21.468,21.468 0,1 1,42.936 0a21.468,21.468 0,1 1,-42.936 0"
+        android:fillColor="#F15B00"/>
+    <path
+        android:pathData="M257.316,239.734l-68.798,-128l-89.815,-31.79l3.154,-8.914l93.256,33.008l70.528,131.216z"
+        android:fillColor="#BD221F"/>
 </vector>

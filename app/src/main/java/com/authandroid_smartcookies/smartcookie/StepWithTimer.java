@@ -1,5 +1,6 @@
 package com.authandroid_smartcookies.smartcookie;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -14,7 +15,7 @@ public class StepWithTimer extends AppCompatActivity {
     private Button   countdownButton;
 
     private CountDownTimer countDownTimer ;
-    private long timeLeftInMilliseconds = 12000; //30sec
+    private long timeLeftInMilliseconds = 6000;
     private boolean timeRunning;
 
     @Override
@@ -25,12 +26,7 @@ public class StepWithTimer extends AppCompatActivity {
         countdownText = findViewById(R.id.countdown_text);
         countdownButton = findViewById(R.id.countdown_button);
 
-        countdownButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick (View view){
-                startStop();
-            }
-        });
+        countdownButton.setOnClickListener(view -> startStop());
         updateTimer();
     }
 
@@ -54,21 +50,25 @@ public class StepWithTimer extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-
-
+                checker();
+                countdownButton.setVisibility (View.INVISIBLE);
             }
         }.start();
-        countdownButton.setText("PAUSE");
+        countdownButton.setText("TIMER IS RUNNING");
         timeRunning = true;
     }
 
 
     private void stopTimer() {
         countDownTimer.cancel();
-        countdownButton.setText("PAUSE");
+        countdownButton.setText("PAUSED");
         timeRunning = false;
     }
-
+    public void checker() {
+        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.timersound);
+        mediaPlayer.start();
+        mediaPlayer.seekTo(0);
+    }
 
     private void updateTimer() {
         int seconds = (int) timeLeftInMilliseconds/1000;

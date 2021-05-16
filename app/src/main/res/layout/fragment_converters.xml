@@ -5,7 +5,7 @@
     android:id="@+id/converters"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Menu.ConvertersFragment" >
+    tools:context=".Menu.ConvertersFragment">
 
     <TextView
         android:id="@+id/title"
@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:text="Unit Converter"
         android:textSize="40dp"
+        android:fontFamily="@font/american_captain"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,6 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:fontFamily="@font/american_captain"
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,6 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Enter Here"
+        android:fontFamily="@font/american_captain"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.057"
@@ -45,26 +48,28 @@
         app:layout_constraintVertical_bias="0.389" />
 
     <Button
-        android:id="@+id/convert"
+        android:id="@+id/clear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="64dp"
-        android:text="Convert"
+        android:layout_marginBottom="72dp"
+        android:text="Clear"
+        android:fontFamily="@font/american_captain"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/clear"
+        app:layout_constraintEnd_toStartOf="@+id/convert"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/clear"
+        android:id="@+id/convert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="64dp"
-        android:text="Clear"
+        android:layout_marginBottom="72dp"
+        android:text="Convert"
+        android:fontFamily="@font/american_captain"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/convert" />
+        app:layout_constraintStart_toEndOf="@+id/clear" />
 
     <Spinner
         android:id="@+id/spinner_to"
@@ -72,6 +77,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:fontFamily="@font/american_captain"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/to"
         app:layout_constraintTop_toTopOf="parent"
@@ -82,6 +88,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="To"
+        android:fontFamily="@font/american_captain"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/spinner_to"
         app:layout_constraintHorizontal_bias="0.5"
@@ -95,6 +102,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Results will be printed here"
+        android:fontFamily="@font/american_captain"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.467"
@@ -109,6 +117,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
+        android:fontFamily="@font/american_captain"
         app:layout_constraintStart_toEndOf="@+id/from"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -120,6 +129,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/spinner_from"
         app:layout_constraintHorizontal_bias="0.5"
+        android:fontFamily="@font/american_captain"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
