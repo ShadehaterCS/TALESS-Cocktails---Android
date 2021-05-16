@@ -30,7 +30,8 @@ public class SenpaiDB extends SQLiteOpenHelper {
 
     /*
     Using singleton pattern to avoid leaks and constant openings
-     */
+    */
+
     public static SenpaiDB getInstance(Context context) {
         if (instance == null) {
             instance = new SenpaiDB(context.getApplicationContext());

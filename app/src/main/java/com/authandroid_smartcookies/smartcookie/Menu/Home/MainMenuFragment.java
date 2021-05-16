@@ -1,9 +1,10 @@
-package com.authandroid_smartcookies.smartcookie.Menu;
+package com.authandroid_smartcookies.smartcookie.Menu.Home;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -30,9 +31,9 @@ public class MainMenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         recyclerView=requireActivity().findViewById(R.id.recyclerview);
-        add_button=requireActivity().findViewById(R.id.add_button);
 
         db = SenpaiDB.getInstance(this.requireContext());
+
         return inflater.inflate(R.layout.fragment_main_menu, container, false);
     }
 
@@ -41,14 +42,14 @@ public class MainMenuFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         //If database doesn't exist, create it and always open the connection
-        if (!db.openDatabase())
+        if (!db.openDatabase()) {
             db.createDatabase(requireContext().getApplicationContext());
-        db.openDatabase();
-
+            db.openDatabase();
+        }
+        ArrayList<CocktailRecipe> recipes = getRandomRecipes();
         TextView tv = requireActivity().findViewById(R.id.textView4);
+
         tv.setOnClickListener(v -> {
-            ArrayList<CocktailRecipe> recipes = getRandomRecipes();
-            db.removeRecipeFromFavorites(recipes.get(0));
             if (!recipes.isEmpty())
                 tv.setText(recipes.get(random.nextInt(recipes.size())).get_title());
         });
