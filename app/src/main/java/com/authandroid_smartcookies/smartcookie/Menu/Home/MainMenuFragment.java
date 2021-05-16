@@ -31,7 +31,6 @@ public class MainMenuFragment extends Fragment {
     protected RecyclerView.LayoutManager mLayoutManager;
     protected ArrayList<CocktailRecipe> dataset;
 
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +53,8 @@ public class MainMenuFragment extends Fragment {
     }
 
     private void setAdapter(ArrayList<CocktailRecipe> recipes){
-        adapter = new RecipeAdapter(recipes);
+        dataset = recipes;
+        adapter = new RecipeAdapter(dataset);
         recyclerView.setAdapter(adapter);
     }
 
