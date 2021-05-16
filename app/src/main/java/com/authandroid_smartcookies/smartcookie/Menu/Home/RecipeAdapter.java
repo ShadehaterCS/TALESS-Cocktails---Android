@@ -16,12 +16,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
 import com.authandroid_smartcookies.smartcookie.R;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder> {
     private final ArrayList<CocktailRecipe> recipes;
 
-    public RecipeAdapter(ArrayList<CocktailRecipe> recipes){
+    public RecipeAdapter(ArrayList<CocktailRecipe> recipes) {
         this.recipes = recipes;
     }
 
@@ -40,15 +41,16 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         holder.getTitleTV().setText(recipe.get_title());
         holder.getDescTV().setText(recipe.get_description());
         holder.getImgView().setImageBitmap(
-                scaleImage(holder.view.getContext(),
-                        200,
-                        200,
-                        R.drawable.ic_aviation));
+                scaleImage(holder.view.getContext(),200, 200, recipe.get_imageid()));
     }
 
-    private Bitmap scaleImage(Context context, int x, int y, int id){
-        Bitmap bMap = BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_aviation);
-        return Bitmap.createScaledBitmap(bMap, 150, 100, true);
+    private Bitmap scaleImage(Context context, int x, int y, String imageId) {
+        final int rid = context.getResources()
+                .getIdentifier(imageId, "drawable", context.getPackageName());
+        int a = R.drawable.ic_blue_hawaii;
+        Bitmap bMap = BitmapFactory.decodeResource(context.getResources(),
+                rid);
+        return Bitmap.createScaledBitmap(bMap, x, y, true);
     }
 
     @Override
@@ -75,10 +77,16 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             return view;
         }
 
-        public TextView getTitleTV() { return titleTV; }
+        public TextView getTitleTV() {
+            return titleTV;
+        }
 
-        public TextView getDescTV() { return descTV; }
+        public TextView getDescTV() {
+            return descTV;
+        }
 
-        public ImageView getImgView() { return imgView; }
+        public ImageView getImgView() {
+            return imgView;
+        }
     }
 }
