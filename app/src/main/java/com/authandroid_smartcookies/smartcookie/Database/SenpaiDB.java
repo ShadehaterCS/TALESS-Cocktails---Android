@@ -140,4 +140,13 @@ public class SenpaiDB extends SQLiteOpenHelper {
         return true;
     }
 
+    public boolean isRecipeFavorited(CocktailRecipe recipe){
+        assert database != null;
+        String query = "SELECT * FROM FAVORITES where recipeid = "+recipe.get_id();
+        Cursor cursor = database.rawQuery(query, null);
+        boolean statement = cursor.getCount() > 0;
+        cursor.close();
+        return statement;
+    }
+
 }
