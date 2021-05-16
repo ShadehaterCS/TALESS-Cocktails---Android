@@ -1,8 +1,13 @@
 package com.authandroid_smartcookies.smartcookie.Menu.Home;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,10 +18,9 @@ import com.authandroid_smartcookies.smartcookie.R;
 
 import java.util.ArrayList;
 
-//kurie katsane bro eiste kalos alla y no kotlin? gt na prepei na vlepw pragmata opws @nonnull @override public ..kai oxi apla override funs
-
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder> {
-    private ArrayList<CocktailRecipe> recipes;
+    private final ArrayList<CocktailRecipe> recipes;
+
     public RecipeAdapter(ArrayList<CocktailRecipe> recipes){
         this.recipes = recipes;
     }
@@ -29,8 +33,22 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         return new ViewHolder(view);
     }
 
+    //Fill the view
     @Override
     public void onBindViewHolder(@NonNull RecipeAdapter.ViewHolder holder, int position) {
+        CocktailRecipe recipe = recipes.get(position);
+        holder.getTitleTV().setText(recipe.get_title());
+        holder.getDescTV().setText(recipe.get_description());
+        holder.getImgView().setImageBitmap(
+                scaleImage(holder.view.getContext(),
+                        200,
+                        200,
+                        R.drawable.ic_aviation));
+    }
+
+    private Bitmap scaleImage(Context context, int x, int y, int id){
+        Bitmap bMap = BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_aviation);
+        return Bitmap.createScaledBitmap(bMap, 150, 100, true);
     }
 
     @Override
@@ -39,12 +57,28 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        //private final CocktailRecipe recipe;
+        private final TextView titleTV;
+        private final TextView descTV;
+        private final ImageView imgView;
+        private final View view;
+
         public ViewHolder(View view) {
             super(view);
+            this.view = view;
+            titleTV = view.findViewById(R.id.titleTextView);
+            descTV = view.findViewById(R.id.descriptionTextView);
+            imgView = view.findViewById(R.id.cocktailImage);
             // Define click listener for the ViewHolder's View
-
         }
 
+        public View getView() {
+            return view;
+        }
+
+        public TextView getTitleTV() { return titleTV; }
+
+        public TextView getDescTV() { return descTV; }
+
+        public ImageView getImgView() { return imgView; }
     }
 }

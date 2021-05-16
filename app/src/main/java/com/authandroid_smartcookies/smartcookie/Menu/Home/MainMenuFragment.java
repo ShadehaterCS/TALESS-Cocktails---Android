@@ -3,8 +3,10 @@ package com.authandroid_smartcookies.smartcookie.Menu.Home;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -18,41 +20,52 @@ import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
 import com.authandroid_smartcookies.smartcookie.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class MainMenuFragment extends Fragment {
-    RecyclerView recyclerView;
-    FloatingActionButton add_button;
-    SenpaiDB db;
-    Random random = new Random();
+    private final String TAG = "MAIN_MENU_FRAGMENT";
+    protected RecyclerView recyclerView;
+    protected SenpaiDB db;
+    protected Random random = new Random();
+
+    protected RecipeAdapter adapter;
+    protected RecyclerView.LayoutManager mLayoutManager;
+    protected ArrayList<CocktailRecipe> dataset;
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //If database doesn't exist, create it and always open the connection
+        db = SenpaiDB.getInstance(this.requireContext());
+        if (!db.openDatabase()) {
+            db.createDatabase(requireContext().getApplicationContext());
+            db.openDatabase();
+        }
+        dataset = db.getAllRecipes();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        recyclerView=requireActivity().findViewById(R.id.recyclerview);
+        View root = inflater.inflate(R.layout.fragment_main_menu, container, false);
+        root.setTag(TAG);
+        recyclerView=root.findViewById(R.id.recyclerview);
+        mLayoutManager = new LinearLayoutManager(getActivity());
+        adapter = new RecipeAdapter(dataset);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(mLayoutManager);
 
-        db = SenpaiDB.getInstance(this.requireContext());
-
-        return inflater.inflate(R.layout.fragment_main_menu, container, false);
+        return root;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //If database doesn't exist, create it and always open the connection
-        if (!db.openDatabase()) {
-            db.createDatabase(requireContext().getApplicationContext());
-            db.openDatabase();
-        }
-        ArrayList<CocktailRecipe> recipes = getRandomRecipes();
-        TextView tv = requireActivity().findViewById(R.id.textView4);
-
-        tv.setOnClickListener(v -> {
-            if (!recipes.isEmpty())
-                tv.setText(recipes.get(random.nextInt(recipes.size())).get_title());
-        });
     }
 
     private ArrayList<CocktailRecipe> getRandomRecipes(){
