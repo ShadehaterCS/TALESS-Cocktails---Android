@@ -30,7 +30,6 @@ public class Launcher extends AppCompatActivity {
         }
         launcher_shaker = AnimationUtils.loadAnimation(this,R.anim.shaker);
 
-
         final ImageView image1 = findViewById(R.id.image1);
         image1.setAnimation(launcher_shaker);
 
