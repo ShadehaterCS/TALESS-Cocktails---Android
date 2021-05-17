@@ -4,9 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.os.Bundle;
 import android.transition.Explode;
+import android.transition.Fade;
+import android.transition.Transition;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,6 +17,8 @@ import android.widget.TextView;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
 import com.bumptech.glide.Glide;
+
+import java.util.Objects;
 
 public class RecipeActivity extends AppCompatActivity {
 
@@ -27,10 +32,16 @@ public class RecipeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe);
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
-        Explode explode = new Explode();
-        getWindow().setEnterTransition(explode);
-        getWindow().setExitTransition(explode);
+        Fade fade = new Fade();
+        View decor = getWindow().getDecorView();
+        fade.excludeTarget(decor.findViewById(R.id.action_bar_container), true);
+        fade.excludeTarget(android.R.id.statusBarBackground, true);
+        fade.excludeTarget(android.R.id.navigationBarBackground, true);
+
+        getWindow().setEnterTransition(fade);
+        getWindow().setExitTransition(fade);
 
         imgView = findViewById(R.id.cocktailImage_recipe);
         titleTV = findViewById(R.id.title_recipe);

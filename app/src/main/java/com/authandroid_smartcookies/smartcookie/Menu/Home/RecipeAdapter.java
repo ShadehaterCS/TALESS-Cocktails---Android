@@ -4,20 +4,27 @@ import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Pair;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.transition.Explode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
 import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
+import com.authandroid_smartcookies.smartcookie.HomeActivity;
 import com.authandroid_smartcookies.smartcookie.R;
 import com.authandroid_smartcookies.smartcookie.RecipeActivity;
 import com.bumptech.glide.Glide;
@@ -31,6 +38,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     private final ArrayList<CocktailRecipe> recipes;
     private final ArrayList<Integer> favorites;
     private final SenpaiDB db;
+
 
     public RecipeAdapter(Context context, ArrayList<CocktailRecipe> recipes) {
         this.recipes = recipes;
@@ -95,16 +103,14 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             descTV = view.findViewById(R.id.descriptionTextView);
             imgView = view.findViewById(R.id.cocktailImage);
             favoriteButton = view.findViewById(R.id.imageButton);
-
             //To handle moving to a new activity
             view.setOnClickListener(v -> {
                 Intent intent = new Intent(v.getContext(), RecipeActivity.class);
-                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation
-                        ((Activity)view.getContext(),
-                                Pair.create(imgView, "image"),
-                                Pair.create(titleTV, "title"),
-                                Pair.create(descTV, "description")
-                        );
+                /*ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation
+                        ((Activity)view.getContext(), imgView, "cocktail_image");*/
+                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        (Activity)v.getContext(), imgView, ViewCompat.getTransitionName(imgView)
+                );
                 intent.putExtra("recipe", recipe);
                 v.getContext().startActivity(intent,options.toBundle());
             });
