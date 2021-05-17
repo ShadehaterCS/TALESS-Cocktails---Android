@@ -22,7 +22,6 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         //clearApplicationDataDebugOnly();
 
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
@@ -32,14 +31,9 @@ public class HomeActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this,  R.id.fragment);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
 
-        Fade fade = new Fade();
-        View decor = getWindow().getDecorView();
-        fade.excludeTarget(decor.findViewById(R.id.action_bar_container), true);
-        fade.excludeTarget(android.R.id.statusBarBackground, true);
-        fade.excludeTarget(android.R.id.navigationBarBackground, true);
-
-        getWindow().setEnterTransition(fade);
-        getWindow().setExitTransition(fade);
+        Explode explode = new Explode();
+        getWindow().setEnterTransition(explode);
+        getWindow().setExitTransition(explode);
     }
 
     private void clearApplicationDataDebugOnly(){

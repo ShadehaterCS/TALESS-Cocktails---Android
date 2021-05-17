@@ -3,6 +3,7 @@ package com.authandroid_smartcookies.smartcookie;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.transition.ChangeBounds;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
@@ -35,13 +36,14 @@ public class RecipeActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).hide();
 
         Fade fade = new Fade();
+        fade.setDuration(200);
         View decor = getWindow().getDecorView();
         fade.excludeTarget(decor.findViewById(R.id.action_bar_container), true);
         fade.excludeTarget(android.R.id.statusBarBackground, true);
         fade.excludeTarget(android.R.id.navigationBarBackground, true);
 
         getWindow().setEnterTransition(fade);
-        getWindow().setExitTransition(fade);
+        getWindow().setExitTransition(new Explode());
 
         imgView = findViewById(R.id.cocktailImage_recipe);
         titleTV = findViewById(R.id.title_recipe);

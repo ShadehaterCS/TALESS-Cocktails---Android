@@ -18,6 +18,7 @@
         android:layout_marginStart="94dp"
         android:layout_marginEnd="95dp"
         android:contentDescription="@string/app_name"
+        android:rotation="44"
         android:src="@drawable/ic_shaker"
         android:transitionName="imageTransition" />
 

@@ -4,32 +4,24 @@ import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.transition.Explode;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.content.ContextCompat;
-import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
 import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
-import com.authandroid_smartcookies.smartcookie.HomeActivity;
 import com.authandroid_smartcookies.smartcookie.R;
 import com.authandroid_smartcookies.smartcookie.RecipeActivity;
 import com.bumptech.glide.Glide;
 
-import java.io.File;
 import java.util.ArrayList;
 
 //TODO long hold enlarges picture
@@ -43,7 +35,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     public RecipeAdapter(Context context, ArrayList<CocktailRecipe> recipes) {
         this.recipes = recipes;
         db = SenpaiDB.getInstance(context);
-        favorites = db.getFavorites();
+        favorites = db.getFavoritesIds();
     }
 
     @NonNull
@@ -106,11 +98,9 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             //To handle moving to a new activity
             view.setOnClickListener(v -> {
                 Intent intent = new Intent(v.getContext(), RecipeActivity.class);
-                /*ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation
-                        ((Activity)view.getContext(), imgView, "cocktail_image");*/
-                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                        (Activity)v.getContext(), imgView, ViewCompat.getTransitionName(imgView)
-                );
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation
+                        ((Activity)view.getContext(),
+                        imgView, "cocktail_recipe_transition");
                 intent.putExtra("recipe", recipe);
                 v.getContext().startActivity(intent,options.toBundle());
             });
@@ -125,10 +115,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
 
         public ImageButton getFavoriteButton() {
             return favoriteButton;
-        }
-
-        public View getView() {
-            return view;
         }
 
         public TextView getTitleTV() {

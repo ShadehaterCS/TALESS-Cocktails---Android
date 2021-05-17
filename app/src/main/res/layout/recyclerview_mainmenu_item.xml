@@ -36,7 +36,8 @@
             android:textSize="17sp"
             android:textStyle="bold"
             android:layout_marginTop="8dp"
-            android:textColor="@android:color/black"/>
+            android:textColor="@android:color/black"
+            android:transitionName="cocktail_recipe_transition"/>
 
         <TextView
             android:id="@+id/descriptionTextView"
@@ -52,7 +53,8 @@
             android:textStyle="italic"
             android:textSize="15sp"
             android:maxLines="2"
-            android:layout_toStartOf="@+id/imageButton"/>
+            android:layout_toStartOf="@+id/imageButton"
+            android:transitionName="cocktail_recipe_transition"/>
 
         <ImageButton
             android:id="@+id/imageButton"

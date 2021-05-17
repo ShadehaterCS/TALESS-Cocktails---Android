@@ -138,19 +138,19 @@ public class SenpaiDB extends SQLiteOpenHelper {
         database.execSQL("delete from FAVORITES where recipeid =" + recipe.get_id());
         return true;
     }
-    public ArrayList<Integer> getFavorites(){
+
+    public ArrayList<Integer> getFavoritesIds(){
         assert database != null;
         String query = "SELECT recipeid FROM FAVORITES";
         Cursor cursor = database.rawQuery(query, null);
         return DataclassTransformations.getListOfFavorites(cursor);
     }
-    public boolean isRecipeFavorited(CocktailRecipe recipe){
-        assert database != null;
-        String query = "SELECT * FROM FAVORITES where recipeid = "+recipe.get_id();
-        Cursor cursor = database.rawQuery(query, null);
-        boolean statement = cursor.getCount() > 0;
-        cursor.close();
-        return statement;
-    }
 
+    public ArrayList<CocktailRecipe> getFavoriteRecipes(){
+        assert database != null;
+        String query = "SELECT title,description,steps,drink,imageid, color, preptime,calories,timer" +
+                "from RECIPES FROM RECIPES INNER JOIN FAVORITES ON RECIPES.recipeid= FAVORITES.recipeid";
+        Cursor cursor = database.rawQuery(query, null);
+        return DataclassTransformations.transformToCocktailRecipeList(cursor);
+    }
 }
