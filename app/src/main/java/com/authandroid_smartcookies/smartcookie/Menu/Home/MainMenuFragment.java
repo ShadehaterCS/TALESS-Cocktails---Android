@@ -1,5 +1,6 @@
 package com.authandroid_smartcookies.smartcookie.Menu.Home;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -9,12 +10,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
 import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
+import com.authandroid_smartcookies.smartcookie.HomeActivity;
 import com.authandroid_smartcookies.smartcookie.R;
 
 import java.lang.ref.WeakReference;
@@ -30,6 +34,8 @@ public class MainMenuFragment extends Fragment {
     protected RecipeAdapter adapter;
     protected RecyclerView.LayoutManager mLayoutManager;
     protected ArrayList<CocktailRecipe> dataset;
+
+    private Parcelable recyclerViewScrollPosition;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,6 +55,11 @@ public class MainMenuFragment extends Fragment {
         mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
 
+        ImageButton search = root.findViewById(R.id.searchButton);
+        search.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), HomeActivity.class);
+            v.getContext().startActivity(intent);
+        });
         //placeholder adapter while data is loading
         recyclerView.setAdapter(new RecipeAdapter(requireContext(),new ArrayList<>()));
         return root;
@@ -64,7 +75,6 @@ public class MainMenuFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
     }
 
     private class async extends AsyncTask <Void, Void, Void>{

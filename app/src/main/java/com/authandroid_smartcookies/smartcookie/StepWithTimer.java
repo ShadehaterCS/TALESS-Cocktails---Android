@@ -30,7 +30,6 @@ public class StepWithTimer extends AppCompatActivity {
         updateTimer();
     }
 
-
     private void startStop() {
         if (timeRunning){
             stopTimer();

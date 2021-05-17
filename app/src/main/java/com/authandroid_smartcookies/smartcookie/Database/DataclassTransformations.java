@@ -57,6 +57,7 @@ public class DataclassTransformations {
                 array.add(id);
             cursor.moveToNext();
         }
+        cursor.close();
         return array;
     }
 }

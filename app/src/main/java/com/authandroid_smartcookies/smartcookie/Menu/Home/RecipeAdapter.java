@@ -31,7 +31,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     private final ArrayList<Integer> favorites;
     private final SenpaiDB db;
 
-
     public RecipeAdapter(Context context, ArrayList<CocktailRecipe> recipes) {
         this.recipes = recipes;
         db = SenpaiDB.getInstance(context);

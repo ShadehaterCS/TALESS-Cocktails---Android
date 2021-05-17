@@ -23,12 +23,6 @@ import java.util.Objects;
 
 public class RecipeActivity extends AppCompatActivity {
 
-    private ImageView imgView;
-    private TextView titleTV;
-    private TextView descriptionTV;
-
-    private CocktailRecipe recipe;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,10 +39,11 @@ public class RecipeActivity extends AppCompatActivity {
         getWindow().setEnterTransition(fade);
         getWindow().setExitTransition(new Explode());
 
-        imgView = findViewById(R.id.cocktailImage_recipe);
-        titleTV = findViewById(R.id.title_recipe);
-        descriptionTV = findViewById(R.id.description_recipe);
-        recipe = getIntent().getParcelableExtra("recipe");
+        ImageView imgView = findViewById(R.id.cocktailImage_recipe);
+        TextView titleTV = findViewById(R.id.title_recipe);
+        TextView descriptionTV = findViewById(R.id.description_recipe);
+
+        CocktailRecipe recipe = getIntent().getParcelableExtra("recipe");
 
         int rid = getResources().getIdentifier(
                 recipe.get_imageid(), "drawable", getPackageName());
