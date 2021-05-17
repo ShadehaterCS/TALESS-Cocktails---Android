@@ -5,44 +5,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RecipeView"
-    android:background="#E6E1C3">
+    android:background="@drawable/ic_agave_margarita">
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="137dp"
-        android:layout_height="65dp"
+        android:layout_width="210dp"
+        android:layout_height="97dp"
         android:layout_marginTop="36dp"
+        android:background="#80FFFFFF"
         android:fontFamily="monospace"
-        android:text="Recipe"
+        android:text="Aviation Cocktail"
         android:textAlignment="center"
+        android:textColor="#000000"
         android:textSize="36sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/Continuetorecipebutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Continue to Recipe"
-        app:cornerRadius="100px"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
-
     <EditText
         android:id="@+id/editTextTextMultiLine"
-        android:layout_width="342dp"
-        android:layout_height="413dp"
-        android:layout_marginTop="52dp"
+        android:layout_width="315dp"
+        android:layout_height="172dp"
+        android:layout_marginTop="392dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
-        android:text="---Recipe's OverView---"
+        android:text="Description"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        android:background="#80FFFFFF"/>
+
+    <EditText
+        android:id="@+id/editTextTextMultiLine3"
+        android:layout_width="191dp"
+        android:layout_height="343dp"
+        android:layout_marginStart="110dp"
+        android:layout_marginEnd="110dp"
+        android:background="#80FFFFFF"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        android:text="Ingredients"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="157dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
