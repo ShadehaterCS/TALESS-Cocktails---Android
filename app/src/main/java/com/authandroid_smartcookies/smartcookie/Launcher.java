@@ -34,6 +34,7 @@ public class Launcher extends AppCompatActivity {
         new Handler().postDelayed(() -> {
             Intent intent = new Intent(Launcher.this, HomeActivity.class);
             startActivity(intent);
-        }, 2000);
+            finish();
+        }, 1500);
     }
 }

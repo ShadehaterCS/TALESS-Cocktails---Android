@@ -49,7 +49,8 @@ public class MainMenuFragment extends Fragment {
         mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
 
-
+        //placeholder adapter while data is loading
+        recyclerView.setAdapter(new RecipeAdapter(requireContext(),new ArrayList<>()));
         return root;
     }
 

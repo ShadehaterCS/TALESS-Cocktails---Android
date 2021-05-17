@@ -6,6 +6,9 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
+import android.transition.Explode;
+import android.transition.Fade;
+import android.view.Window;
 
 import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -17,6 +20,10 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //clearApplicationDataDebugOnly();
+
+        //Default animation
+        getWindow().requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
+        getWindow().setExitTransition(new Explode());
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
