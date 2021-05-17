@@ -2,12 +2,16 @@ package com.authandroid_smartcookies.smartcookie.Database;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
  * @apiNote This class handles transformations from the raw SQL queries to objects and vice versa
  * @implNote All functions should be named after their transformations
- *           Always return a whole non-null object even if the cursor failed.
+ * Always return a whole non-null object even if the cursor failed.
  */
 public class DataclassTransformations {
 
@@ -15,17 +19,19 @@ public class DataclassTransformations {
         ArrayList<CocktailRecipe> recipes = new ArrayList<>(15);
         if (cursor.getCount() > 0) {
             cursor.moveToFirst();
-
-            do{ recipes.add(transformToCocktailRecipe(cursor,false)); }
+            do {
+                recipes.add(transformToCocktailRecipe(cursor, false));
+            }
             while (cursor.moveToNext());
         }
         cursor.close();
         return recipes;
     }
-/**
- * @param single Use when only a single result is to be returned
- */
-    public static CocktailRecipe transformToCocktailRecipe(Cursor cursor,boolean single) {
+
+    /**
+     * @param single Use when only a single result is to be returned
+     */
+    public static CocktailRecipe transformToCocktailRecipe(Cursor cursor, boolean single) {
         CocktailRecipe recipe = new CocktailRecipe();
         recipe.set_id(Integer.parseInt(cursor.getString(0)));
         recipe.set_title(cursor.getString(1));
@@ -42,4 +48,15 @@ public class DataclassTransformations {
         return recipe;
     }
 
+    public static ArrayList<Integer> getListOfFavorites(Cursor cursor) {
+        ArrayList<Integer> array = new ArrayList<>();
+        cursor.moveToFirst();
+        for (int i = 0; i < cursor.getCount(); i++) {
+            int id = Integer.parseInt(cursor.getString(0));
+            if (!array.contains(id))
+                array.add(id);
+            cursor.moveToNext();
+        }
+        return array;
+    }
 }

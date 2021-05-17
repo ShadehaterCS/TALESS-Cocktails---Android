@@ -22,7 +22,8 @@
             android:layout_width="match_parent"
             android:layout_height="180dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_launcher_background" />
+            android:src="@drawable/ic_launcher_background"
+            android:transitionName="cocktail_recipe_transition"/>
         <TextView
             android:id="@+id/titleTextView"
             android:layout_width="match_parent"
@@ -66,7 +67,8 @@
             android:layout_marginRight="1dp"
             android:layout_marginBottom="28dp"
             android:background="@drawable/ic_favorite_button_on"
-            android:contentDescription="FavButtonDesc" />
+            android:contentDescription="FavButtonDesc"
+            />
 
 
     </RelativeLayout>

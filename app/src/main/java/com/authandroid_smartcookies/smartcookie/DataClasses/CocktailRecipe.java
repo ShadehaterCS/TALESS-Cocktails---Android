@@ -1,8 +1,14 @@
 package com.authandroid_smartcookies.smartcookie.DataClasses;
+
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
 /*
 Data class for cocktail recipes, only getter and setters, no utilities
  */
-public class CocktailRecipe {
+public class CocktailRecipe implements Parcelable {
     private int _id;
     private String _title;
     private String _description;
@@ -122,5 +128,47 @@ public class CocktailRecipe {
         this._timer = _timer;
     }
 
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(_id);
+        dest.writeString(_title);
+        dest.writeString(_description);
+        dest.writeString(_steps);
+        dest.writeString(_drink);
+        dest.writeString(_imageid);
+        dest.writeString(_color);
+        dest.writeString(_calories);
+        dest.writeString(_preptime);
+        dest.writeInt(_timer);
+    }
+
+    public static final Parcelable.Creator<CocktailRecipe> CREATOR =
+            new Parcelable.Creator<CocktailRecipe>() {
+                public CocktailRecipe createFromParcel(Parcel in) {
+                    return new CocktailRecipe(in);
+                }
+                public CocktailRecipe[] newArray(int size){
+                    return new CocktailRecipe[size];
+                }
+            };
+
+    private CocktailRecipe(Parcel in){
+        _id = in.readInt();
+        _title = in.readString();
+        _description = in.readString();
+        _steps = in.readString();
+        _drink = in.readString();
+        _imageid = in.readString();
+        _color = in.readString();
+        _calories = in.readString();
+        _preptime = in.readString();
+        _timer = in.readInt();
+    }
 
 }

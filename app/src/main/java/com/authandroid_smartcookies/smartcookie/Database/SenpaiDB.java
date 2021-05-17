@@ -31,7 +31,6 @@ public class SenpaiDB extends SQLiteOpenHelper {
     /*
     Using singleton pattern to avoid leaks and constant openings
     */
-
     public static SenpaiDB getInstance(Context context) {
         if (instance == null) {
             instance = new SenpaiDB(context.getApplicationContext());
@@ -68,7 +67,7 @@ public class SenpaiDB extends SQLiteOpenHelper {
     }
 
     public void createDatabase(Context context) {
-        this.getReadableDatabase();
+        //this.getReadableDatabase();
         try {
             copyDatabase(context);
         } catch (Exception e) {
@@ -139,7 +138,12 @@ public class SenpaiDB extends SQLiteOpenHelper {
         database.execSQL("delete from FAVORITES where recipeid =" + recipe.get_id());
         return true;
     }
-
+    public ArrayList<Integer> getFavorites(){
+        assert database != null;
+        String query = "SELECT recipeid FROM FAVORITES";
+        Cursor cursor = database.rawQuery(query, null);
+        return DataclassTransformations.getListOfFavorites(cursor);
+    }
     public boolean isRecipeFavorited(CocktailRecipe recipe){
         assert database != null;
         String query = "SELECT * FROM FAVORITES where recipeid = "+recipe.get_id();
