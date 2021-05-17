@@ -15,13 +15,8 @@ public class RecipeView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recipeoverview);
-        ContinueButton = findViewById(R.id.Continuetorecipebutton);
 
-        ContinueButton.setOnClickListener(v -> {
-            Intent intent= new Intent(RecipeView.this , Steps.class);
-            startActivity(intent);
-        });
+        };
     }
 
 
-}
