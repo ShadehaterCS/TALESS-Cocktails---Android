@@ -16,11 +16,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.stream.Stream;
-
-
 /*
 TODO cleanup code, add map and recyclerView.
-Using new simpler adapter rather than the same for home/favorites
+TODO Using new simpler adapter rather than the same for home/favorites
  */
 public class SearchActivity extends AppCompatActivity {
     private AutoCompleteTextView search;
@@ -30,6 +28,7 @@ public class SearchActivity extends AppCompatActivity {
     private String[] DRINKS;
     private String[] NAMES;
     private String[] complete;
+
     ArrayList<CocktailRecipe> recipes;
 
     @Override

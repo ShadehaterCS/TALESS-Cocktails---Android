@@ -28,6 +28,7 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 
 //TODO long hold enlarges picture
+//TODO undo on snackbar
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder> {
     private final ArrayList<CocktailRecipe> recipes;

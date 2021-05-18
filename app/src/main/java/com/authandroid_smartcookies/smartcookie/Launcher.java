@@ -35,6 +35,6 @@ public class Launcher extends AppCompatActivity {
             Intent intent = new Intent(Launcher.this, HomeActivity.class);
             startActivity(intent);
             finish();
-        }, 1500);
+        }, 0);
     }
 }

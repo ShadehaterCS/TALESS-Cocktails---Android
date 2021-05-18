@@ -1,5 +1,7 @@
 package com.authandroid_smartcookies.smartcookie.Menu;
+
 import java.lang.Math;
+import java.util.HashMap;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -7,7 +9,10 @@ import androidx.fragment.app.Fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.InputType;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,129 +25,99 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.authandroid_smartcookies.smartcookie.R;
+import com.google.android.material.internal.TextWatcherAdapter;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
 import static androidx.core.content.ContextCompat.getSystemService;
 
 public class ConvertersFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        View view  = inflater.inflate(R.layout.fragment_converters, container, false);
+        View view = inflater.inflate(R.layout.fragment_converters, container, false);
 
-        EditText amounts = view.findViewById(R.id.input);
+        EditText amountsText = view.findViewById(R.id.input);
         Spinner from_sp = view.findViewById(R.id.spinner_from);
-        Spinner to_sp   = view.findViewById(R.id.spinner_to);
-        Button convert = view.findViewById(R.id.convert);
-        Button clear   = view.findViewById(R.id.clear);
-        TextView result  = view.findViewById(R.id.result);
+        Spinner to_sp = view.findViewById(R.id.spinner_to);
+        Button convertButton = view.findViewById(R.id.convert);
+        Button clearButton = view.findViewById(R.id.clear);
+        TextView resultTV = view.findViewById(R.id.result);
 
-        String[] from = {"gr","ml","oz","teaspoons","tablespoons"};
+        //didn't work as it should on phone for some reason, explicit call here
+        amountsText.setInputType(InputType.TYPE_CLASS_PHONE);
+        //updates text on every button press
+        amountsText.addTextChangedListener(new customTextWatcher(convertButton));
 
-        ArrayAdapter first = new ArrayAdapter<String>(this.getContext(),R.layout.support_simple_spinner_dropdown_item,from);
+        String[] from = {"gr", "ml", "oz", "teaspoons", "tablespoons"};
+
+        ArrayAdapter<String> first = new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item, from);
         from_sp.setAdapter(first);
 
-        String[] to   = {"gr","ml","oz","teaspoons","tablespoons"};
-        ArrayAdapter  second = new ArrayAdapter<String>(this.getContext(),R.layout.support_simple_spinner_dropdown_item,to);
+        String[] to = {"gr", "ml", "oz", "teaspoons", "tablespoons"};
+        ArrayAdapter<String> second = new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item, to);
         to_sp.setAdapter(second);
 
-        convert.setOnClickListener(v -> {
-            String test = amounts.getText().toString();
+        //Hashmaps, it's a lot but oh well ♥
+        HashMap<String, Double> grams = new HashMap<String, Double>() {{
+            put("gr", 1.0);
+            put("ml", 1.0);
+            put("oz", 0.03527);
+            put("teaspoons", 0.24);
+            put("tablespoons", 0.06666);
+        }};
+        HashMap<String, Double> mls = new HashMap<String, Double>() {{
+            put("gr", 1.0);
+            put("ml", 1.0);
+            put("oz", 0.03381);
+            put("teaspoons", 0.20288);
+            put("tablespoons", 0.06762);
+        }};
+        HashMap<String, Double> ounces = new HashMap<String, Double>() {{
+            put("gr", 28.3495231);
+            put("ml", 29.5735296);
+            put("oz", 1.0);
+            put("teaspoons", 6.0);
+            put("tablespoons", 2.0);
+        }};
+        HashMap<String, Double> teaspoons = new HashMap<String, Double>() {{
+            put("gr", 4.928921594);
+            put("ml", 4.92892);
+            put("oz", 0.166667);
+            put("teaspoons", 1.0);
+            put("tablespoons", 0.333333);
+        }};
+        HashMap<String, Double> tablespoons = new HashMap<String, Double>() {{
+            put("gr", 14.7867648);
+            put("ml", 14.7868);
+            put("oz", 0.5);
+            put("teaspoons", 3.0);
+            put("tablespoons", 1.0);
+        }};
+        HashMap<String, HashMap<String,Double>> maps = new HashMap<String, HashMap<String,Double>>(){{
+            put ("gr", grams);
+            put ("ml", mls);
+            put ("oz", ounces);
+            put("teaspoons", teaspoons);
+            put("tablespoons", tablespoons);
+        }};
 
-            if (TextUtils.isEmpty(test)) {
-                result.setText(("Enter your amount first"));
-
-            } else {
-                Double amount = Double.parseDouble(amounts.getText().toString());
-                //gr
-                if (from_sp.getSelectedItem().toString().equals("gr") && to_sp.getSelectedItem().toString().equals("gr")) {
-                    result.setText(("This is equivalent to : " + amount + " gr"));
-                } else if (from_sp.getSelectedItem().toString().equals("gr") && to_sp.getSelectedItem().toString().equals("ml")) {
-                    result.setText(("This is equivalent to : " + amount + " ml"));
-                } else if (from_sp.getSelectedItem().toString().equals("gr") && to_sp.getSelectedItem().toString().equals("oz")) {
-                    amount = amount * 0.0352739619;
-                    result.setText(("This is equivalent to : " + Math.round(amount * 100.0) / 100.0 + " oz"));
-                } else if (from_sp.getSelectedItem().toString().equals("gr") && to_sp.getSelectedItem().toString().equals("teaspoons")) {
-                    amount = amount * 0.24;
-                    result.setText(("This is equivalent to : " + Math.round(amount * 100.0) / 100.0 + " teaspoons"));
-                } else if (from_sp.getSelectedItem().toString().equals("gr") && to_sp.getSelectedItem().toString().equals("tablespoons")) {
-                    amount = amount * 0.0666666666666667;
-                    result.setText(("This is equivalent to : " + Math.round(amount * 100.0) / 100.0 + " teaspoons"));
-                }
-                //ml
-                else if (from_sp.getSelectedItem().toString().equals("ml") && to_sp.getSelectedItem().toString().equals("gr")) {
-                    result.setText(("This is equivalent to : " + amount + " gr"));
-                } else if (from_sp.getSelectedItem().toString().equals("ml") && to_sp.getSelectedItem().toString().equals("ml")) {
-                    result.setText(("This is equivalent to : " + amount + " ml"));
-                } else if (from_sp.getSelectedItem().toString().equals("ml") && to_sp.getSelectedItem().toString().equals("oz")) {
-                    amount = amount * 0.0338140227;
-                    result.setText(("This is equivalent to : " + Math.round(amount * 100.0) / 100.0 + " oz"));
-                } else if (from_sp.getSelectedItem().toString().equals("ml") && to_sp.getSelectedItem().toString().equals("teaspoons")) {
-                    amount = amount * 0.202884136;
-                    result.setText(("This is equivalent to : " + Math.round(amount * 100.0) / 100.0 + " teaspoons"));
-                } else if (from_sp.getSelectedItem().toString().equals("ml") && to_sp.getSelectedItem().toString().equals("tablespoons")) {
-                    amount = amount * 0.0676280454;
-                    result.setText(("This is equivalent to : " + Math.round(amount * 100.0) / 100.0 + " tablespoons"));
-                }
-                //oz
-                else if (from_sp.getSelectedItem().toString().equals("oz") && to_sp.getSelectedItem().toString().equals("gr")) {
-                    amount = amount * 28.3495231;
-                    result.setText(("This is equivalent to : " + Math.round(amount * 100.0) / 100.0 + " gr"));
-                } else if (from_sp.getSelectedItem().toString().equals("oz") && to_sp.getSelectedItem().toString().equals("ml")) {
-                    amount = amount * 29.5735296;
-                    result.setText(("This is equivalent to : " + Math.round(amount * 100.0) / 100.0 + " ml"));
-                } else if (from_sp.getSelectedItem().toString().equals("oz") && to_sp.getSelectedItem().toString().equals("oz")) {
-                    result.setText(("This is equivalent to : " + amount + " oz"));
-                } else if (from_sp.getSelectedItem().toString().equals("oz") && to_sp.getSelectedItem().toString().equals("teaspoons")) {
-                    amount = amount * 6;
-                    result.setText(("This is equivalent to : " + Math.round(amount * 100.0) / 100.0 + " teaspoons"));
-                } else if (from_sp.getSelectedItem().toString().equals("oz") && to_sp.getSelectedItem().toString().equals("tablespoons")) {
-                    amount = amount * 2;
-                    result.setText(("This is equivalent to : " + Math.round(amount * 100.0) / 100.0 + " tablespoons"));
-                }
-                //teaspoons
-                else if (from_sp.getSelectedItem().toString().equals("teaspoons") && to_sp.getSelectedItem().toString().equals("gr")) {
-                    amount = amount * 28.3495231;
-                    result.setText(("This is equivalent to : " + Math.round(amount * 100.0) / 100.0 + " gr"));
-                } else if (from_sp.getSelectedItem().toString().equals("teaspoons") && to_sp.getSelectedItem().toString().equals("ml")) {
-                    amount = amount * 29.5735296;
-                    result.setText(("This is equivalent to : " + Math.round(amount * 100.0) / 100.0 + " ml"));
-                } else if (from_sp.getSelectedItem().toString().equals("teaspoons") && to_sp.getSelectedItem().toString().equals("oz")) {
-                    amount = amount * 6;
-                    result.setText(("This is equivalent to : " + Math.round(amount * 100.0) / 100.0 + " oz"));
-                } else if (from_sp.getSelectedItem().toString().equals("teaspoons") && to_sp.getSelectedItem().toString().equals("teaspoons")) {
-                    result.setText(("This is equivalent to : " + amount + " teaspoons"));
-                } else if (from_sp.getSelectedItem().toString().equals("teaspoons") && to_sp.getSelectedItem().toString().equals("tablespoons")) {
-                    amount = amount * 2;
-                    result.setText(("This is equivalent to : " + Math.round(amount * 100.0) / 100.0 + " tablespoons"));
-                }
-                //tablespoons
-                else if (from_sp.getSelectedItem().toString().equals("teaspoons") && to_sp.getSelectedItem().toString().equals("gr")) {
-                    amount = amount * 12.781700527272;
-                    result.setText(("This is equivalent to : " + Math.round(amount * 100.0) / 100.0 + " gr"));
-                } else if (from_sp.getSelectedItem().toString().equals("teaspoons") && to_sp.getSelectedItem().toString().equals("ml")) {
-                    amount = amount * 14.7867648;
-                    result.setText(("This is equivalent to : " + Math.round(amount * 100.0) / 100.0 + " ml"));
-                } else if (from_sp.getSelectedItem().toString().equals("teaspoons") && to_sp.getSelectedItem().toString().equals("oz")) {
-                    amount = amount * 0.5;
-                    result.setText(("This is equivalent to : " + Math.round(amount * 100.0) / 100.0 + " oz"));
-                } else if (from_sp.getSelectedItem().toString().equals("teaspoons") && to_sp.getSelectedItem().toString().equals("teaspoons")) {
-                    amount = amount * 3;
-                    result.setText(("This is equivalent to : " + Math.round(amount * 100.0) / 100.0 + " teaspoons"));
-
-                } else if (from_sp.getSelectedItem().toString().equals("teaspoons") && to_sp.getSelectedItem().toString().equals("tablespoons")) {
-                    result.setText(("This is equivalent to : " + amount + " tablespoons"));
-                } else {
-                    result.setText(("ERROR - No such a thing"));
-                }
+        convertButton.setOnClickListener(v -> {
+            String input = amountsText.getText().toString();
+            if (!input.isEmpty()) {
+                String fromType = from_sp.getSelectedItem().toString();
+                String toType = to_sp.getSelectedItem().toString();
+                String result = "";
+                double amount = Double.parseDouble(amountsText.getText().toString());
+                //get the map with with fromType, get the conversion double with toType,
+                amount *= maps.get(fromType).get(toType);
+                //round number and set it as the TextView
+                resultTV.setText(("This is equivalent to : " + Math.round(amount * 100.0) / 100.0 + toType));
             }
         });
 
-        clear.setOnClickListener(v -> {
-            amounts.setText("");
-            result.setText (("Cleared"));
-            from_sp.setSelection(0);
-            to_sp.setSelection(0);
+        clearButton.setOnClickListener(v -> {
+            amountsText.setText("");
+            resultTV.setText(("Cleared"));
         });
 
         return view;
@@ -158,5 +133,24 @@ public class ConvertersFragment extends Fragment {
         InputMethodManager methodManager = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         methodManager.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
         amounts.requestFocus();
+    }
+
+    private class customTextWatcher implements TextWatcher {
+        private final Button convertButton;
+        public customTextWatcher(Button button) {
+            convertButton = button;
+        }
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+        @Override
+        public void afterTextChanged(Editable s) {
+            convertButton.performClick();
+        }
     }
 }
