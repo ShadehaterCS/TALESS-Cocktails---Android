@@ -59,6 +59,8 @@ public class ConvertersFragment extends Fragment {
         ArrayAdapter<String> second = new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item, to);
         to_sp.setAdapter(second);
 
+        //TODO change spinners to button array because it makes sense!
+
         //Hashmaps, it's a lot but oh well ♥
         //One hashmap for every correlation between types
         //One hashmap to access the hashmaps using the from type

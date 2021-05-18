@@ -32,7 +32,6 @@ public class MainMenuFragment extends Fragment {
     private final String TAG = "MAIN_MENU_FRAGMENT";
     protected RecyclerView recyclerView;
     protected SenpaiDB db;
-    protected Random random = new Random();
 
     protected RecipeAdapter adapter;
     protected RecyclerView.LayoutManager mLayoutManager;
@@ -71,7 +70,9 @@ public class MainMenuFragment extends Fragment {
         assert recyclerView != null;
         dataset = recipes;
         adapter = new RecipeAdapter(requireContext(), dataset);
+        adapter.setFavorites(db.getFavoritesIds());
         recyclerView.setAdapter(adapter);
+
     }
 
     @Override

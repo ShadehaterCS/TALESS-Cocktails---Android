@@ -32,13 +32,12 @@ import java.util.ArrayList;
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder> {
     private final ArrayList<CocktailRecipe> recipes;
-    private final ArrayList<Integer> favorites;
+    private ArrayList<Integer> favorites;
     private final SenpaiDB db;
 
     public RecipeAdapter(Context context, ArrayList<CocktailRecipe> recipes) {
         this.recipes = recipes;
         db = SenpaiDB.getInstance(context);
-        favorites = db.getFavoritesIds();
     }
 
     @NonNull
@@ -85,6 +84,9 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         holder.setFavoriteButtonImage(holder.getFavoriteButton(), holder.favorited);
     }
 
+    public void setFavorites(ArrayList<Integer> favorites){
+        this.favorites = favorites;
+    }
     @Override
     public int getItemCount() {
         return recipes.size();
