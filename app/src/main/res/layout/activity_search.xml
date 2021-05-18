@@ -6,27 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".Menu.Home.SearchActivity">
 
-    <EditText
-        android:id="@+id/searchText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="33dp"
-        android:layout_marginBottom="32dp"
-        android:ems="10"
-        android:hint="@android:string/search_go"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/searchResults"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/searchResults"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:ems="10"
         android:hint="Search results"
-        android:text="124141"
+        android:text="SearchResultsTemplate"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -37,10 +23,26 @@
         android:id="@+id/search_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="80dp"
         android:text="SEARCH BRO!"
+        app:layout_constraintBottom_toTopOf="@+id/searchResults"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchText" />
+
+    <AutoCompleteTextView
+        android:id="@+id/searchText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:completionThreshold="0"
+        android:hint="@string/autocompleteAssist"
+        app:layout_constraintBottom_toTopOf="@+id/search_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

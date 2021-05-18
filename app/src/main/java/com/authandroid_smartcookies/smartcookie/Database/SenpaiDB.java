@@ -155,12 +155,4 @@ public class SenpaiDB extends SQLiteOpenHelper {
         Cursor cursor = database.rawQuery(query, null);
         return DataclassTransformations.transformToCocktailRecipeList(cursor);
     }
-
-    public ArrayList<CocktailRecipe> getRecipesBasedOnSearch(String searchable){
-        assert database != null;
-        String query = "SELECT * FROM RECIPES WHERE drink = '" + searchable + "'";
-        //String query = Parser.getQuery(searchable);
-        Cursor cursor = database.rawQuery(query, null);
-        return DataclassTransformations.transformToCocktailRecipeList(cursor);
-    }
 }

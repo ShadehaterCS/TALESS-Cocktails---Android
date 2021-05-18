@@ -22,6 +22,7 @@ import java.util.Objects;
 public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         //clearApplicationDataDebugOnly();
 
         SenpaiDB db = SenpaiDB.getInstance(this);

@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Parcel;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,6 +59,7 @@ public class MainMenuFragment extends Fragment {
         ImageButton search = root.findViewById(R.id.searchButton);
         search.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), SearchActivity.class);
+            intent.putExtra("recipes", dataset);
             v.getContext().startActivity(intent);
         });
         //placeholder adapter while data is loading
