@@ -14,10 +14,12 @@ import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -58,6 +60,8 @@ public class ConvertersFragment extends Fragment {
         to_sp.setAdapter(second);
 
         //Hashmaps, it's a lot but oh well ♥
+        //One hashmap for every correlation between types
+        //One hashmap to access the hashmaps using the from type
         HashMap<String, Double> grams = new HashMap<String, Double>() {{
             put("gr", 1.0);
             put("ml", 1.0);
@@ -120,6 +124,18 @@ public class ConvertersFragment extends Fragment {
             resultTV.setText(("Cleared"));
         });
 
+        //Item click listener to update result value dynamically
+        AdapterView.OnItemSelectedListener listener = new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                convertButton.performClick();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        };
+        from_sp.setOnItemSelectedListener(listener);
+        to_sp.setOnItemSelectedListener(listener);
         return view;
     }
 
