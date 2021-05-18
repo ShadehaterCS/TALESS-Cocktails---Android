@@ -23,9 +23,7 @@ public class HomeActivity extends AppCompatActivity {
         //clearApplicationDataDebugOnly();
 
         SenpaiDB db = SenpaiDB.getInstance(this);
-        db.createDatabase(this);
-        //db.openDatabase();
-
+        db.openDatabase();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);

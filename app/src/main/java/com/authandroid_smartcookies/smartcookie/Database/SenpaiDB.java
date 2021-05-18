@@ -67,7 +67,8 @@ public class SenpaiDB extends SQLiteOpenHelper {
     }
 
     public void createDatabase(Context context) {
-        //this.getReadableDatabase();
+        //this is important for some reason? prevents an initialization crash idk why
+        this.getReadableDatabase();
         try {
             copyDatabase(context);
         } catch (Exception e) {
