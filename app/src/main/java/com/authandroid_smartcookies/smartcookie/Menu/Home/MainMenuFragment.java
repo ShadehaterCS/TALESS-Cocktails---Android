@@ -72,7 +72,6 @@ public class MainMenuFragment extends Fragment {
         adapter = new RecipeAdapter(requireContext(), dataset);
         adapter.setFavorites(db.getFavoritesIds());
         recyclerView.setAdapter(adapter);
-
     }
 
     @Override
