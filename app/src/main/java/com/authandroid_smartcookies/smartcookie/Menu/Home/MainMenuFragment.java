@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,8 +35,6 @@ public class MainMenuFragment extends Fragment {
     protected RecipeAdapter adapter;
     protected RecyclerView.LayoutManager mLayoutManager;
     protected ArrayList<CocktailRecipe> dataset;
-
-    private Parcelable recyclerViewScrollPosition;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -100,5 +99,10 @@ public class MainMenuFragment extends Fragment {
             super.onPostExecute(unused);
             fragment.get().setAdapter(recipes);
         }
+    }
+
+    //Used by parent activity when Home button is reselected inside the BottomNav
+    public void scrollToTop(){
+        recyclerView.smoothScrollToPosition(0);
     }
 }

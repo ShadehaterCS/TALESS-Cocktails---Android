@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,6 +22,7 @@ import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
 import com.authandroid_smartcookies.smartcookie.R;
 import com.authandroid_smartcookies.smartcookie.RecipeActivity;
 import com.bumptech.glide.Glide;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
@@ -61,10 +63,22 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         Glide.with(holder.view).load(rid).into(holder.getImgView());
 
         holder.getFavoriteButton().setOnClickListener(v -> {
-            if (holder.favorited)
+            if (holder.favorited) {
                 db.removeRecipeFromFavorites(recipe);
-            else
+                Snackbar snackbar =
+                        Snackbar.make(holder.view,
+                                "Removed "+recipe.get_title() + " from favorites",
+                                Snackbar.LENGTH_SHORT);
+                snackbar.show();
+            }
+            else {
                 db.insertRecipeIntoFavorites(recipe);
+                Snackbar snackbar =
+                        Snackbar.make(holder.view,
+                                "Added "+recipe.get_title() + " from favorites",
+                                Snackbar.LENGTH_SHORT);
+                snackbar.show();
+            }
             holder.favorited = !holder.favorited;
             holder.setFavoriteButtonImage(v, holder.favorited);
         });
@@ -90,11 +104,13 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         public ViewHolder(View view) {
             super(view);
             this.view = view;
+
             titleTV = view.findViewById(R.id.titleTextView);
             descTV = view.findViewById(R.id.descriptionTextView);
             imgView = view.findViewById(R.id.cocktailImage);
             favoriteButton = view.findViewById(R.id.imageButton);
-            //To handle moving to a new activity
+
+            //To handle moving to a new activity through shared element
             view.setOnClickListener(v -> {
                 Intent intent = new Intent(v.getContext(), RecipeActivity.class);
                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation
