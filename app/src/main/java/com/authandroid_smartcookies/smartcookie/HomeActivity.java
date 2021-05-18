@@ -10,6 +10,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 import android.transition.Explode;
+import android.view.View;
 
 import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
 import com.authandroid_smartcookies.smartcookie.Menu.Home.MainMenuFragment;
@@ -30,7 +31,7 @@ public class HomeActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         Objects.requireNonNull(getSupportActionBar()).hide();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
