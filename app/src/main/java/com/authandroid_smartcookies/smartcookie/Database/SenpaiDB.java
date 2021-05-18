@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 
 import com.authandroid_smartcookies.smartcookie.BuildConfig;
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
+import com.authandroid_smartcookies.smartcookie.Parser;
 
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -23,7 +24,7 @@ public class SenpaiDB extends SQLiteOpenHelper {
     private static final String TAG = "SENPAI";
     public static String DB_PATH;
     public static String DB_NAME = "database.db";
-    public static final int DATABASE_VERSION = 6;
+    public static final int DATABASE_VERSION = 1;
 
     public static SenpaiDB instance;
     private SQLiteDatabase database;
@@ -151,6 +152,14 @@ public class SenpaiDB extends SQLiteOpenHelper {
         assert database != null;
         String query = "SELECT title,description,steps,drink,imageid, color, preptime,calories,timer" +
                 "from RECIPES FROM RECIPES INNER JOIN FAVORITES ON RECIPES.recipeid= FAVORITES.recipeid";
+        Cursor cursor = database.rawQuery(query, null);
+        return DataclassTransformations.transformToCocktailRecipeList(cursor);
+    }
+
+    public ArrayList<CocktailRecipe> getRecipesBasedOnSearch(String searchable){
+        assert database != null;
+        String query = "SELECT * FROM RECIPES WHERE drink = '" + searchable + "'";
+        //String query = Parser.getQuery(searchable);
         Cursor cursor = database.rawQuery(query, null);
         return DataclassTransformations.transformToCocktailRecipeList(cursor);
     }

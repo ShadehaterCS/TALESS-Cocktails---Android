@@ -21,6 +21,7 @@ import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
 import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
 import com.authandroid_smartcookies.smartcookie.R;
 import com.authandroid_smartcookies.smartcookie.RecipeActivity;
+import com.authandroid_smartcookies.smartcookie.Utilities;
 import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -65,20 +66,17 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         holder.getFavoriteButton().setOnClickListener(v -> {
             if (holder.favorited) {
                 db.removeRecipeFromFavorites(recipe);
-                Snackbar snackbar =
-                        Snackbar.make(holder.view,
-                                "Removed "+recipe.get_title() + " from favorites",
-                                Snackbar.LENGTH_SHORT);
-                snackbar.show();
+                Utilities.make_show_SnackBar(
+                        holder.view,"Removed "+recipe.get_title() + " from favorites",
+                        2000);
             }
             else {
                 db.insertRecipeIntoFavorites(recipe);
-                Snackbar snackbar =
-                        Snackbar.make(holder.view,
-                                "Added "+recipe.get_title() + " from favorites",
-                                Snackbar.LENGTH_SHORT);
-                snackbar.show();
+                Utilities.make_show_SnackBar(holder.view,
+                        "Added "+recipe.get_title() + " from favorites",
+                        1000);
             }
+
             holder.favorited = !holder.favorited;
             holder.setFavoriteButtonImage(v, holder.favorited);
         });
