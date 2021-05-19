@@ -58,8 +58,12 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        //todo add decor thing
         Explode explode = new Explode();
+        explode.setDuration(300);
+        View decor = getWindow().getDecorView();
+        explode.excludeTarget(decor.findViewById(R.id.action_bar_container), true);
+        explode.excludeTarget(android.R.id.statusBarBackground, true);
+        explode.excludeTarget(android.R.id.navigationBarBackground, true);
         getWindow().setEnterTransition(explode);
         getWindow().setExitTransition(explode);
     }

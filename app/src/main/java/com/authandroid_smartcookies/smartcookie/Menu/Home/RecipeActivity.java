@@ -61,6 +61,7 @@ public class RecipeActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recipeActivityRecyclerView);
         recyclerView.setAdapter(new DetailedRecipeAdapter(recipe));
 
+        //DEBUG ONLY
         TextView v = findViewById(R.id.testingtext);
         SenpaiDB db = SenpaiDB.getInstance(this);
         HashMap<String,String> m = db.getIngredients(recipe);

@@ -11,23 +11,24 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="96dp"
         android:fontFamily="@font/american_captain"
         android:text="Unit Converter"
         android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/input"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/input"
         android:layout_width="200dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:fontFamily="@font/american_captain"
         android:gravity="center"
         android:hint='"2 ".5", "2/3", "1/8"'
-        android:inputType="number"
+        android:inputType="number|text|phone"
+        android:windowSoftInputMode="adjustNothing"
         app:layout_constraintBottom_toTopOf="@+id/radioGroupFrom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
@@ -64,7 +65,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/american_captain"
         android:text="To"
-        android:textSize="40dp"
+        android:textSize="50sp"
         app:layout_constraintEnd_toEndOf="@+id/fromTextView"
         app:layout_constraintTop_toBottomOf="@+id/fromTextView" />
 
@@ -90,7 +91,7 @@
         android:layout_marginStart="8dp"
         android:fontFamily="@font/american_captain"
         android:text="From"
-        android:textSize="40dp"
+        android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
@@ -99,16 +100,17 @@
     <RadioGroup
         android:id="@+id/radioGroupFrom"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/fromTextView"
         app:layout_constraintStart_toEndOf="@+id/fromTextView"
         app:layout_constraintTop_toTopOf="@+id/fromTextView">
 
         <RadioButton
             android:id="@+id/fromgrRB"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@drawable/radio_button_selector"
             android:button="@android:color/transparent"
             android:gravity="center_horizontal|center_vertical"
@@ -117,7 +119,7 @@
         <RadioButton
             android:id="@+id/frommlRB"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@drawable/radio_button_selector"
             android:button="@android:color/transparent"
             android:gravity="center_horizontal|center_vertical"
@@ -126,7 +128,7 @@
         <RadioButton
             android:id="@+id/fromozRB"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@drawable/radio_button_selector"
             android:button="@android:color/transparent"
             android:gravity="center_horizontal|center_vertical"
@@ -135,7 +137,7 @@
         <RadioButton
             android:id="@+id/fromtspRB"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@drawable/radio_button_selector"
             android:button="@android:color/transparent"
             android:gravity="center_horizontal|center_vertical"
@@ -144,7 +146,7 @@
         <RadioButton
             android:id="@+id/fromtbspRB"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@drawable/radio_button_selector"
             android:button="@android:color/transparent"
             android:gravity="center_horizontal|center_vertical"
@@ -154,16 +156,17 @@
     <RadioGroup
         android:id="@+id/radioGroupTo"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/toTextView"
         app:layout_constraintStart_toEndOf="@+id/fromTextView"
         app:layout_constraintTop_toTopOf="@+id/toTextView">
 
         <RadioButton
             android:id="@+id/togrRB"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@drawable/radio_button_selector"
             android:button="@android:color/transparent"
             android:gravity="center_horizontal|center_vertical"
@@ -172,7 +175,7 @@
         <RadioButton
             android:id="@+id/tomlRB"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@drawable/radio_button_selector"
             android:button="@android:color/transparent"
             android:gravity="center_horizontal|center_vertical"
@@ -181,7 +184,7 @@
         <RadioButton
             android:id="@+id/toozRB"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@drawable/radio_button_selector"
             android:button="@android:color/transparent"
             android:gravity="center_horizontal|center_vertical"
@@ -190,7 +193,7 @@
         <RadioButton
             android:id="@+id/totspRB"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@drawable/radio_button_selector"
             android:button="@android:color/transparent"
             android:gravity="center_horizontal|center_vertical"
@@ -199,7 +202,7 @@
         <RadioButton
             android:id="@+id/totbspRB"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@drawable/radio_button_selector"
             android:button="@android:color/transparent"
             android:gravity="center_horizontal|center_vertical"

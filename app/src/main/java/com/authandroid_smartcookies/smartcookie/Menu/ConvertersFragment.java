@@ -42,7 +42,7 @@ public class ConvertersFragment extends Fragment {
         resultTV = view.findViewById(R.id.resultTextView);
 
         //didn't work as it should on phone for some reason, explicit call here
-        amountsText.setInputType(InputType.TYPE_CLASS_PHONE);
+       // amountsText.setInputType(InputType.TYPE_CLASS_PHONE);
         //updates text on every button press
         amountsText.addTextChangedListener(new customTextWatcher());
 
@@ -151,7 +151,6 @@ public class ConvertersFragment extends Fragment {
             amount = Double.parseDouble(input);
         return amount;
     }
-
 
     private class customTextWatcher implements TextWatcher {
         @Override
