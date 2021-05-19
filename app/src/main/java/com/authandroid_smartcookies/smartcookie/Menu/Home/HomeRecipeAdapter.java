@@ -1,6 +1,5 @@
 package com.authandroid_smartcookies.smartcookie.Menu.Home;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Context;
@@ -28,12 +27,12 @@ import java.util.ArrayList;
 //TODO undo on snackbar
 
 public class HomeRecipeAdapter extends RecyclerView.Adapter<HomeRecipeAdapter.ViewHolder> {
-    private final ArrayList<CocktailRecipe> recipes;
+    private final ArrayList<CocktailRecipe> dataset;
     private ArrayList<Integer> favorites;
     private final SenpaiDB db;
 
-    public HomeRecipeAdapter(Context context, ArrayList<CocktailRecipe> recipes) {
-        this.recipes = recipes;
+    public HomeRecipeAdapter(Context context, ArrayList<CocktailRecipe> dataset) {
+        this.dataset = dataset;
         db = SenpaiDB.getInstance(context);
     }
 
@@ -48,12 +47,13 @@ public class HomeRecipeAdapter extends RecyclerView.Adapter<HomeRecipeAdapter.Vi
     //Fill the view
     @Override
     public void onBindViewHolder(@NonNull HomeRecipeAdapter.ViewHolder holder, int position) {
-        CocktailRecipe recipe = recipes.get(position);
+        CocktailRecipe recipe = dataset.get(position);
 
         holder.recipe = recipe;
         holder.favorited = favorites.contains(recipe.get_id());
         holder.getTitleTV().setText(recipe.get_title());
         holder.getDescTV().setText(recipe.get_description());
+
         int rid = holder.view.getContext().getResources()
                 .getIdentifier(recipe.get_imageid(), "drawable",
                         holder.view.getContext().getPackageName());
@@ -65,15 +65,18 @@ public class HomeRecipeAdapter extends RecyclerView.Adapter<HomeRecipeAdapter.Vi
                 Utilities.make_show_SnackBar(
                         holder.view,"Removed "+recipe.get_title() + " from favorites",
                         2000);
+                favorites.removeIf(i -> i == recipe.get_id());
             }
             else {
                 db.insertRecipeIntoFavorites(recipe);
                 Utilities.make_show_SnackBar(holder.view,
                         "Added "+recipe.get_title() + " from favorites",
                         1000);
+                favorites.add(recipe.get_id());
             }
 
             holder.favorited = !holder.favorited;
+
             holder.setFavoriteButtonImage(v, holder.favorited);
         });
 
@@ -83,9 +86,10 @@ public class HomeRecipeAdapter extends RecyclerView.Adapter<HomeRecipeAdapter.Vi
     public void setFavorites(ArrayList<Integer> favorites){
         this.favorites = favorites;
     }
+
     @Override
     public int getItemCount() {
-        return recipes.size();
+        return dataset.size();
     }
 
     protected class ViewHolder extends RecyclerView.ViewHolder {

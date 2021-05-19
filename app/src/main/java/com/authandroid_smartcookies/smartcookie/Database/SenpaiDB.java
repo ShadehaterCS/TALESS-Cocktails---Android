@@ -150,8 +150,8 @@ public class SenpaiDB extends SQLiteOpenHelper {
 
     public ArrayList<CocktailRecipe> getFavoriteRecipes(){
         assert database != null;
-        String query = "SELECT title,description,steps,drink,imageid, color, preptime,calories,timer" +
-                "from RECIPES FROM RECIPES INNER JOIN FAVORITES ON RECIPES.recipeid= FAVORITES.recipeid";
+        String query = "SELECT id, title,description,steps,drink,imageid, color, preptime,calories,timer" +
+                " FROM RECIPES INNER JOIN FAVORITES ON RECIPES.recipeid= FAVORITES.recipeid";
         Cursor cursor = database.rawQuery(query, null);
         return DataclassTransformations.transformToCocktailRecipeList(cursor);
     }
