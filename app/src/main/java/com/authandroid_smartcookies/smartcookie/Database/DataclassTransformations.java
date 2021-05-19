@@ -1,6 +1,5 @@
 package com.authandroid_smartcookies.smartcookie.Database;
 
-import android.content.ContentValues;
 import android.database.Cursor;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
@@ -10,20 +9,18 @@ import java.util.HashMap;
 
 /**
  * @apiNote This class handles transformations from the raw SQL queries to objects and vice versa
- * @implNote All functions should be named after their transformations
+ * @implNote All functions should be named after their transformations and accept Cursor objects
  * Always return a whole non-null object even if the cursor failed.
  */
 public class DataclassTransformations {
 
     public static ArrayList<CocktailRecipe> transformToCocktailRecipeList(Cursor cursor) {
         ArrayList<CocktailRecipe> recipes = new ArrayList<>(15);
-        if (cursor.getCount() > 0) {
-            cursor.moveToFirst();
-            do {
+        cursor.moveToFirst();
+        if (cursor.getCount() > 0)
+            do
                 recipes.add(transformToCocktailRecipe(cursor, false));
-            }
             while (cursor.moveToNext());
-        }
         cursor.close();
         return recipes;
     }
@@ -48,7 +45,7 @@ public class DataclassTransformations {
         return recipe;
     }
 
-    public static ArrayList<Integer> getListOfFavorites(Cursor cursor) {
+    public static ArrayList<Integer> transformFavoritesToList(Cursor cursor) {
         ArrayList<Integer> array = new ArrayList<>();
         cursor.moveToFirst();
         for (int i = 0; i < cursor.getCount(); i++) {
@@ -59,5 +56,18 @@ public class DataclassTransformations {
         }
         cursor.close();
         return array;
+    }
+
+    public static HashMap<String, String> transformToIngredientsHashMap(Cursor cursor){
+        HashMap<String, String> map = new HashMap<>();
+        cursor.moveToFirst();
+        for (int i = 0; i < cursor.getCount(); i++) {
+            String ingredient = cursor.getString(0);
+            String amount = cursor.getString(1);
+            map.put(ingredient,amount);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return map;
     }
 }

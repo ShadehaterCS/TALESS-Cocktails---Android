@@ -18,9 +18,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
+import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
 import com.authandroid_smartcookies.smartcookie.R;
 import com.bumptech.glide.Glide;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 public class RecipeActivity extends AppCompatActivity {
@@ -58,6 +60,19 @@ public class RecipeActivity extends AppCompatActivity {
         //RecyclerView stuff
         recyclerView = findViewById(R.id.recipeActivityRecyclerView);
         recyclerView.setAdapter(new DetailedRecipeAdapter(recipe));
+
+        TextView v = findViewById(R.id.testingtext);
+        SenpaiDB db = SenpaiDB.getInstance(this);
+        HashMap<String,String> m = db.getIngredients(recipe);
+        String a = "";
+        String b = "";
+        String c = "";
+        for (String s : m.keySet()){
+            a = s;
+            b = m.get(s);
+            c += a + " " + b + "\n";
+        }
+        v.setText(c);
     }
 
 }

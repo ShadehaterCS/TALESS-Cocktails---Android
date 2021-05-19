@@ -1,6 +1,5 @@
 package com.authandroid_smartcookies.smartcookie.Database;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -10,15 +9,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.authandroid_smartcookies.smartcookie.BuildConfig;
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
-import com.authandroid_smartcookies.smartcookie.Parser;
 
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SenpaiDB extends SQLiteOpenHelper {
     private static final String TAG = "SENPAI";
@@ -145,7 +142,7 @@ public class SenpaiDB extends SQLiteOpenHelper {
         assert database != null;
         String query = "SELECT recipeid FROM FAVORITES";
         Cursor cursor = database.rawQuery(query, null);
-        return DataclassTransformations.getListOfFavorites(cursor);
+        return DataclassTransformations.transformFavoritesToList(cursor);
     }
 
     public ArrayList<CocktailRecipe> getFavoriteRecipes(){
@@ -154,5 +151,14 @@ public class SenpaiDB extends SQLiteOpenHelper {
                 " FROM RECIPES INNER JOIN FAVORITES ON RECIPES.recipeid= FAVORITES.recipeid";
         Cursor cursor = database.rawQuery(query, null);
         return DataclassTransformations.transformToCocktailRecipeList(cursor);
+    }
+
+    public HashMap<String, String> getIngredients(CocktailRecipe recipe){
+        assert database != null;
+        String query = "select ingredient, amount from INGREDIENT_ON_RECIPE\n" +
+                "left join INGREDIENTS on INGREDIENT_ON_RECIPE.ingredientid = INGREDIENTS.ingredientid\n" +
+                "where recipeid = "+recipe.get_id();
+        Cursor cursor = database.rawQuery(query,null);
+        return DataclassTransformations.transformToIngredientsHashMap(cursor);
     }
 }

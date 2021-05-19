@@ -13,74 +13,59 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/american_captain"
         android:text="Unit Converter"
-        android:textSize="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.256" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/input"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
+        android:layout_width="200dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="32dp"
         android:fontFamily="@font/american_captain"
+        android:gravity="center"
+        android:hint='"2, ".5", "2/3", "1/8"'
         android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/radioGroupFrom"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.386" />
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/enter_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:fontFamily="@font/american_captain"
         android:text="Enter Here"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.057"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.389" />
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/input"
+        app:layout_constraintEnd_toStartOf="@+id/input"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/clear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="108dp"
+        android:layout_height="61dp"
         android:layout_marginBottom="72dp"
         android:fontFamily="@font/american_captain"
         android:text="Clear"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/convert"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="72dp"
-        android:fontFamily="@font/american_captain"
-        android:text="Convert"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:soundEffectsEnabled="false"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/result" />
 
     <TextView
         android:id="@+id/to"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/american_captain"
         android:text="To"
         android:textSize="40dp"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/from"
         app:layout_constraintTop_toBottomOf="@+id/from" />
 
     <TextView
@@ -90,7 +75,7 @@
         android:layout_marginTop="48dp"
         android:fontFamily="@font/american_captain"
         android:text="Results will be printed here"
-        android:textSize="25dp"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.467"
         app:layout_constraintStart_toStartOf="parent"
@@ -122,51 +107,46 @@
             android:id="@+id/fromgrRB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/radiobuttonbackground"
             android:button="@null"
             android:gravity="center_horizontal|center_vertical"
-            android:text="gr"
-            android:background="@drawable/radiobuttonbackground"
-            />
+            android:text="@string/grams" />
 
         <RadioButton
             android:id="@+id/frommlRB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/radiobuttonbackground"
             android:button="@null"
             android:gravity="center_horizontal|center_vertical"
-            android:text="ml"
-            android:background="@drawable/radiobuttonbackground"
-            />
+            android:text="@string/millilitres" />
 
         <RadioButton
             android:id="@+id/fromozRB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/radiobuttonbackground"
             android:button="@null"
             android:gravity="center_horizontal|center_vertical"
-            android:text="oz"
-            android:background="@drawable/radiobuttonbackground"
-            />
+            android:text="@string/ounces" />
 
         <RadioButton
             android:id="@+id/fromtspRB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/radiobuttonbackground"
             android:button="@null"
             android:gravity="center_horizontal|center_vertical"
-            android:text="tsp"
-            android:background="@drawable/radiobuttonbackground"
-            />
+            android:text="@string/teaspoons" />
 
         <RadioButton
             android:id="@+id/fromtbspRB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/radiobuttonbackground"
             android:button="@null"
             android:gravity="center_horizontal|center_vertical"
-            android:text="tbsp"
-            android:background="@drawable/radiobuttonbackground"
-            />
+            android:text="@string/tablespoons" />
     </RadioGroup>
 
     <RadioGroup
@@ -184,7 +164,7 @@
             android:layout_height="wrap_content"
             android:button="@null"
             android:gravity="center_horizontal|center_vertical"
-            android:text="gr"
+            android:text="@string/grams"
             android:background="@drawable/radiobuttonbackground"
             />
 
@@ -194,7 +174,7 @@
             android:layout_height="wrap_content"
             android:button="@null"
             android:gravity="center_horizontal|center_vertical"
-            android:text="ml"
+            android:text="@string/millilitres"
             android:background="@drawable/radiobuttonbackground"
             />
 
@@ -204,7 +184,7 @@
             android:layout_height="wrap_content"
             android:button="@null"
             android:gravity="center_horizontal|center_vertical"
-            android:text="oz"
+            android:text="@string/ounces"
             android:background="@drawable/radiobuttonbackground"
             />
 
@@ -214,7 +194,7 @@
             android:layout_height="wrap_content"
             android:button="@null"
             android:gravity="center_horizontal|center_vertical"
-            android:text="tsp"
+            android:text="@string/teaspoons"
             android:background="@drawable/radiobuttonbackground"
             />
 
@@ -224,7 +204,7 @@
             android:layout_height="wrap_content"
             android:button="@null"
             android:gravity="center_horizontal|center_vertical"
-            android:text="tbsp"
+            android:text="@string/tablespoons"
             android:background="@drawable/radiobuttonbackground"
             />
     </RadioGroup>

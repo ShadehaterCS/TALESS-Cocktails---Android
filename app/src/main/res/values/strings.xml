@@ -8,5 +8,10 @@
     <string name="autocompleteAssist">Try "Gin", "Bourbon", "Daiquiri"..</string>
     <string name="image_of_the_cocktail">Image of the cocktail</string>
     <string name="favbuttondesc">Button with heart. Adds recipe to favorites</string>
+    <string name="grams">gr</string>
+    <string name="millilitres">ml</string>
+    <string name="ounces">oz</string>
+    <string name="teaspoons">tsp</string>
+    <string name="tablespoons">tbsp</string>
 
 </resources>
