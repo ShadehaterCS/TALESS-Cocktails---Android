@@ -70,7 +70,6 @@ public class MainMenuFragment extends Fragment {
         recyclerView=root.findViewById(R.id.recyclerview);
         mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
-
         ImageButton search = root.findViewById(R.id.searchButton);
         search.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), SearchActivity.class);

@@ -21,7 +21,7 @@ public class FavoritesFragment extends Fragment {
     private SenpaiDB db;
     private ArrayList<CocktailRecipe> recipes;
     private ConstraintLayout background;
-    private Toolbar toolbar;
+    private androidx.appcompat.widget.Toolbar toolbar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

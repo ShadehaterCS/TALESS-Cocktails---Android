@@ -11,14 +11,16 @@
 
     <ImageView
         android:id="@+id/image1"
-        android:layout_width="222dp"
+        android:layout_width="wrap_content"
         android:layout_height="329dp"
+        android:layout_above="@+id/textView"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="94dp"
         android:layout_marginEnd="95dp"
+        android:layout_marginBottom="0dp"
         android:contentDescription="@string/app_name"
-        android:rotation="44"
+        android:rotation="24"
         android:src="@drawable/ic_shaker"
         android:transitionName="imageTransition" />
 
@@ -26,9 +28,9 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/image1"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginBottom="100dp"
         android:fontFamily="@font/american_captain"
         android:text="Tales for males"
         android:textColor="@color/black"
