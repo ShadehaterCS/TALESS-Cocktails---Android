@@ -4,16 +4,13 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,19 +18,19 @@ import android.widget.ImageButton;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
 import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
-import com.authandroid_smartcookies.smartcookie.HomeActivity;
 import com.authandroid_smartcookies.smartcookie.R;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class MainMenuFragment extends Fragment {
     private final String TAG = "MAIN_MENU_FRAGMENT";
     protected RecyclerView recyclerView;
     protected SenpaiDB db;
 
-    protected RecipeAdapter adapter;
+    protected HomeRecipeAdapter adapter;
     protected RecyclerView.LayoutManager mLayoutManager;
     protected ArrayList<CocktailRecipe> dataset;
 
@@ -42,7 +39,26 @@ public class MainMenuFragment extends Fragment {
         super.onCreate(savedInstanceState);
         //If database doesn't exist, create it and always open the connection
         db = SenpaiDB.getInstance(this.requireContext());
-        new async(this).execute();
+        fetchInitialDatasetInBackground();
+        //new async(this).execute();
+    }
+
+    public void fetchInitialDatasetInBackground(){
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Handler handler = new Handler(Looper.getMainLooper());
+        executor.execute(() -> {
+            if (!db.openDatabase()) {
+                db.createDatabase(requireContext().getApplicationContext());
+                db.openDatabase();
+            }
+            dataset = db.getAllRecipes();
+            adapter = new HomeRecipeAdapter(requireContext(), dataset);
+            adapter.setFavorites(db.getFavoritesIds());
+            //Run on UI thread
+            handler.post(() -> {
+                recyclerView.setAdapter(adapter);
+            });
+        });
     }
 
     @Override
@@ -61,47 +77,10 @@ public class MainMenuFragment extends Fragment {
             intent.putExtra("recipes", dataset);
             v.getContext().startActivity(intent);
         });
+
         //placeholder adapter while data is loading
-        recyclerView.setAdapter(new RecipeAdapter(requireContext(),new ArrayList<>()));
+        recyclerView.setAdapter(new HomeRecipeAdapter(requireContext(),new ArrayList<>()));
         return root;
-    }
-
-    private void setAdapter(ArrayList<CocktailRecipe> recipes){
-        assert recyclerView != null;
-        dataset = recipes;
-        adapter = new RecipeAdapter(requireContext(), dataset);
-        adapter.setFavorites(db.getFavoritesIds());
-        recyclerView.setAdapter(adapter);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-    }
-
-    private class async extends AsyncTask <Void, Void, Void>{
-        private final WeakReference<MainMenuFragment> fragment;
-        private ArrayList<CocktailRecipe> recipes;
-
-        public async(MainMenuFragment fragment){
-            this.fragment = new WeakReference<>(fragment);
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            if (!db.openDatabase()) {
-                db.createDatabase(requireContext().getApplicationContext());
-                db.openDatabase();
-            }
-            recipes = db.getAllRecipes();
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void unused) {
-            super.onPostExecute(unused);
-            fragment.get().setAdapter(recipes);
-        }
     }
 
     //Used by parent activity when Home button is reselected inside the BottomNav

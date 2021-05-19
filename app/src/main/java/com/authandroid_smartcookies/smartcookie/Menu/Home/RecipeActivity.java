@@ -1,8 +1,9 @@
-package com.authandroid_smartcookies.smartcookie;
+package com.authandroid_smartcookies.smartcookie.Menu.Home;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.transition.ChangeBounds;
 
 import android.animation.ObjectAnimator;
@@ -17,11 +18,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
+import com.authandroid_smartcookies.smartcookie.R;
 import com.bumptech.glide.Glide;
 
 import java.util.Objects;
 
 public class RecipeActivity extends AppCompatActivity {
+
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +46,6 @@ public class RecipeActivity extends AppCompatActivity {
         ImageView imgView = findViewById(R.id.cocktailImage_recipe);
         TextView titleTV = findViewById(R.id.title_recipe);
         TextView descriptionTV = findViewById(R.id.description_recipe);
-
         CocktailRecipe recipe = getIntent().getParcelableExtra("recipe");
 
         int rid = getResources().getIdentifier(
@@ -51,6 +54,10 @@ public class RecipeActivity extends AppCompatActivity {
 
         titleTV.setText(recipe.get_title());
         descriptionTV.setText(recipe.get_description());
+
+        //RecyclerView stuff
+        recyclerView = findViewById(R.id.recipeActivityRecyclerView);
+        recyclerView.setAdapter(new DetailedRecipeAdapter(recipe));
     }
 
 }

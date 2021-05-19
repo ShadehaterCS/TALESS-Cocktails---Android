@@ -17,6 +17,7 @@ import android.view.animation.LayoutAnimationController;
 import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
 import com.authandroid_smartcookies.smartcookie.Menu.Home.MainMenuFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 
 import java.io.IOException;
 import java.util.List;
@@ -40,7 +41,7 @@ public class HomeActivity extends AppCompatActivity {
 
         FragmentManager manager = this.getSupportFragmentManager();
         //Don't reload a fragment if it's already there
-
+        
         bottomNavigationView.setOnNavigationItemSelectedListener(item->{
             //todo figure this out, although it's now working as intended tbh
             navController.popBackStack();

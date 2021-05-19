@@ -23,7 +23,9 @@
             android:layout_height="180dp"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_launcher_background"
-            android:transitionName="cocktail_recipe_transition"/>
+            android:transitionName="cocktail_recipe_transition"
+            android:contentDescription="@string/image_of_the_cocktail" />
+
         <TextView
             android:id="@+id/titleTextView"
             android:layout_width="match_parent"
@@ -37,7 +39,8 @@
             android:textStyle="bold"
             android:layout_marginTop="8dp"
             android:textColor="@android:color/black"
-            android:transitionName="cocktail_recipe_transition"/>
+            android:transitionName="cocktail_recipe_transition"
+            android:scrollbars="none"/>
 
         <TextView
             android:id="@+id/descriptionTextView"
@@ -54,7 +57,8 @@
             android:textSize="15sp"
             android:maxLines="2"
             android:layout_toStartOf="@+id/imageButton"
-            android:transitionName="cocktail_recipe_transition"/>
+            android:transitionName="cocktail_recipe_transition"
+            android:scrollbars="none"/>
 
         <ImageButton
             android:id="@+id/imageButton"
@@ -62,14 +66,12 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/cocktailImage"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:layout_marginTop="31dp"
             android:layout_marginEnd="1dp"
-            android:layout_marginRight="1dp"
             android:layout_marginBottom="28dp"
             android:background="@drawable/ic_favorite_button_on"
-            android:contentDescription="FavButtonDesc"
+            android:contentDescription="@string/favbuttondesc"
             />
 
 

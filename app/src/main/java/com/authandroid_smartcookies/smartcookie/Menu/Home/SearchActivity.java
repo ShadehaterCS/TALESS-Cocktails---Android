@@ -1,5 +1,6 @@
 package com.authandroid_smartcookies.smartcookie.Menu.Home;
 
+import androidx.annotation.MainThread;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -44,6 +45,9 @@ public class SearchActivity extends AppCompatActivity {
 
         initDataset();
 
+        /*
+        todo placeholder, will be removed and replaced with recyclerview dataset creator
+         */
         search.setOnClickListener(View::showContextMenu);
         searchButton.setOnClickListener(v -> {
             String searchable = search.getText().toString();
@@ -68,6 +72,7 @@ public class SearchActivity extends AppCompatActivity {
         });
     }
 
+    @MainThread
     @SuppressWarnings("unchecked")
     private void initDataset(){
         recipes = (ArrayList<CocktailRecipe>) getIntent().getSerializableExtra("recipes");
@@ -77,8 +82,8 @@ public class SearchActivity extends AppCompatActivity {
         NAMES = recipes.stream()
                 .map(CocktailRecipe::get_title)
                 .distinct().toArray(String[]::new);
-
         complete = Stream.of(DRINKS,NAMES).flatMap(Stream::of).toArray(String[]::new);
+
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_dropdown_item_1line, complete);
         search.setAdapter(adapter);

@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartCookie">
         <activity android:name=".Menu.Home.SearchActivity"></activity>
-        <activity android:name=".RecipeActivity" />
+        <activity android:name=".Menu.Home.RecipeActivity" />
         <activity android:name=".Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
