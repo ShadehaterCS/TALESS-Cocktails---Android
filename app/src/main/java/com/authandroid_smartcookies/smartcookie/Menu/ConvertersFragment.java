@@ -12,8 +12,6 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -21,7 +19,6 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
 import com.authandroid_smartcookies.smartcookie.R;
 
 public class ConvertersFragment extends Fragment {
@@ -42,7 +39,7 @@ public class ConvertersFragment extends Fragment {
 
         amountsText = view.findViewById(R.id.input);
         clearButton = view.findViewById(R.id.clear);
-        resultTV = view.findViewById(R.id.result);
+        resultTV = view.findViewById(R.id.resultTextView);
 
         //didn't work as it should on phone for some reason, explicit call here
         amountsText.setInputType(InputType.TYPE_CLASS_PHONE);
@@ -129,7 +126,7 @@ public class ConvertersFragment extends Fragment {
             //get the map with with fromType, get the conversion double with toType,
             amount *= maps.get(fromType).get(toType);
             //round number and set it as the TextView
-            String text = "This is equivalent to : " + Math.round(amount * 100.0) / 100.0 + " " +toType;
+            String text = Math.round(amount * 100.0) / 100.0 + " " +toType;
             resultTV.setText(text);
         }
     }

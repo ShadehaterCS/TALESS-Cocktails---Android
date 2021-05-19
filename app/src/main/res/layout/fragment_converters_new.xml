@@ -26,7 +26,7 @@
         android:layout_marginBottom="32dp"
         android:fontFamily="@font/american_captain"
         android:gravity="center"
-        android:hint='"2, ".5", "2/3", "1/8"'
+        android:hint='"2 ".5", "2/3", "1/8"'
         android:inputType="number"
         app:layout_constraintBottom_toTopOf="@+id/radioGroupFrom"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,34 +55,36 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/result" />
+        app:layout_constraintTop_toBottomOf="@+id/resultTextView" />
 
     <TextView
-        android:id="@+id/to"
+        android:id="@+id/toTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/american_captain"
         android:text="To"
         android:textSize="40dp"
-        app:layout_constraintEnd_toEndOf="@+id/from"
-        app:layout_constraintTop_toBottomOf="@+id/from" />
+        app:layout_constraintEnd_toEndOf="@+id/fromTextView"
+        app:layout_constraintTop_toBottomOf="@+id/fromTextView" />
 
     <TextView
-        android:id="@+id/result"
+        android:id="@+id/resultTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="48dp"
         android:fontFamily="@font/american_captain"
         android:text="Results will be printed here"
-        android:textSize="25sp"
+        android:textAlignment="center"
+        android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.467"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/to" />
+        app:layout_constraintTop_toBottomOf="@+id/toTextView" />
 
     <TextView
-        android:id="@+id/from"
+        android:id="@+id/fromTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -97,54 +99,54 @@
     <RadioGroup
         android:id="@+id/radioGroupFrom"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:orientation="horizontal"
-        app:layout_constraintStart_toEndOf="@+id/from"
-        app:layout_constraintTop_toTopOf="@+id/from">
+        app:layout_constraintStart_toEndOf="@+id/fromTextView"
+        app:layout_constraintTop_toTopOf="@+id/fromTextView">
 
         <RadioButton
             android:id="@+id/fromgrRB"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/radiobuttonbackground"
-            android:button="@null"
+            android:background="@drawable/radio_button_selector"
+            android:button="@android:color/transparent"
             android:gravity="center_horizontal|center_vertical"
             android:text="@string/grams" />
 
         <RadioButton
             android:id="@+id/frommlRB"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/radiobuttonbackground"
-            android:button="@null"
+            android:background="@drawable/radio_button_selector"
+            android:button="@android:color/transparent"
             android:gravity="center_horizontal|center_vertical"
             android:text="@string/millilitres" />
 
         <RadioButton
             android:id="@+id/fromozRB"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/radiobuttonbackground"
-            android:button="@null"
+            android:background="@drawable/radio_button_selector"
+            android:button="@android:color/transparent"
             android:gravity="center_horizontal|center_vertical"
             android:text="@string/ounces" />
 
         <RadioButton
             android:id="@+id/fromtspRB"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/radiobuttonbackground"
-            android:button="@null"
+            android:background="@drawable/radio_button_selector"
+            android:button="@android:color/transparent"
             android:gravity="center_horizontal|center_vertical"
             android:text="@string/teaspoons" />
 
         <RadioButton
             android:id="@+id/fromtbspRB"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/radiobuttonbackground"
-            android:button="@null"
+            android:background="@drawable/radio_button_selector"
+            android:button="@android:color/transparent"
             android:gravity="center_horizontal|center_vertical"
             android:text="@string/tablespoons" />
     </RadioGroup>
@@ -152,61 +154,56 @@
     <RadioGroup
         android:id="@+id/radioGroupTo"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:orientation="horizontal"
-        app:layout_constraintStart_toEndOf="@+id/from"
-        app:layout_constraintTop_toTopOf="@+id/to">
+        app:layout_constraintStart_toEndOf="@+id/fromTextView"
+        app:layout_constraintTop_toTopOf="@+id/toTextView">
 
         <RadioButton
             android:id="@+id/togrRB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:button="@null"
+            android:background="@drawable/radio_button_selector"
+            android:button="@android:color/transparent"
             android:gravity="center_horizontal|center_vertical"
-            android:text="@string/grams"
-            android:background="@drawable/radiobuttonbackground"
-            />
+            android:text="@string/grams" />
 
         <RadioButton
             android:id="@+id/tomlRB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:button="@null"
+            android:background="@drawable/radio_button_selector"
+            android:button="@android:color/transparent"
             android:gravity="center_horizontal|center_vertical"
-            android:text="@string/millilitres"
-            android:background="@drawable/radiobuttonbackground"
-            />
+            android:text="@string/millilitres" />
 
         <RadioButton
             android:id="@+id/toozRB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:button="@null"
+            android:background="@drawable/radio_button_selector"
+            android:button="@android:color/transparent"
             android:gravity="center_horizontal|center_vertical"
-            android:text="@string/ounces"
-            android:background="@drawable/radiobuttonbackground"
-            />
+            android:text="@string/ounces" />
 
         <RadioButton
             android:id="@+id/totspRB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:button="@null"
+            android:background="@drawable/radio_button_selector"
+            android:button="@android:color/transparent"
             android:gravity="center_horizontal|center_vertical"
-            android:text="@string/teaspoons"
-            android:background="@drawable/radiobuttonbackground"
-            />
+            android:text="@string/teaspoons" />
 
         <RadioButton
             android:id="@+id/totbspRB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:button="@null"
+            android:background="@drawable/radio_button_selector"
+            android:button="@android:color/transparent"
             android:gravity="center_horizontal|center_vertical"
-            android:text="@string/tablespoons"
-            android:background="@drawable/radiobuttonbackground"
-            />
+            android:text="@string/teaspoons" />
     </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

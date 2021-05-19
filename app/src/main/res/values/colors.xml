@@ -9,5 +9,6 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="kafetiblackopwsleeioantonis">#1a1a1a</color>
-
+    <color name="pastelRed">#C97878</color>
+    <color name="holoRed">@android:color/holo_red_light</color>
 </resources>
