@@ -40,7 +40,6 @@ public class MainMenuFragment extends Fragment {
         //If database doesn't exist, create it and always open the connection
         db = SenpaiDB.getInstance(this.requireContext());
         fetchInitialDatasetInBackground();
-        //new async(this).execute();
     }
 
     public void fetchInitialDatasetInBackground(){
