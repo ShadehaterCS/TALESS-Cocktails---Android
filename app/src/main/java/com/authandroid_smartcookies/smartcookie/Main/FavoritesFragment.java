@@ -1,10 +1,13 @@
 package com.authandroid_smartcookies.smartcookie.Main;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,8 +28,7 @@ public class FavoritesFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        db = SenpaiDB.getInstance(this.requireContext());
-        recipes = db.getFavoriteRecipes();
+
     }
 
     @Override
@@ -38,9 +40,16 @@ public class FavoritesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         background = view.findViewById(R.id.FavoritesConstraintLayout);
-        if (!recipes.isEmpty()) {
-            background.setBackground(null);
-        }
 
+        RecyclerView rv = view.findViewById(R.id.favoritesRecyclerView);
+        rv.setLayoutManager(new LinearLayoutManager(requireActivity()));
+        rv.setAdapter(new FavoritesAdapter(requireContext(), recipes));
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        db = SenpaiDB.getInstance(context);
+        recipes = db.getFavoriteRecipes();
     }
 }

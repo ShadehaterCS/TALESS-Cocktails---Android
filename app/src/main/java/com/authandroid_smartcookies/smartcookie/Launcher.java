@@ -28,10 +28,11 @@ public class Launcher extends AppCompatActivity {
         }
 
         launcher_shaker = AnimationUtils.loadAnimation(this,R.anim.shaker);
-        final ImageView image1 = findViewById(R.id.image1);
-        image1.setAnimation(launcher_shaker);
+        final ImageView shakerImage = findViewById(R.id.image1);
+        shakerImage.setAnimation(launcher_shaker);
 
         //todo change this to 1500, debug only 0 for now so we get inside the app quickly
+        //check deprecation
         new Handler().postDelayed(() -> {
             Intent intent = new Intent(Launcher.this, HomeActivity.class);
             startActivity(intent);

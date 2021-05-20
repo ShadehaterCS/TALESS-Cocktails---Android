@@ -24,19 +24,16 @@ import java.util.ArrayList;
 
 public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.ViewHolder> {
         private final ArrayList<CocktailRecipe> dataset;
-        private ArrayList<Integer> favorites;
-        private final SenpaiDB db;
 
         public FavoritesAdapter(Context context, ArrayList<CocktailRecipe> dataset) {
             this.dataset = dataset;
-            db = SenpaiDB.getInstance(context);
         }
 
         @NonNull
         @Override
         public FavoritesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.recyclerview_mainmenu_item, parent, false);
+                    .inflate(R.layout.recyclerview_favorites_item, parent, false);
             return new FavoritesAdapter.ViewHolder(view);
         }
 
@@ -44,43 +41,13 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
         @Override
         public void onBindViewHolder(@NonNull FavoritesAdapter.ViewHolder holder, int position) {
             CocktailRecipe recipe = dataset.get(position);
-
             holder.recipe = recipe;
-            holder.favorited = favorites.contains(recipe.get_id());
             holder.getTitleTV().setText(recipe.get_title());
             holder.getDescTV().setText(recipe.get_description());
-
             int rid = holder.view.getContext().getResources()
                     .getIdentifier(recipe.get_imageid(), "drawable",
                             holder.view.getContext().getPackageName());
             Glide.with(holder.view).load(rid).into(holder.getImgView());
-
-            holder.getFavoriteButton().setOnClickListener(v -> {
-                if (holder.favorited) {
-                    db.removeRecipeFromFavorites(recipe);
-                    Utilities.make_show_SnackBar(
-                            holder.view,"Removed "+recipe.get_title() + " from favorites",
-                            2000);
-                    favorites.removeIf(i -> i == recipe.get_id());
-                }
-                else {
-                    db.insertRecipeIntoFavorites(recipe);
-                    Utilities.make_show_SnackBar(holder.view,
-                            "Added "+recipe.get_title() + " from favorites",
-                            1000);
-                    favorites.add(recipe.get_id());
-                }
-
-                holder.favorited = !holder.favorited;
-
-                holder.setFavoriteButtonImage(v, holder.favorited);
-            });
-
-            holder.setFavoriteButtonImage(holder.getFavoriteButton(), holder.favorited);
-        }
-
-        public void setFavorites(ArrayList<Integer> favorites){
-            this.favorites = favorites;
         }
 
         @Override
@@ -93,42 +60,26 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
             private final TextView descTV;
             private final ImageView imgView;
             private final View view;
-            private final ImageButton favoriteButton;
             public CocktailRecipe recipe;
-
-            public boolean favorited;
 
             public ViewHolder(View view) {
                 super(view);
                 this.view = view;
 
-                titleTV = view.findViewById(R.id.titleTextView);
-                descTV = view.findViewById(R.id.descriptionTextView);
-                imgView = view.findViewById(R.id.cocktailImage);
-                favoriteButton = view.findViewById(R.id.imageButton);
+                titleTV = view.findViewById(R.id.favoritesRVTItle);
+                descTV = view.findViewById(R.id.favoritesRVDescription);
+                imgView = view.findViewById(R.id.favoritesRecipeImage);
 
                 //To handle moving to a new activity through shared element
-                view.setOnClickListener(v -> {
+/*                view.setOnClickListener(v -> {
                     Intent intent = new Intent(v.getContext(), RecipeActivity.class);
                     ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation
                             ((Activity)view.getContext(),
                                     imgView, "cocktail_recipe_transition");
                     intent.putExtra("recipe", recipe);
                     v.getContext().startActivity(intent,options.toBundle());
-                });
+                });*/
             }
-
-            private void setFavoriteButtonImage(View v, boolean favorited) {
-                if (favorited)
-                    v.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.ic_favorite_button_on));
-                else
-                    v.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.ic_favorite_button_off));
-            }
-
-            public ImageButton getFavoriteButton() {
-                return favoriteButton;
-            }
-
             public TextView getTitleTV() {
                 return titleTV;
             }

@@ -40,8 +40,6 @@ public class ConvertersFragment extends Fragment {
         clearButton = view.findViewById(R.id.clear);
         resultTV = view.findViewById(R.id.resultTextView);
 
-        //didn't work as it should on phone for some reason, explicit call here
-       // amountsText.setInputType(InputType.TYPE_CLASS_PHONE);
         //updates text on every button press
         amountsText.addTextChangedListener(new customTextWatcher());
 

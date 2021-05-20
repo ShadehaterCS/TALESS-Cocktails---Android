@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/favoriteCardView"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="300dp"
 
-    app:cardElevation="5dp"
     app:cardBackgroundColor="@android:color/white"
     app:cardCornerRadius="10dp"
+    app:cardElevation="5dp"
 
-    app:contentPaddingBottom="0dp"
     app:cardPreventCornerOverlap="true"
     app:cardUseCompatPadding="true"
+    app:contentPaddingBottom="0dp"
 
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
@@ -24,9 +24,9 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/favoritesRecipeImage"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:text="@string/recycler_view_mainmenuitem_title"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toEndOf="@+id/favoritesRecipeImage"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -50,7 +50,7 @@
             android:text="@string/recycler_view_mainmenuitem_description"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toEndOf="@+id/favoritesRecipeImage"
             app:layout_constraintTop_toBottomOf="@+id/favoritesRVTItle" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
