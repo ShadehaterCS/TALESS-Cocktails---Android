@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.authandroid_smartcookies.smartcookie.R;
 import com.authandroid_smartcookies.smartcookie.Main.Adapters.IntroViewPagerAdapter;
-import com.authandroid_smartcookies.smartcookie.Utilities;
+import com.authandroid_smartcookies.smartcookie.Util.Utilities;
 
 public class IntroActivity extends AppCompatActivity {
 

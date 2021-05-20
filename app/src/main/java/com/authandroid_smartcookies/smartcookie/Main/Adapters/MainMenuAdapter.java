@@ -19,7 +19,7 @@ import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
 import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
 import com.authandroid_smartcookies.smartcookie.Main.Activities.RecipeActivity;
 import com.authandroid_smartcookies.smartcookie.R;
-import com.authandroid_smartcookies.smartcookie.Utilities;
+import com.authandroid_smartcookies.smartcookie.Util.Utilities;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;

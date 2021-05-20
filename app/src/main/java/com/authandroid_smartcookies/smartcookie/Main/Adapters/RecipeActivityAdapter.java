@@ -14,7 +14,6 @@ import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
  * Views won't get recycled but the scrolling behavior helps
  */
 public class RecipeActivityAdapter extends RecyclerView.Adapter<RecipeActivityAdapter.BaseViewHolder>{
-
     private final CocktailRecipe recipe;
 
     public RecipeActivityAdapter(CocktailRecipe recipe) {

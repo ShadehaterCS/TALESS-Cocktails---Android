@@ -6,8 +6,6 @@ import java.util.HashMap;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +16,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.authandroid_smartcookies.smartcookie.Util.GenericTextWatcher;
 import com.authandroid_smartcookies.smartcookie.R;
 
 public class ConvertersFragment extends Fragment {
@@ -41,7 +40,7 @@ public class ConvertersFragment extends Fragment {
         resultTV = view.findViewById(R.id.resultTextView);
 
         //updates text on every button press
-        amountsText.addTextChangedListener(new customTextWatcher());
+        amountsText.addTextChangedListener(new GenericTextWatcher(this::convert));
 
         //TODO change spinners to button array because it makes sense!
 
@@ -147,20 +146,5 @@ public class ConvertersFragment extends Fragment {
         else
             amount = Double.parseDouble(input);
         return amount;
-    }
-
-    private class customTextWatcher implements TextWatcher {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-        }
-        @Override
-        public void afterTextChanged(Editable s) {
-            convert();
-        }
     }
 }

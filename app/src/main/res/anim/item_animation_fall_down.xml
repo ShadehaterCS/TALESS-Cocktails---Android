@@ -3,7 +3,7 @@
     android:duration="250">
 
     <translate
-        android:fromYDelta="-10%"
+        android:fromYDelta="-5%"
         android:toYDelta="0"
         android:interpolator="@android:anim/decelerate_interpolator"
         />
@@ -15,8 +15,8 @@
         />
 
     <scale
-        android:fromXScale="105%"
-        android:fromYScale="105%"
+        android:fromXScale="102%"
+        android:fromYScale="102%"
         android:toXScale="100%"
         android:toYScale="100%"
         android:pivotX="50%"
