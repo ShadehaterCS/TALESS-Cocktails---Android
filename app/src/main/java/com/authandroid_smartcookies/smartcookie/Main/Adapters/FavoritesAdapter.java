@@ -1,4 +1,4 @@
-package com.authandroid_smartcookies.smartcookie.Main;
+package com.authandroid_smartcookies.smartcookie.Main.Adapters;
 
 import android.app.Activity;
 import android.app.ActivityOptions;
@@ -7,17 +7,13 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
-import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
-import com.authandroid_smartcookies.smartcookie.Main.Home.RecipeActivity;
+import com.authandroid_smartcookies.smartcookie.Main.RecipeActivity;
 import com.authandroid_smartcookies.smartcookie.R;
-import com.authandroid_smartcookies.smartcookie.Utilities;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
@@ -28,6 +24,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
         public FavoritesAdapter(Context context, ArrayList<CocktailRecipe> dataset) {
             this.dataset = dataset;
         }
+
 
         @NonNull
         @Override
@@ -71,14 +68,14 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
                 imgView = view.findViewById(R.id.favoritesRecipeImage);
 
                 //To handle moving to a new activity through shared element
-/*                view.setOnClickListener(v -> {
+                view.setOnClickListener(v -> {
                     Intent intent = new Intent(v.getContext(), RecipeActivity.class);
                     ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation
                             ((Activity)view.getContext(),
                                     imgView, "cocktail_recipe_transition");
                     intent.putExtra("recipe", recipe);
                     v.getContext().startActivity(intent,options.toBundle());
-                });*/
+                });
             }
             public TextView getTitleTV() {
                 return titleTV;

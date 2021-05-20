@@ -11,15 +11,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartCookie">
         <activity android:name=".Main.SearchActivity"></activity>
-        <activity android:name=".Main.Home.RecipeActivity" />
-        <activity android:name=".Launcher">
+        <activity android:name=".Main.RecipeActivity" />
+        <activity android:name=".Main.Activities.LauncherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HomeActivity">
+        <activity android:name=".Main.Activities.HomeActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
 

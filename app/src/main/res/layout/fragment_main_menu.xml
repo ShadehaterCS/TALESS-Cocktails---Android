@@ -6,10 +6,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Main.Home.MainMenuFragment">
+    tools:context=".Main.Fragments.MainMenuFragment"
+    android:animateLayoutChanges="true"
+    android:layoutAnimation="@anim/layout_animation">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
+        android:id="@+id/mainMenuTitlesConLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,7 +57,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.008"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/mainMenuTitlesConLayout"
         app:layout_constraintVertical_bias="0.018"
         android:scrollbars="none"/>
 

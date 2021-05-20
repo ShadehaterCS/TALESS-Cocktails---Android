@@ -1,4 +1,4 @@
-package com.authandroid_smartcookies.smartcookie;
+package com.authandroid_smartcookies.smartcookie.Main.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,7 +10,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
-public class Launcher extends AppCompatActivity {
+import com.authandroid_smartcookies.smartcookie.R;
+
+public class LauncherActivity extends AppCompatActivity {
 
     Animation launcher_shaker;
 
@@ -34,7 +36,7 @@ public class Launcher extends AppCompatActivity {
         //todo change this to 1500, debug only 0 for now so we get inside the app quickly
         //check deprecation
         new Handler().postDelayed(() -> {
-            Intent intent = new Intent(Launcher.this, Intro.class);
+            Intent intent = new Intent(LauncherActivity.this, HomeActivity.class);
             startActivity(intent);
             finish();
         }, 1000);

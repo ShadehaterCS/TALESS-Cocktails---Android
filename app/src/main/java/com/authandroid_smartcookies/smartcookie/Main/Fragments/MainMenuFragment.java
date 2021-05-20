@@ -1,9 +1,10 @@
-package com.authandroid_smartcookies.smartcookie.Main.Home;
+package com.authandroid_smartcookies.smartcookie.Main.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +18,7 @@ import android.widget.ImageButton;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
 import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
+import com.authandroid_smartcookies.smartcookie.Main.Adapters.MainMenuAdapter;
 import com.authandroid_smartcookies.smartcookie.Main.SearchActivity;
 import com.authandroid_smartcookies.smartcookie.R;
 
@@ -29,7 +31,7 @@ public class MainMenuFragment extends Fragment {
     protected RecyclerView recyclerView;
     protected SenpaiDB db;
 
-    protected HomeRecipeAdapter adapter;
+    protected MainMenuAdapter adapter;
     protected RecyclerView.LayoutManager mLayoutManager;
     protected ArrayList<CocktailRecipe> dataset;
 
@@ -50,7 +52,7 @@ public class MainMenuFragment extends Fragment {
                 db.openDatabase();
             }
             dataset = db.getAllRecipes();
-            adapter = new HomeRecipeAdapter(requireContext(), dataset);
+            adapter = new MainMenuAdapter(requireContext(), dataset);
             adapter.setFavorites(db.getFavoritesIds());
             //Run on UI thread
             handler.post(() -> {
@@ -75,8 +77,20 @@ public class MainMenuFragment extends Fragment {
             v.getContext().startActivity(intent);
         });
 
+        ConstraintLayout layout = root.findViewById(R.id.mainMenuTitlesConLayout);
+        final int threshold = 20;
+        recyclerView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) ->{
+            int dy = scrollY - oldScrollY;
+            //Positive scroll
+            if (dy < -threshold && layout.getVisibility() == View.GONE)
+                 layout.setVisibility(View.VISIBLE);
+            //Negative scroll
+            else if (dy > threshold && layout.getVisibility() == View.VISIBLE)
+                layout.setVisibility(View.GONE);
+        });
+
         //placeholder adapter while data is loading
-        recyclerView.setAdapter(new HomeRecipeAdapter(requireContext(),new ArrayList<>()));
+        recyclerView.setAdapter(new MainMenuAdapter(requireContext(),new ArrayList<>()));
         return root;
     }
 

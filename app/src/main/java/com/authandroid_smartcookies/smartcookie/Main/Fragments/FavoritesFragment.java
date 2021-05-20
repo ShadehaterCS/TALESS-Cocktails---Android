@@ -1,4 +1,4 @@
-package com.authandroid_smartcookies.smartcookie.Main;
+package com.authandroid_smartcookies.smartcookie.Main.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
 import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
+import com.authandroid_smartcookies.smartcookie.Main.Adapters.FavoritesAdapter;
 import com.authandroid_smartcookies.smartcookie.R;
 
 import java.util.ArrayList;
@@ -28,7 +29,6 @@ public class FavoritesFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -40,7 +40,8 @@ public class FavoritesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         background = view.findViewById(R.id.FavoritesConstraintLayout);
-
+        if (!recipes.isEmpty())
+            background.setBackground(null);
         RecyclerView rv = view.findViewById(R.id.favoritesRecyclerView);
         rv.setLayoutManager(new LinearLayoutManager(requireActivity()));
         rv.setAdapter(new FavoritesAdapter(requireContext(), recipes));

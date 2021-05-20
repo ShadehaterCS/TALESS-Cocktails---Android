@@ -1,4 +1,4 @@
-package com.authandroid_smartcookies.smartcookie.Main.Home;
+package com.authandroid_smartcookies.smartcookie.Main.Adapters;
 
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +13,11 @@ import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
  * Somehow?
  * Views won't get recycled but the scrolling behavior helps
  */
-public class DetailedRecipeAdapter extends RecyclerView.Adapter<DetailedRecipeAdapter.BaseViewHolder>{
+public class RecipeActivityAdapter extends RecyclerView.Adapter<RecipeActivityAdapter.BaseViewHolder>{
 
     private final CocktailRecipe recipe;
 
-    public DetailedRecipeAdapter(CocktailRecipe recipe) {
+    public RecipeActivityAdapter(CocktailRecipe recipe) {
         this.recipe = recipe;
     }
 
