@@ -38,6 +38,7 @@ public class LauncherActivity extends AppCompatActivity {
                 ? new Intent(LauncherActivity.this, HomeActivity.class)
                 : new Intent(LauncherActivity.this, IntroActivity.class);
 
+        Intent testingIntroIntent = new Intent(LauncherActivity.this, IntroActivity.class);
         //todo change this to 1500, debug only 0 for now so we get inside the app quickly
         //check deprecation
         new Handler().postDelayed(() -> {
