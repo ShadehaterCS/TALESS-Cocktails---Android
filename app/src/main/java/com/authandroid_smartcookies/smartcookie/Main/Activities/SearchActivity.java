@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -16,10 +18,12 @@ import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
 import com.authandroid_smartcookies.smartcookie.Main.Adapters.SearchAdapter;
 import com.authandroid_smartcookies.smartcookie.Util.GenericTextWatcher;
 import com.authandroid_smartcookies.smartcookie.R;
+import com.authandroid_smartcookies.smartcookie.Util.Utilities;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -29,8 +33,6 @@ TODO Using new simpler adapter rather than the same for home/favorites
  */
 public class SearchActivity extends AppCompatActivity {
     private AutoCompleteTextView searchAutoComplete;
-    private TextView resultsTV;
-    private Button searchButton;
 
     private ArrayList<String> DRINKS;
     private ArrayList<String> NAMES;
@@ -53,19 +55,26 @@ public class SearchActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.searchRecyclerView);
         initDataset();
 
-        /*
-        todo placeholder, will be removed and replaced with recyclerview dataset creator
-         */
         searchAutoComplete.addTextChangedListener(
                 new GenericTextWatcher(this::getNewRecipesAndUpdateDataset));
+
+        searchAutoComplete.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE)
+                Utilities.hideKeyboard(this);
+            return true;
+        });
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new SearchAdapter(this, recipes));
     }
 
     @MainThread
     private void getNewRecipesAndUpdateDataset(){
-        String searchable = searchAutoComplete.getText().toString();
-        StringBuilder builder = new StringBuilder();
+        String dirtyInput = searchAutoComplete.getText().toString();
+        String searchable = !dirtyInput.isEmpty()
+                ? dirtyInput.substring(0, 1).toUpperCase(Locale.getDefault()) + dirtyInput.substring(1)
+                : "";
+
         if (DRINKS.contains(searchable))
             dataset = recipes.stream()
                     .filter(r -> r.get_drink().equals(searchable))
@@ -80,11 +89,12 @@ public class SearchActivity extends AppCompatActivity {
                     .collect(Collectors.toCollection(ArrayList::new));
         }
         else if (searchable.isEmpty()) {
-            dataset = new ArrayList<>(0);
+            dataset = new ArrayList<>(recipes);
             return;
         }
         else
             return;
+        //Only runs if dataset changed
         recyclerView.swapAdapter(new SearchAdapter(this,dataset), false);
     }
 

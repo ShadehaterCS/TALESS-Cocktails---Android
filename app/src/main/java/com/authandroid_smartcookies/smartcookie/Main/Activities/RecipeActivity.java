@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.transition.Fade;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,6 +13,7 @@ import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
 import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
 import com.authandroid_smartcookies.smartcookie.Main.Adapters.RecipeActivityAdapter;
 import com.authandroid_smartcookies.smartcookie.R;
+import com.authandroid_smartcookies.smartcookie.Util.Utilities;
 import com.bumptech.glide.Glide;
 
 import java.util.HashMap;
@@ -26,11 +28,7 @@ public class RecipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe);
         Objects.requireNonNull(getSupportActionBar()).hide();
-
-        Fade fade = new Fade();
-        fade.setDuration(300);
-        getWindow().setEnterTransition(fade);
-        getWindow().setExitTransition(fade);
+        Utilities.setAnimationAndExcludeTargets(getWindow());
 
         ImageView imgView = findViewById(R.id.cocktailImage_recipe);
         TextView titleTV = findViewById(R.id.title_recipe);

@@ -13,6 +13,7 @@ import android.view.View;
 import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
 import com.authandroid_smartcookies.smartcookie.Main.Fragments.MainMenuFragment;
 import com.authandroid_smartcookies.smartcookie.R;
+import com.authandroid_smartcookies.smartcookie.Util.Utilities;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.IOException;
@@ -54,11 +55,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        Fade explode = new Fade();
-        explode.setDuration(300);
-        View decor = getWindow().getDecorView();
-        getWindow().setEnterTransition(explode);
-        getWindow().setExitTransition(explode);
+        Utilities.setAnimationAndExcludeTargets(getWindow());
     }
 
     /**
