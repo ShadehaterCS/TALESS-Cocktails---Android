@@ -26,6 +26,7 @@
                 <action android:name="android.intent.action.HomeActivity" />
             </intent-filter>
         </activity>
+        <activity android:name=".Intro"/>
         <activity android:name=".StepWithTimer" />
     </application>
 
