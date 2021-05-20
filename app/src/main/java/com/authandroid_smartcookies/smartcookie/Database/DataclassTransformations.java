@@ -13,7 +13,6 @@ import java.util.HashMap;
  * Always return a whole non-null object even if the cursor failed.
  */
 public class DataclassTransformations {
-
     public static ArrayList<CocktailRecipe> transformToCocktailRecipeList(Cursor cursor) {
         ArrayList<CocktailRecipe> recipes = new ArrayList<>(15);
         cursor.moveToFirst();

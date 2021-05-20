@@ -1,4 +1,4 @@
-package com.authandroid_smartcookies.smartcookie.Main;
+package com.authandroid_smartcookies.smartcookie.Main.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;

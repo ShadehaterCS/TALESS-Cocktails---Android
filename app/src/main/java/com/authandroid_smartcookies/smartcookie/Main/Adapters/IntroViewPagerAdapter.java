@@ -1,4 +1,4 @@
-package com.authandroid_smartcookies.smartcookie;
+package com.authandroid_smartcookies.smartcookie.Main.Adapters;
 
 
 import android.content.Context;
@@ -12,35 +12,30 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
-public class ViewPagerAdapter extends PagerAdapter {
+import com.authandroid_smartcookies.smartcookie.R;
 
+public class IntroViewPagerAdapter extends PagerAdapter {
     Context context;
-
     int images[] = {
-
             R.drawable.image1,
             R.drawable.image2,
             R.drawable.image3
     };
 
     int headings[] = {
-
             R.string.heading_one,
             R.string.heading_two,
             R.string.heading_three
     };
 
     int description[] = {
-
             R.string.desc_one,
             R.string.desc_two,
             R.string.desc_three
     };
 
-    public ViewPagerAdapter(Context context){
-
+    public IntroViewPagerAdapter(Context context){
         this.context = context;
-
     }
 
     @Override
@@ -56,7 +51,6 @@ public class ViewPagerAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.slider_layout,container,false);
 
@@ -69,15 +63,11 @@ public class ViewPagerAdapter extends PagerAdapter {
         slideDesciption.setText(description[position]);
 
         container.addView(view);
-
         return view;
-
     }
 
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-
         container.removeView((LinearLayout)object);
-
     }
 }

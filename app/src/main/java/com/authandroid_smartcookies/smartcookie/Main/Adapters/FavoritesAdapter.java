@@ -12,7 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
-import com.authandroid_smartcookies.smartcookie.Main.RecipeActivity;
+import com.authandroid_smartcookies.smartcookie.Main.Activities.RecipeActivity;
 import com.authandroid_smartcookies.smartcookie.R;
 import com.bumptech.glide.Glide;
 

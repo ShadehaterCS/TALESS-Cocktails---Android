@@ -10,8 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartCookie">
-        <activity android:name=".Main.SearchActivity"></activity>
-        <activity android:name=".Main.RecipeActivity" />
+        <activity android:name=".Main.Activities.SearchActivity"></activity>
+        <activity android:name=".Main.Activities.RecipeActivity" />
         <activity android:name=".Main.Activities.LauncherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,7 +26,7 @@
                 <action android:name="android.intent.action.HomeActivity" />
             </intent-filter>
         </activity>
-        <activity android:name=".Intro"/>
+        <activity android:name=".Main.Activities.IntroActivity"/>
         <activity android:name=".StepWithTimer" />
     </application>
 

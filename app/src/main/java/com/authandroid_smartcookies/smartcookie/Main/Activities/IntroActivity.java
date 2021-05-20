@@ -1,4 +1,4 @@
-package com.authandroid_smartcookies.smartcookie;
+package com.authandroid_smartcookies.smartcookie.Main.Activities;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,22 +11,24 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.authandroid_smartcookies.smartcookie.Main.Activities.HomeActivity;
+import com.authandroid_smartcookies.smartcookie.R;
+import com.authandroid_smartcookies.smartcookie.Main.Adapters.IntroViewPagerAdapter;
+import com.authandroid_smartcookies.smartcookie.Utilities;
 
-public class Intro extends AppCompatActivity {
+public class IntroActivity extends AppCompatActivity {
 
     ViewPager mSLideViewPager;
     LinearLayout laDots;
     Button nextButton, skipButton;
 
     TextView[] dots;
-    ViewPagerAdapter viewPagerAdapter;
+    IntroViewPagerAdapter introViewPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Utilities.savePrefsData(this.getApplicationContext());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.intro);
-
         nextButton = findViewById(R.id.nextbtn);
         skipButton = findViewById(R.id.skipButton);
 
@@ -34,25 +36,20 @@ public class Intro extends AppCompatActivity {
             getSupportActionBar().hide();
         }
 
-
-
         nextButton.setOnClickListener(v -> {
-
-            if (getitem(0) < 2)
-                mSLideViewPager.setCurrentItem(getitem(1),true);
+            if (getItem(0) < 2)
+                mSLideViewPager.setCurrentItem(getItem(1),true);
             else {
-                Intent i = new Intent(Intro.this,HomeActivity.class);
+                Intent i = new Intent(IntroActivity.this,HomeActivity.class);
                 startActivity(i);
                 finish();
-
             }
-
         });
 
         skipButton.setOnClickListener(v -> {
 
 
-            Intent i = new Intent(Intro.this, HomeActivity.class);
+            Intent i = new Intent(IntroActivity.this, HomeActivity.class);
             startActivity(i);
             finish();
 
@@ -61,17 +58,16 @@ public class Intro extends AppCompatActivity {
         mSLideViewPager = (ViewPager) findViewById(R.id.slideViewPager);
         laDots = (LinearLayout) findViewById(R.id.indicator_layout);
 
-        viewPagerAdapter = new ViewPagerAdapter(this);
+        introViewPagerAdapter = new IntroViewPagerAdapter(this);
 
-        mSLideViewPager.setAdapter(viewPagerAdapter);
+        mSLideViewPager.setAdapter(introViewPagerAdapter);
 
-        setUpindicator(0);
+        setUpIndicator(0);
         mSLideViewPager.addOnPageChangeListener(viewListener);
 
     }
 
-    public void setUpindicator(int position){
-
+    public void setUpIndicator(int position){
         dots = new TextView[3];
         laDots.removeAllViews();
 
@@ -84,33 +80,22 @@ public class Intro extends AppCompatActivity {
             laDots.addView(dots[i]);
 
         }
-
         dots[position].setTextColor(getResources().getColor(R.color.pastelRed,getApplicationContext().getTheme()));
-
     }
 
     ViewPager.OnPageChangeListener viewListener = new ViewPager.OnPageChangeListener() {
         @Override
-        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-        }
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
 
         @Override
         public void onPageSelected(int position) {
-
-            setUpindicator(position);
-
-
+            setUpIndicator(position);
         }
-
         @Override
         public void onPageScrollStateChanged(int state) {
-
         }
     };
-
-    private int getitem(int i){
-
+    private int getItem(int i){
         return mSLideViewPager.getCurrentItem() + i;
     }
 

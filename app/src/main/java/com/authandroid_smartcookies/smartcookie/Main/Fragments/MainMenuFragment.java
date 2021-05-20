@@ -19,7 +19,7 @@ import android.widget.ImageButton;
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
 import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
 import com.authandroid_smartcookies.smartcookie.Main.Adapters.MainMenuAdapter;
-import com.authandroid_smartcookies.smartcookie.Main.SearchActivity;
+import com.authandroid_smartcookies.smartcookie.Main.Activities.SearchActivity;
 import com.authandroid_smartcookies.smartcookie.R;
 
 import java.util.ArrayList;

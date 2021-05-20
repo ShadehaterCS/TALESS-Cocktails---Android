@@ -10,8 +10,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
-import com.authandroid_smartcookies.smartcookie.Intro;
 import com.authandroid_smartcookies.smartcookie.R;
+import com.authandroid_smartcookies.smartcookie.Utilities;
 
 public class LauncherActivity extends AppCompatActivity {
 
@@ -30,14 +30,17 @@ public class LauncherActivity extends AppCompatActivity {
             getSupportActionBar().hide();
         }
 
-        launcher_shaker = AnimationUtils.loadAnimation(this,R.anim.shaker);
+        launcher_shaker = AnimationUtils.loadAnimation(this, R.anim.shaker);
         final ImageView shakerImage = findViewById(R.id.image1);
         shakerImage.setAnimation(launcher_shaker);
+
+        Intent intent = Utilities.restorePrefData(this.getApplicationContext())
+                ? new Intent(LauncherActivity.this, HomeActivity.class)
+                : new Intent(LauncherActivity.this, IntroActivity.class);
 
         //todo change this to 1500, debug only 0 for now so we get inside the app quickly
         //check deprecation
         new Handler().postDelayed(() -> {
-            Intent intent = new Intent(LauncherActivity.this, Intro.class);
             startActivity(intent);
             finish();
         }, 1000);
