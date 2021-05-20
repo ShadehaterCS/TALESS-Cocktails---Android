@@ -1,4 +1,4 @@
-package com.authandroid_smartcookies.smartcookie.Main;
+package com.authandroid_smartcookies.smartcookie.Main.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
 import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
+import com.authandroid_smartcookies.smartcookie.Main.Adapters.FavoritesAdapter;
 import com.authandroid_smartcookies.smartcookie.R;
 
 import java.util.ArrayList;

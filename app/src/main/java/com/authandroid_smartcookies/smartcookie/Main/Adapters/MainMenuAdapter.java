@@ -1,4 +1,4 @@
-package com.authandroid_smartcookies.smartcookie.Main.Home;
+package com.authandroid_smartcookies.smartcookie.Main.Adapters;
 
 import android.app.Activity;
 import android.app.ActivityOptions;
@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
 import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
+import com.authandroid_smartcookies.smartcookie.Main.RecipeActivity;
 import com.authandroid_smartcookies.smartcookie.R;
 import com.authandroid_smartcookies.smartcookie.Utilities;
 import com.bumptech.glide.Glide;
@@ -26,19 +27,19 @@ import java.util.ArrayList;
 //TODO long hold enlarges picture
 //TODO undo on snackbar
 
-public class HomeRecipeAdapter extends RecyclerView.Adapter<HomeRecipeAdapter.ViewHolder> {
+public class MainMenuAdapter extends RecyclerView.Adapter<MainMenuAdapter.ViewHolder> {
     private final ArrayList<CocktailRecipe> dataset;
     private ArrayList<Integer> favorites;
     private final SenpaiDB db;
 
-    public HomeRecipeAdapter(Context context, ArrayList<CocktailRecipe> dataset) {
+    public MainMenuAdapter(Context context, ArrayList<CocktailRecipe> dataset) {
         this.dataset = dataset;
         db = SenpaiDB.getInstance(context);
     }
 
     @NonNull
     @Override
-    public HomeRecipeAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MainMenuAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recyclerview_mainmenu_item, parent, false);
         return new ViewHolder(view);
@@ -46,7 +47,7 @@ public class HomeRecipeAdapter extends RecyclerView.Adapter<HomeRecipeAdapter.Vi
 
     //Fill the view
     @Override
-    public void onBindViewHolder(@NonNull HomeRecipeAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MainMenuAdapter.ViewHolder holder, int position) {
         CocktailRecipe recipe = dataset.get(position);
 
         holder.recipe = recipe;

@@ -1,4 +1,4 @@
-package com.authandroid_smartcookies.smartcookie.Main.Home;
+package com.authandroid_smartcookies.smartcookie.Main.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,14 +14,11 @@ import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.LayoutAnimationController;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
 import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
+import com.authandroid_smartcookies.smartcookie.Main.Adapters.MainMenuAdapter;
 import com.authandroid_smartcookies.smartcookie.Main.SearchActivity;
 import com.authandroid_smartcookies.smartcookie.R;
 
@@ -34,7 +31,7 @@ public class MainMenuFragment extends Fragment {
     protected RecyclerView recyclerView;
     protected SenpaiDB db;
 
-    protected HomeRecipeAdapter adapter;
+    protected MainMenuAdapter adapter;
     protected RecyclerView.LayoutManager mLayoutManager;
     protected ArrayList<CocktailRecipe> dataset;
 
@@ -55,7 +52,7 @@ public class MainMenuFragment extends Fragment {
                 db.openDatabase();
             }
             dataset = db.getAllRecipes();
-            adapter = new HomeRecipeAdapter(requireContext(), dataset);
+            adapter = new MainMenuAdapter(requireContext(), dataset);
             adapter.setFavorites(db.getFavoritesIds());
             //Run on UI thread
             handler.post(() -> {
@@ -93,7 +90,7 @@ public class MainMenuFragment extends Fragment {
         });
 
         //placeholder adapter while data is loading
-        recyclerView.setAdapter(new HomeRecipeAdapter(requireContext(),new ArrayList<>()));
+        recyclerView.setAdapter(new MainMenuAdapter(requireContext(),new ArrayList<>()));
         return root;
     }
 

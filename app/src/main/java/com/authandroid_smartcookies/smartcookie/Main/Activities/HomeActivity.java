@@ -1,4 +1,4 @@
-package com.authandroid_smartcookies.smartcookie;
+package com.authandroid_smartcookies.smartcookie.Main.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -11,7 +11,8 @@ import android.transition.Fade;
 import android.view.View;
 
 import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
-import com.authandroid_smartcookies.smartcookie.Main.Home.MainMenuFragment;
+import com.authandroid_smartcookies.smartcookie.Main.Fragments.MainMenuFragment;
+import com.authandroid_smartcookies.smartcookie.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.IOException;

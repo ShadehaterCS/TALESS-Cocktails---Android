@@ -1,4 +1,4 @@
-package com.authandroid_smartcookies.smartcookie.Main.Home;
+package com.authandroid_smartcookies.smartcookie.Main;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
 import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
+import com.authandroid_smartcookies.smartcookie.Main.Adapters.RecipeActivityAdapter;
 import com.authandroid_smartcookies.smartcookie.R;
 import com.bumptech.glide.Glide;
 
@@ -45,7 +46,7 @@ public class RecipeActivity extends AppCompatActivity {
 
         //RecyclerView stuff
         recyclerView = findViewById(R.id.recipeActivityRecyclerView);
-        recyclerView.setAdapter(new DetailedRecipeAdapter(recipe));
+        recyclerView.setAdapter(new RecipeActivityAdapter(recipe));
 
         //DEBUG ONLY
         TextView v = findViewById(R.id.testingtext);

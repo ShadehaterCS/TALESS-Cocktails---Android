@@ -1,4 +1,4 @@
-package com.authandroid_smartcookies.smartcookie.Main;
+package com.authandroid_smartcookies.smartcookie.Main.Adapters;
 
 import android.app.Activity;
 import android.app.ActivityOptions;
@@ -7,17 +7,13 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
-import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
-import com.authandroid_smartcookies.smartcookie.Main.Home.RecipeActivity;
+import com.authandroid_smartcookies.smartcookie.Main.RecipeActivity;
 import com.authandroid_smartcookies.smartcookie.R;
-import com.authandroid_smartcookies.smartcookie.Utilities;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;

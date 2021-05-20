@@ -1,4 +1,4 @@
-package com.authandroid_smartcookies.smartcookie.Main;
+package com.authandroid_smartcookies.smartcookie.Main.Fragments;
 
 import java.lang.Math;
 import java.util.HashMap;
