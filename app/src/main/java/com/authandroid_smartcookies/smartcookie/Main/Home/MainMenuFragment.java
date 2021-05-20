@@ -81,12 +81,14 @@ public class MainMenuFragment extends Fragment {
         });
 
         ConstraintLayout layout = root.findViewById(R.id.mainMenuTitlesConLayout);
+        final int threshold = 20;
         recyclerView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) ->{
+            int dy = scrollY - oldScrollY;
             //Positive scroll
-            if (oldScrollY > 5 && layout.getVisibility() == View.GONE)
-                layout.setVisibility(View.VISIBLE);
+            if (dy < -threshold && layout.getVisibility() == View.GONE)
+                 layout.setVisibility(View.VISIBLE);
             //Negative scroll
-            else if (oldScrollY < -15 && layout.getVisibility() == View.VISIBLE)
+            else if (dy > threshold && layout.getVisibility() == View.VISIBLE)
                 layout.setVisibility(View.GONE);
         });
 
