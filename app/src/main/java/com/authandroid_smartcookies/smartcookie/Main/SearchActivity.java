@@ -1,4 +1,4 @@
-package com.authandroid_smartcookies.smartcookie.Menu.Home;
+package com.authandroid_smartcookies.smartcookie.Main;
 
 import androidx.annotation.MainThread;
 import androidx.appcompat.app.AppCompatActivity;

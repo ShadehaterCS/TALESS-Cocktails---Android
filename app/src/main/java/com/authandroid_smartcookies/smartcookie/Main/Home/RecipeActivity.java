@@ -1,19 +1,10 @@
-package com.authandroid_smartcookies.smartcookie.Menu.Home;
+package com.authandroid_smartcookies.smartcookie.Main.Home;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.transition.ChangeBounds;
 
-import android.animation.ObjectAnimator;
-import android.content.Context;
 import android.os.Bundle;
-import android.transition.Explode;
 import android.transition.Fade;
-import android.transition.Transition;
-import android.util.AttributeSet;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -36,14 +27,9 @@ public class RecipeActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).hide();
 
         Fade fade = new Fade();
-        fade.setDuration(200);
-        View decor = getWindow().getDecorView();
-        fade.excludeTarget(decor.findViewById(R.id.action_bar_container), true);
-        fade.excludeTarget(android.R.id.statusBarBackground, true);
-        fade.excludeTarget(android.R.id.navigationBarBackground, true);
-
+        fade.setDuration(300);
         getWindow().setEnterTransition(fade);
-        getWindow().setExitTransition(new Explode());
+        getWindow().setExitTransition(fade);
 
         ImageView imgView = findViewById(R.id.cocktailImage_recipe);
         TextView titleTV = findViewById(R.id.title_recipe);

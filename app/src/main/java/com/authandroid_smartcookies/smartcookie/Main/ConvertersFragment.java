@@ -1,4 +1,4 @@
-package com.authandroid_smartcookies.smartcookie.Menu;
+package com.authandroid_smartcookies.smartcookie.Main;
 
 import java.lang.Math;
 import java.util.HashMap;
@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;

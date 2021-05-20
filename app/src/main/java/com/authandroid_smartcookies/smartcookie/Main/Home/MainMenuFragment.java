@@ -1,7 +1,6 @@
-package com.authandroid_smartcookies.smartcookie.Menu.Home;
+package com.authandroid_smartcookies.smartcookie.Main.Home;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -18,9 +17,9 @@ import android.widget.ImageButton;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
 import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
+import com.authandroid_smartcookies.smartcookie.Main.SearchActivity;
 import com.authandroid_smartcookies.smartcookie.R;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

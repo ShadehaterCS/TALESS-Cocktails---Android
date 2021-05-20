@@ -1,4 +1,4 @@
-package com.authandroid_smartcookies.smartcookie.Menu;
+package com.authandroid_smartcookies.smartcookie.Main;
 
 import android.os.Bundle;
 
@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toolbar;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
 import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;

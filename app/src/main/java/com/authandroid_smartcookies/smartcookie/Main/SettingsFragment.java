@@ -1,14 +1,8 @@
-package com.authandroid_smartcookies.smartcookie.Menu;
+package com.authandroid_smartcookies.smartcookie.Main;
 
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceFragmentCompat;
-
-import android.preference.PreferenceFragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.authandroid_smartcookies.smartcookie.R;
 

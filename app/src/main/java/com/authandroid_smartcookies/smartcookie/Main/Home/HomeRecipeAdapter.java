@@ -1,4 +1,4 @@
-package com.authandroid_smartcookies.smartcookie.Menu.Home;
+package com.authandroid_smartcookies.smartcookie.Main.Home;
 
 import android.app.Activity;
 import android.app.ActivityOptions;

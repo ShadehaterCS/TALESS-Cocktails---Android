@@ -126,16 +126,14 @@ public class SenpaiDB extends SQLiteOpenHelper {
         return DataclassTransformations.transformToCocktailRecipeList(cursor);
     }
 
-    public boolean insertRecipeIntoFavorites(CocktailRecipe recipe) {
+    public void insertRecipeIntoFavorites(CocktailRecipe recipe) {
         assert database != null;
         database.execSQL("INSERT INTO FAVORITES(recipeid) values ("  +recipe.get_id() +")" );
-        return true;
     }
 
-    public boolean removeRecipeFromFavorites(CocktailRecipe recipe) {
+    public void removeRecipeFromFavorites(CocktailRecipe recipe) {
         assert database != null;
         database.execSQL("delete from FAVORITES where recipeid =" + recipe.get_id());
-        return true;
     }
 
     public ArrayList<Integer> getFavoritesIds(){
