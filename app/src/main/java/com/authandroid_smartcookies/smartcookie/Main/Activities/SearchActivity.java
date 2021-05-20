@@ -32,9 +32,10 @@ public class SearchActivity extends AppCompatActivity {
     private TextView resultsTV;
     private Button searchButton;
 
-    private String[] DRINKS;
-    private String[] NAMES;
-    private String[] complete;
+    private ArrayList<String> DRINKS;
+    private ArrayList<String> NAMES;
+    private ArrayList<String> PARTIAL_NAMES;
+    private ArrayList<String> complete;
 
     private ArrayList<CocktailRecipe> recipes;
 
@@ -65,15 +66,19 @@ public class SearchActivity extends AppCompatActivity {
     private void getNewRecipesAndUpdateDataset(){
         String searchable = searchAutoComplete.getText().toString();
         StringBuilder builder = new StringBuilder();
-        if (Arrays.asList(DRINKS).contains(searchable))
+        if (DRINKS.contains(searchable))
             dataset = recipes.stream()
                     .filter(r -> r.get_drink().equals(searchable))
                     .collect(Collectors.toCollection(ArrayList::new));
-
-        else if (Arrays.asList(NAMES).contains(searchable))
+        else if (NAMES.contains(searchable))
             dataset = recipes.stream()
                     .filter(r -> r.get_title().equals(searchable))
                     .collect(Collectors.toCollection(ArrayList::new));
+        else if (PARTIAL_NAMES.contains(searchable)){
+            dataset = recipes.stream()
+                    .filter(r -> Arrays.asList(r.get_title().split(" ")).contains(searchable))
+                    .collect(Collectors.toCollection(ArrayList::new));
+        }
         else if (searchable.isEmpty()) {
             dataset = new ArrayList<>(0);
             return;
@@ -89,12 +94,19 @@ public class SearchActivity extends AppCompatActivity {
         recipes = (ArrayList<CocktailRecipe>) getIntent().getSerializableExtra("recipes");
         DRINKS = recipes.stream()
                 .map(CocktailRecipe::get_drink)
-                .distinct().toArray(String[]::new);
+                .distinct().collect(Collectors.toCollection(ArrayList::new));
         NAMES = recipes.stream()
                 .map(CocktailRecipe::get_title)
-                .distinct().toArray(String[]::new);
-        complete = Stream.of(DRINKS,NAMES).flatMap(Stream::of).toArray(String[]::new);
+                .distinct().collect(Collectors.toCollection(ArrayList::new));
+        //partial names, split every element in the names array
+        PARTIAL_NAMES = NAMES.stream()
+                .map(s -> s.split(" "))
+                .flatMap(Stream::of)
+                .distinct().collect(Collectors.toCollection(ArrayList::new));
 
+        complete = new ArrayList<>(DRINKS);
+        complete.addAll(NAMES);
+        
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_dropdown_item_1line, complete);
         searchAutoComplete.setAdapter(adapter);

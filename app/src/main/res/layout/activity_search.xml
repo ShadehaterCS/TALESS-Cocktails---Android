@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Main.Activities.SearchActivity">
+    tools:context=".Main.Activities.SearchActivity"
+    android:animateLayoutChanges="true"
+    android:layoutAnimation="@anim/layout_animation">
 
     <AutoCompleteTextView
         android:id="@+id/searchAutoComplete"
@@ -30,6 +32,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchAutoComplete"
-        android:animateLayoutChanges="true"
-        android:layoutAnimation="@anim/layout_animation"/>
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
