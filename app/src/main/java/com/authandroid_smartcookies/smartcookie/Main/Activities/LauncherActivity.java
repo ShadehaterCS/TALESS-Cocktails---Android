@@ -10,6 +10,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import com.authandroid_smartcookies.smartcookie.Intro;
 import com.authandroid_smartcookies.smartcookie.R;
 
 public class LauncherActivity extends AppCompatActivity {
@@ -36,7 +37,7 @@ public class LauncherActivity extends AppCompatActivity {
         //todo change this to 1500, debug only 0 for now so we get inside the app quickly
         //check deprecation
         new Handler().postDelayed(() -> {
-            Intent intent = new Intent(LauncherActivity.this, HomeActivity.class);
+            Intent intent = new Intent(LauncherActivity.this, Intro.class);
             startActivity(intent);
             finish();
         }, 1000);

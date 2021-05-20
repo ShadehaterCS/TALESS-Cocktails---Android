@@ -11,11 +11,13 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.authandroid_smartcookies.smartcookie.Main.Activities.HomeActivity;
+
 public class Intro extends AppCompatActivity {
 
     ViewPager mSLideViewPager;
-    LinearLayout mDotLayout;
-    Button  nextbtn, skipbtn;
+    LinearLayout laDots;
+    Button nextButton, skipButton;
 
     TextView[] dots;
     ViewPagerAdapter viewPagerAdapter;
@@ -25,8 +27,8 @@ public class Intro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.intro);
 
-        nextbtn = findViewById(R.id.nextbtn);
-        skipbtn = findViewById(R.id.skipButton);
+        nextButton = findViewById(R.id.nextbtn);
+        skipButton = findViewById(R.id.skipButton);
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
@@ -34,7 +36,7 @@ public class Intro extends AppCompatActivity {
 
 
 
-        nextbtn.setOnClickListener(v -> {
+        nextButton.setOnClickListener(v -> {
 
             if (getitem(0) < 2)
                 mSLideViewPager.setCurrentItem(getitem(1),true);
@@ -47,17 +49,17 @@ public class Intro extends AppCompatActivity {
 
         });
 
-        skipbtn.setOnClickListener(v -> {
+        skipButton.setOnClickListener(v -> {
 
 
-            Intent i = new Intent(Intro.this,HomeActivity.class);
+            Intent i = new Intent(Intro.this, HomeActivity.class);
             startActivity(i);
             finish();
 
         });
 
         mSLideViewPager = (ViewPager) findViewById(R.id.slideViewPager);
-        mDotLayout = (LinearLayout) findViewById(R.id.indicator_layout);
+        laDots = (LinearLayout) findViewById(R.id.indicator_layout);
 
         viewPagerAdapter = new ViewPagerAdapter(this);
 
@@ -71,19 +73,19 @@ public class Intro extends AppCompatActivity {
     public void setUpindicator(int position){
 
         dots = new TextView[3];
-        mDotLayout.removeAllViews();
+        laDots.removeAllViews();
 
         for (int i = 0 ; i < dots.length ; i++){
 
             dots[i] = new TextView(this);
             dots[i].setText(Html.fromHtml("&#8226"));
             dots[i].setTextSize(35);
-            dots[i].setTextColor(getResources().getColor(R.color.white,getApplicationContext().getTheme()));
-            mDotLayout.addView(dots[i]);
+            dots[i].setTextColor(getResources().getColor(R.color.grey,getApplicationContext().getTheme()));
+            laDots.addView(dots[i]);
 
         }
 
-        dots[position].setTextColor(getResources().getColor(R.color.white,getApplicationContext().getTheme()));
+        dots[position].setTextColor(getResources().getColor(R.color.pastelRed,getApplicationContext().getTheme()));
 
     }
 
