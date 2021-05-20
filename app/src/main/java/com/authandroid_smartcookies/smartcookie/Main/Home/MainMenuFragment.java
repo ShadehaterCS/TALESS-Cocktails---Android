@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,7 +14,11 @@ import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
 import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
@@ -73,6 +78,16 @@ public class MainMenuFragment extends Fragment {
             Intent intent = new Intent(v.getContext(), SearchActivity.class);
             intent.putExtra("recipes", dataset);
             v.getContext().startActivity(intent);
+        });
+
+        ConstraintLayout layout = root.findViewById(R.id.mainMenuTitlesConLayout);
+        recyclerView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) ->{
+            //Positive scroll
+            if (oldScrollY > 5 && layout.getVisibility() == View.GONE)
+                layout.setVisibility(View.VISIBLE);
+            //Negative scroll
+            else if (oldScrollY < -15 && layout.getVisibility() == View.VISIBLE)
+                layout.setVisibility(View.GONE);
         });
 
         //placeholder adapter while data is loading

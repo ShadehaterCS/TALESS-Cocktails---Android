@@ -28,7 +28,6 @@ public class FavoritesFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -40,7 +39,8 @@ public class FavoritesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         background = view.findViewById(R.id.FavoritesConstraintLayout);
-
+        if (!recipes.isEmpty())
+            background.setBackground(null);
         RecyclerView rv = view.findViewById(R.id.favoritesRecyclerView);
         rv.setLayoutManager(new LinearLayoutManager(requireActivity()));
         rv.setAdapter(new FavoritesAdapter(requireContext(), recipes));

@@ -29,6 +29,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
             this.dataset = dataset;
         }
 
+
         @NonNull
         @Override
         public FavoritesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -71,14 +72,14 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
                 imgView = view.findViewById(R.id.favoritesRecipeImage);
 
                 //To handle moving to a new activity through shared element
-/*                view.setOnClickListener(v -> {
+                view.setOnClickListener(v -> {
                     Intent intent = new Intent(v.getContext(), RecipeActivity.class);
                     ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation
                             ((Activity)view.getContext(),
                                     imgView, "cocktail_recipe_transition");
                     intent.putExtra("recipe", recipe);
                     v.getContext().startActivity(intent,options.toBundle());
-                });*/
+                });
             }
             public TextView getTitleTV() {
                 return titleTV;
