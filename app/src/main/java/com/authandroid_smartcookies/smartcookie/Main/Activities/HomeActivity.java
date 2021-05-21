@@ -7,6 +7,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.transition.Fade;
 import android.view.View;
 
@@ -14,6 +16,7 @@ import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
 import com.authandroid_smartcookies.smartcookie.Main.Fragments.MainMenuFragment;
 import com.authandroid_smartcookies.smartcookie.R;
 import com.authandroid_smartcookies.smartcookie.Util.Utilities;
+import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.IOException;
@@ -27,6 +30,8 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         SenpaiDB db = SenpaiDB.getInstance(this);
         db.openDatabase();
+        if (SenpaiDB.updated)
+            Utilities.clearGlideCache(getApplicationContext());
 
         setContentView(R.layout.activity_home);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);

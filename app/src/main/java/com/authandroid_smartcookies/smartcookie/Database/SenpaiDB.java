@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
+import com.bumptech.glide.Glide;
 
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -21,7 +22,8 @@ public class SenpaiDB extends SQLiteOpenHelper {
     private static final String TAG = "SENPAI";
     public static String DB_PATH;
     public static String DB_NAME = "database.db";
-    public static final int DATABASE_VERSION = 3;
+    public static final int DATABASE_VERSION = 1;
+    public static boolean updated = false;
 
     public static SenpaiDB instance;
     private SQLiteDatabase database;
@@ -36,11 +38,26 @@ public class SenpaiDB extends SQLiteOpenHelper {
         }
         return instance;
     }
+    public SQLiteDatabase getDatabase(){
+        return database;
+    }
 
+    /**
+     * todo add documentation
+     * @return
+     */
     public boolean openDatabase() {
         try {
             String path = DB_PATH + DB_NAME;
             database = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READWRITE);
+            int version = database.getVersion();
+            if (version < DATABASE_VERSION){
+                context.deleteDatabase(DB_NAME);
+                createDatabase(context);
+                database = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READWRITE);
+                database.setVersion(DATABASE_VERSION);
+                updated = true;
+            }
             return true;
         } catch (SQLException s) {
             s.printStackTrace();
@@ -61,7 +78,6 @@ public class SenpaiDB extends SQLiteOpenHelper {
     }
 
     public void createDatabase(Context context) {
-        //this is important for some reason? prevents an initialization crash idk why
         this.getReadableDatabase();
         try {
             copyDatabase(context);
@@ -81,7 +97,6 @@ public class SenpaiDB extends SQLiteOpenHelper {
             instance.context.deleteDatabase(DB_NAME);
             createDatabase(context);
         }
-
     }
 
     public static void copyDatabase(Context context) {

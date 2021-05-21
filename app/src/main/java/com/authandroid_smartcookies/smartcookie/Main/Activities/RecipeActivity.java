@@ -31,6 +31,7 @@ import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
 import com.authandroid_smartcookies.smartcookie.R;
 import com.authandroid_smartcookies.smartcookie.Util.Utilities;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 
 import org.w3c.dom.Text;
@@ -60,7 +61,6 @@ public class RecipeActivity extends AppCompatActivity {
         TextView titleTV = findViewById(R.id.title_recipe);
         TextView descriptionTV = findViewById(R.id.description_recipe);
         recipe = getIntent().getParcelableExtra("recipe");
-
         int rid = getResources().getIdentifier(
                 recipe.get_imageid(), "drawable", getPackageName());
         Glide.with(this).load(rid).transform(new CenterCrop()).into(imgView);
