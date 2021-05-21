@@ -15,7 +15,8 @@
             app:title="Theme"
             app:summary="Select your theme"
             app:entries="@array/themeOptions"
-            app:entryValues="@array/themeOptions"
+            app:entryValues="@array/themeOptionsKeys"
+            app:defaultValue="auto"
         />
     </PreferenceCategory>
     <PreferenceCategory

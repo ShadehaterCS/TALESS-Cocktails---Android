@@ -11,6 +11,7 @@ import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
@@ -19,23 +20,23 @@ import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
 
 public class Utilities {
-    public static void make_show_SnackBar(View view, String message, int duration){
+    public static void make_show_SnackBar(View view, String message, int duration) {
         Snackbar.make(view, message, duration).show();
     }
 
-    public static  boolean restorePrefData(Context context) {
-        SharedPreferences pref = context.getSharedPreferences("myPrefs",context.MODE_PRIVATE);
-        return pref.getBoolean("isIntroOpened",false);
+    public static boolean restorePrefData(Context context) {
+        SharedPreferences pref = context.getSharedPreferences("myPrefs", context.MODE_PRIVATE);
+        return pref.getBoolean("isIntroOpened", false);
     }
 
     public static void savePrefsData(Context context) {
-        SharedPreferences pref = context.getSharedPreferences("myPrefs",context.MODE_PRIVATE);
+        SharedPreferences pref = context.getSharedPreferences("myPrefs", context.MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
-        editor.putBoolean("isIntroOpened",true);
+        editor.putBoolean("isIntroOpened", true);
         editor.apply();
     }
 
-    public static void setAnimationAndExcludeTargets(Window window){
+    public static void setAnimationAndExcludeTargets(Window window) {
         Fade fade = new Fade();
         View decor = window.getDecorView();
         fade.excludeTarget(decor.findViewById(R.id.action_bar_container), true);
@@ -45,7 +46,7 @@ public class Utilities {
         window.setExitTransition(fade);
     }
 
-    public static void hideKeyboard(Activity activity){
+    public static void hideKeyboard(Activity activity) {
         InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
         View view = activity.getCurrentFocus();
         if (view == null)
@@ -53,9 +54,9 @@ public class Utilities {
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
-    public static int getColor(Context context, String colorName){
+    public static int getColor(Context context, String colorName) {
         int colorId;
-        switch (colorName){
+        switch (colorName) {
             case "Purple":
                 colorId = ResourcesCompat.getColor(context.getResources(), R.color.cocktail_purple, context.getTheme());
                 break;
@@ -88,13 +89,15 @@ public class Utilities {
         }
         return colorId;
     }
-    public static void setTitleColor(Context context, TextView title, CocktailRecipe recipe){
+
+    public static void setTitleColorForTextView(Context context, TextView title, CocktailRecipe recipe) {
         if (recipe.get_color().equals("White"))
             title.setTextColor(Color.DKGRAY);
         else
-            title.setTextColor(getColor(context,recipe.get_color()));
+            title.setTextColor(getColor(context, recipe.get_color()));
     }
-    public static void clearGlideCache(Context applicationContext){
+
+    public static void clearGlideCache(Context applicationContext) {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
@@ -102,5 +105,14 @@ public class Utilities {
                 return null;
             }
         };
+    }
+
+    public static void setDeviceThemeMode(String selectedMode) {
+        if (selectedMode.equals("light"))
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        else if (selectedMode.equals("dark"))
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        else
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
     }
 }

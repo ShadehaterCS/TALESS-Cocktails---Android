@@ -9,24 +9,18 @@ import androidx.preference.PreferenceManager;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.transition.Fade;
 import android.view.View;
 
 import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
 import com.authandroid_smartcookies.smartcookie.Main.Fragments.MainMenuFragment;
 import com.authandroid_smartcookies.smartcookie.R;
 import com.authandroid_smartcookies.smartcookie.Util.Utilities;
-import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.IOException;
 import java.util.Objects;
 
 public class HomeActivity extends AppCompatActivity {
-    public static boolean pref_paintTitles;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //clearApplicationDataDebugOnly();
@@ -36,6 +30,7 @@ public class HomeActivity extends AppCompatActivity {
         if (SenpaiDB.updated)
             Utilities.clearGlideCache(getApplicationContext());
 
+        //ContentView
         setContentView(R.layout.activity_home);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         Objects.requireNonNull(getSupportActionBar()).hide();
@@ -45,8 +40,7 @@ public class HomeActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
 
         FragmentManager manager = this.getSupportFragmentManager();
-        //Don't reload a fragment if it's already there
-        
+        //Don't reload the fragment if it's already there
         bottomNavigationView.setOnNavigationItemSelectedListener(item->{
             //todo figure this out, although it's now working as intended tbh
             navController.popBackStack();
@@ -64,12 +58,8 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         Utilities.setAnimationAndExcludeTargets(getWindow());
-        SharedPreferences sharedPreferences =
-                PreferenceManager.getDefaultSharedPreferences(this);
 
-        pref_paintTitles = sharedPreferences.getBoolean("coloredTitles", true);
     }
-
     /**
      * @why Clears the application data and crashes it
      * @caution Needs to be uncommented after ran once. Provides no use after that run anyway.

@@ -12,7 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
-import com.authandroid_smartcookies.smartcookie.Main.Activities.HomeActivity;
+import com.authandroid_smartcookies.smartcookie.Main.Activities.LauncherActivity;
 import com.authandroid_smartcookies.smartcookie.Main.Activities.RecipeActivity;
 import com.authandroid_smartcookies.smartcookie.R;
 import com.authandroid_smartcookies.smartcookie.Util.Utilities;
@@ -45,8 +45,8 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
             holder.getTitleTV().setText(recipe.get_title());
             holder.getDescTV().setText(recipe.get_description());
 
-            if (HomeActivity.pref_paintTitles)
-                Utilities.setTitleColor(holder.view.getContext(),holder.titleTV, recipe);
+            if (LauncherActivity.pref_paintTitles)
+                Utilities.setTitleColorForTextView(holder.view.getContext(),holder.titleTV, recipe);
 
             int rid = holder.view.getContext().getResources()
                     .getIdentifier(recipe.get_imageid(), "drawable",

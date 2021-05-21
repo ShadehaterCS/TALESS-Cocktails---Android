@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
-import com.authandroid_smartcookies.smartcookie.Main.Activities.HomeActivity;
+import com.authandroid_smartcookies.smartcookie.Main.Activities.LauncherActivity;
 import com.authandroid_smartcookies.smartcookie.Main.Activities.RecipeActivity;
 import com.authandroid_smartcookies.smartcookie.R;
 import com.authandroid_smartcookies.smartcookie.Util.Utilities;
@@ -49,8 +49,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
                         holder.view.getContext().getPackageName());
         Glide.with(holder.view).load(rid).into(holder.getImgView());
 
-        if (HomeActivity.pref_paintTitles)
-            Utilities.setTitleColor(holder.view.getContext(),holder.titleTV, recipe);
+        if (LauncherActivity.pref_paintTitles)
+            Utilities.setTitleColorForTextView(holder.view.getContext(),holder.titleTV, recipe);
     }
 
     @Override

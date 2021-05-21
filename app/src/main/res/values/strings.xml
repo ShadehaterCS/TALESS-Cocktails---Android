@@ -15,6 +15,11 @@
     <string name="tablespoons">tbsp</string>
 
     <string-array name="empty_array"/>
+    <string-array name="themeOptionsKeys">
+        <item>light</item>
+        <item>dark</item>
+        <item>auto</item>
+    </string-array>
     <string-array name="themeOptions">
         <item>Light Theme</item>
         <item>Dark Theme</item>
