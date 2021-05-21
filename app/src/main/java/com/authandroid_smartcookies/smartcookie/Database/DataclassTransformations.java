@@ -36,8 +36,8 @@ public class DataclassTransformations {
         recipe.set_drink(cursor.getString(4));
         recipe.set_imageid(cursor.getString(5));
         recipe.set_color(cursor.getString(6));
-        recipe.set_calories(cursor.getString(7));
-        recipe.set_preptime(cursor.getString(8));
+        recipe.set_preptime(cursor.getString(7));
+        recipe.set_calories(cursor.getString(8));
         recipe.set_timer(Integer.parseInt(cursor.getString(9)));
         if (single)
             cursor.close();

@@ -5,7 +5,9 @@
     android:id="@+id/converters"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Main.Fragments.ConvertersFragment">
+    tools:context=".Main.Fragments.ConvertersFragment"
+    android:animateLayoutChanges="true"
+    android:layoutAnimation="@anim/layout_animation">
 
     <TextView
         android:id="@+id/title"

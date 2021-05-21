@@ -21,6 +21,9 @@ import com.authandroid_smartcookies.smartcookie.Main.Activities.RecipeActivity;
 import com.authandroid_smartcookies.smartcookie.R;
 import com.authandroid_smartcookies.smartcookie.Util.Utilities;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.ArrayList;
 
@@ -58,7 +61,7 @@ public class MainMenuAdapter extends RecyclerView.Adapter<MainMenuAdapter.ViewHo
         int rid = holder.view.getContext().getResources()
                 .getIdentifier(recipe.get_imageid(), "drawable",
                         holder.view.getContext().getPackageName());
-        Glide.with(holder.view).load(rid).into(holder.getImgView());
+        Glide.with(holder.view).load(rid).transform(new CenterCrop()).into(holder.getImgView());
 
         holder.getFavoriteButton().setOnClickListener(v -> {
             if (holder.favorited) {

@@ -68,6 +68,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
                 imgView = view.findViewById(R.id.favoritesRecipeImage);
 
                 //To handle moving to a new activity through shared element
+                //todo move this inside utilities as static. used too many times
                 view.setOnClickListener(v -> {
                     Intent intent = new Intent(v.getContext(), RecipeActivity.class);
                     ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation

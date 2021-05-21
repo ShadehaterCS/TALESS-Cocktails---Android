@@ -48,7 +48,7 @@ public class SearchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        Utilities.setAnimationAndExcludeTargets(getWindow());
         Objects.requireNonNull(getSupportActionBar()).hide();
 
         searchAutoComplete = findViewById(R.id.searchAutoComplete);
@@ -105,18 +105,18 @@ public class SearchActivity extends AppCompatActivity {
         DRINKS = recipes.stream()
                 .map(CocktailRecipe::get_drink)
                 .distinct().collect(Collectors.toCollection(ArrayList::new));
+
         NAMES = recipes.stream()
                 .map(CocktailRecipe::get_title)
                 .distinct().collect(Collectors.toCollection(ArrayList::new));
-        //partial names, split every element in the names array
+
         PARTIAL_NAMES = NAMES.stream()
-                .map(s -> s.split(" "))
-                .flatMap(Stream::of)
+                .flatMap(fullDrinkName -> Arrays.stream(fullDrinkName.split(" ").clone()))
                 .distinct().collect(Collectors.toCollection(ArrayList::new));
 
         complete = new ArrayList<>(DRINKS);
         complete.addAll(NAMES);
-        
+
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_dropdown_item_1line, complete);
         searchAutoComplete.setAdapter(adapter);

@@ -24,4 +24,11 @@
     <string name="desc_two">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</string>
     <string name="desc_three">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</string>
 
+    <string name="ingredients">Ingredients</string>
+    <string name="calories">Calories</string>
+    <string name="preptime">Prep time</string>
+    <string name="preparation">Preparation</string>
+    <string name="cocktailSteps">1.Add the gin, lemon juice, maraschino liqueur, and creme de violette to a cocktail shaker. Fill it with ice and shake it for 30sec.\n2.Strain into a cocktail glass. Garnish with a Luxardo cherry, if desired.</string>
+    <string name="timer">Timer</string>
+
 </resources>

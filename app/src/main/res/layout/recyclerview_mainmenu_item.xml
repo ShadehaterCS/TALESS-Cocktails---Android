@@ -32,15 +32,15 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/cocktailImage"
             android:layout_marginStart="5dp"
-            android:fontFamily="sans-serif"
-            android:gravity="center_vertical"
-            android:text="Title"
-            android:textSize="17sp"
-            android:textStyle="bold"
             android:layout_marginTop="8dp"
-            android:textColor="@android:color/black"
-            android:transitionName="cocktail_recipe_transition"
-            android:scrollbars="none"/>
+            android:fontFamily="@font/courgette"
+            android:gravity="center_vertical"
+            android:scrollbars="none"
+            android:text="Title"
+            android:textColor="@color/grey"
+            android:textSize="20sp"
+            android:textStyle="normal|bold"
+            android:transitionName="cocktail_recipe_transition" />
 
         <TextView
             android:id="@+id/descriptionTextView"

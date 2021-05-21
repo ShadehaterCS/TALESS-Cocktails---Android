@@ -21,10 +21,11 @@ public class SenpaiDB extends SQLiteOpenHelper {
     private static final String TAG = "SENPAI";
     public static String DB_PATH;
     public static String DB_NAME = "database.db";
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 3;
 
     public static SenpaiDB instance;
     private SQLiteDatabase database;
+    public Context context;
 
     /*
     Using singleton pattern to avoid leaks and constant openings
@@ -48,20 +49,15 @@ public class SenpaiDB extends SQLiteOpenHelper {
     }
 
     public synchronized void close() {
-        if (database != null)
-            database.close();
+        assert database != null;
+        database.close();
         super.close();
     }
 
     public SenpaiDB(@NonNull Context context) {
         super(context, DB_NAME, null, DATABASE_VERSION);
         DB_PATH = "/data/data/" + context.getPackageName() + "/" + "databases/";
-    }
-
-    public SenpaiDB(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
-        assert context != null;
-        DB_PATH = context.getFilesDir().getPath();
+        this.context = context;
     }
 
     public void createDatabase(Context context) {
@@ -81,10 +77,11 @@ public class SenpaiDB extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS RECIPES");
-        db.execSQL("DROP TABLE IF EXISTS INGREDIENTS");
-        db.execSQL("DROP TABLE IF EXISTS INGREDIENT_ON_RECIPE");
-        db.execSQL("DROP TABLE IF EXISTS FAVORITES");
+        if (instance != null) {
+            instance.context.deleteDatabase(DB_NAME);
+            createDatabase(context);
+        }
+
     }
 
     public static void copyDatabase(Context context) {
@@ -109,17 +106,10 @@ public class SenpaiDB extends SQLiteOpenHelper {
         }
     }
 
-    public ArrayList<CocktailRecipe> findAllBasedOnDrink(String drink) {
-        assert database != null;
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM RECIPES WHERE drink = " + drink;
-        Cursor cursor = db.rawQuery(query, null);
-        cursor.moveToFirst();
-        return DataclassTransformations.transformToCocktailRecipeList(cursor);
-    }
 
     public ArrayList<CocktailRecipe> getAllRecipes() {
-        assert database != null;
+        if (database == null)
+            return new ArrayList<>();
         String query = "SELECT * FROM RECIPES";
         Cursor cursor = database.rawQuery(query, null);
         cursor.moveToFirst();
@@ -127,36 +117,39 @@ public class SenpaiDB extends SQLiteOpenHelper {
     }
 
     public void insertRecipeIntoFavorites(CocktailRecipe recipe) {
-        assert database != null;
-        database.execSQL("INSERT INTO FAVORITES(recipeid) values ("  +recipe.get_id() +")" );
+        if (database != null)
+            database.execSQL("INSERT INTO FAVORITES(recipeid) values (" + recipe.get_id() + ")");
     }
 
     public void removeRecipeFromFavorites(CocktailRecipe recipe) {
-        assert database != null;
-        database.execSQL("delete from FAVORITES where recipeid =" + recipe.get_id());
+        if (database != null)
+            database.execSQL("delete from FAVORITES where recipeid =" + recipe.get_id());
     }
 
-    public ArrayList<Integer> getFavoritesIds(){
-        assert database != null;
+    public ArrayList<Integer> getFavoritesIds() {
+        if (database == null)
+            return new ArrayList<>();
         String query = "SELECT recipeid FROM FAVORITES";
         Cursor cursor = database.rawQuery(query, null);
         return DataclassTransformations.transformFavoritesToList(cursor);
     }
 
-    public ArrayList<CocktailRecipe> getFavoriteRecipes(){
-        assert database != null;
+    public ArrayList<CocktailRecipe> getFavoriteRecipes() {
+        if (database == null)
+            return new ArrayList<>();
         String query = "SELECT id, title,description,steps,drink,imageid, color, preptime,calories,timer" +
                 " FROM RECIPES INNER JOIN FAVORITES ON RECIPES.recipeid= FAVORITES.recipeid";
         Cursor cursor = database.rawQuery(query, null);
         return DataclassTransformations.transformToCocktailRecipeList(cursor);
     }
 
-    public HashMap<String, String> getIngredients(CocktailRecipe recipe){
-        assert database != null;
+    public HashMap<String, String> getIngredients(CocktailRecipe recipe) {
+        if (database == null)
+            return new HashMap<>();
         String query = "select ingredient, amount from INGREDIENT_ON_RECIPE\n" +
                 "left join INGREDIENTS on INGREDIENT_ON_RECIPE.ingredientid = INGREDIENTS.ingredientid\n" +
-                "where recipeid = "+recipe.get_id();
-        Cursor cursor = database.rawQuery(query,null);
+                "where recipeid = " + recipe.get_id();
+        Cursor cursor = database.rawQuery(query, null);
         return DataclassTransformations.transformToIngredientsHashMap(cursor);
     }
 }
