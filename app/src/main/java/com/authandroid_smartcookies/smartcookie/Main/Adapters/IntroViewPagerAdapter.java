@@ -19,19 +19,25 @@ public class IntroViewPagerAdapter extends PagerAdapter {
     int images[] = {
             R.drawable.image1,
             R.drawable.image2,
-            R.drawable.image3
+            R.drawable.image3,
+            R.drawable.image3,
+            R.drawable.image3,
     };
 
     int headings[] = {
             R.string.heading_one,
             R.string.heading_two,
-            R.string.heading_three
+            R.string.heading_three,
+            R.string.heading_four,
+            R.string.heading_five
     };
 
     int description[] = {
             R.string.desc_one,
             R.string.desc_two,
-            R.string.desc_three
+            R.string.desc_three,
+            R.string.desc_four,
+            R.string.desc_five
     };
 
     public IntroViewPagerAdapter(Context context){

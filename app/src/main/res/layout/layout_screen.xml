@@ -10,25 +10,27 @@
         android:id="@+id/intro_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
         android:src="@drawable/image1"/>
 
     <TextView
         android:id="@+id/intro_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="@string/heading_one"
+        android:layout_marginTop="30dp"
+        android:text="Title"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="28dp"
-        android:lineSpacingExtra="30dp"/>
+        android:textSize="28dp"/>
 
     <TextView
         android:id="@+id/intro_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp"
-        android:text="@string/desc_one"
+        android:layout_marginHorizontal="35dp"
+        android:text="Description"
+        android:layout_gravity="center"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="16dp"/>

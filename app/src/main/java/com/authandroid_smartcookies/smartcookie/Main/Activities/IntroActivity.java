@@ -37,7 +37,7 @@ public class IntroActivity extends AppCompatActivity {
         }
 
         nextButton.setOnClickListener(v -> {
-            if (getItem(0) < 2)
+            if (getItem(0) < 4)
                 mSLideViewPager.setCurrentItem(getItem(1),true);
             else {
                 Intent i = new Intent(IntroActivity.this,HomeActivity.class);
@@ -68,7 +68,7 @@ public class IntroActivity extends AppCompatActivity {
     }
 
     public void setUpIndicator(int position){
-        dots = new TextView[3];
+        dots = new TextView[5];
         laDots.removeAllViews();
 
         for (int i = 0 ; i < dots.length ; i++){
