@@ -21,7 +21,6 @@ import com.authandroid_smartcookies.smartcookie.Main.Activities.RecipeActivity;
 import com.authandroid_smartcookies.smartcookie.R;
 import com.authandroid_smartcookies.smartcookie.Util.Utilities;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 
 import java.util.ArrayList;
@@ -125,9 +124,9 @@ public class MainMenuAdapter extends RecyclerView.Adapter<MainMenuAdapter.ViewHo
 
         private void setFavoriteButtonImage(View v, boolean favorited) {
             if (favorited)
-                v.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.ic_favorite_button_on));
+                v.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.icon_favorite_button_on));
             else
-                v.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.ic_favorite_button_off));
+                v.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.icon_favorite_button_off));
         }
 
         public ImageButton getFavoriteButton() {

@@ -3,17 +3,17 @@
     <item
         android:id="@+id/mainMenu"
         android:title="Home"
-        android:icon="@drawable/ic_home" />
+        android:icon="@drawable/icon_home" />
     <item
         android:id="@+id/favourites"
         android:title="Favorites"
-        android:icon="@drawable/ic_favorite" />
+        android:icon="@drawable/icon_favorite" />
     <item
         android:id="@+id/converters"
         android:title="Converters"
-        android:icon="@drawable/ic_convert" />
+        android:icon="@drawable/icon_convert" />
     <item
         android:id="@+id/settings"
         android:title="Settings"
-        android:icon="@drawable/ic_settings"/>
+        android:icon="@drawable/icon_settings"/>
 </menu>

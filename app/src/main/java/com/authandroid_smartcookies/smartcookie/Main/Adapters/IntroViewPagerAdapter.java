@@ -17,11 +17,11 @@ import com.authandroid_smartcookies.smartcookie.R;
 public class IntroViewPagerAdapter extends PagerAdapter {
     Context context;
     int images[] = {
-            R.drawable.image1,
-            R.drawable.image2,
-            R.drawable.image3,
-            R.drawable.image3,
-            R.drawable.image3,
+            R.drawable.intro_image_1,
+            R.drawable.intro_image_2,
+            R.drawable.intro_image_3,
+            R.drawable.intro_image_3,
+            R.drawable.intro_image_3,
     };
 
     int headings[] = {

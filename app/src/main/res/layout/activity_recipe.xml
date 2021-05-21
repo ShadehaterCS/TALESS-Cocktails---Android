@@ -93,7 +93,7 @@
                         app:layout_constraintBottom_toBottomOf="@+id/timerTitle"
                         app:layout_constraintStart_toEndOf="@+id/timerTitle"
                         app:layout_constraintTop_toTopOf="@+id/timerTitle"
-                        app:srcCompat="@drawable/ic_shaker" />
+                        app:srcCompat="@drawable/shaker" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
