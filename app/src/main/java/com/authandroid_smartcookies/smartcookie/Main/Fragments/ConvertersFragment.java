@@ -42,8 +42,6 @@ public class ConvertersFragment extends Fragment {
         //updates text on every button press
         amountsText.addTextChangedListener(new GenericTextWatcher(this::convert));
 
-        //TODO change spinners to button array because it makes sense!
-
         /*Hashmaps, it's a lot but oh well ♥
         One hashmap for every correlation between types
         One hashmap to access the hashmaps using the from type*/

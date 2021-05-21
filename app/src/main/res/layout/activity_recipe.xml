@@ -58,7 +58,6 @@
                         android:rotationY="0"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.497"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.0" />
@@ -80,10 +79,21 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
+                        android:fontFamily="@font/courgette"
                         android:text="@string/timer"
-                        android:textSize="24sp"
+                        android:textSize="28sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/timerTypeImageView"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:rotation="12"
+                        app:layout_constraintBottom_toBottomOf="@+id/timerTitle"
+                        app:layout_constraintStart_toEndOf="@+id/timerTitle"
+                        app:layout_constraintTop_toTopOf="@+id/timerTitle"
+                        app:srcCompat="@drawable/ic_shaker" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
@@ -214,7 +224,8 @@
                         android:layout_height="80dp"
                         android:layout_weight="1"
                         android:clickable="false"
-                        android:text="165 calories" />
+                        android:text="165 calories"
+                        app:cornerRadius="30dp" />
 
                     <Space
                         android:layout_width="wrap_content"
@@ -228,7 +239,8 @@
                         android:layout_height="80dp"
                         android:layout_weight="1"
                         android:clickable="false"
-                        android:text="@string/preptime" />
+                        android:text="@string/preptime"
+                        app:cornerRadius="30dp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 

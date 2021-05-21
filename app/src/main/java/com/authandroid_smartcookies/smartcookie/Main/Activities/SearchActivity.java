@@ -27,10 +27,6 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-/*
-TODO cleanup code, add map and recyclerView.
-TODO Using new simpler adapter rather than the same for home/favorites
- */
 public class SearchActivity extends AppCompatActivity {
     private AutoCompleteTextView searchAutoComplete;
 
@@ -88,10 +84,8 @@ public class SearchActivity extends AppCompatActivity {
                     .filter(r -> Arrays.asList(r.get_title().split(" ")).contains(searchable))
                     .collect(Collectors.toCollection(ArrayList::new));
         }
-        else if (searchable.isEmpty()) {
+        else if (searchable.isEmpty())
             dataset = new ArrayList<>(recipes);
-            return;
-        }
         else
             return;
         //Only runs if dataset changed

@@ -146,8 +146,8 @@ public class SenpaiDB extends SQLiteOpenHelper {
     public HashMap<String, String> getIngredients(CocktailRecipe recipe) {
         if (database == null)
             return new HashMap<>();
-        String query = "select ingredient, amount from INGREDIENT_ON_RECIPE\n" +
-                "left join INGREDIENTS on INGREDIENT_ON_RECIPE.ingredientid = INGREDIENTS.ingredientid\n" +
+        String query = "select ingredient, amount from INGREDIENTS_RECIPES\n" +
+                "left join INGREDIENTS on INGREDIENTS_RECIPES.ingredientid = INGREDIENTS.ingredientid\n" +
                 "where recipeid = " + recipe.get_id();
         Cursor cursor = database.rawQuery(query, null);
         return DataclassTransformations.transformToIngredientsHashMap(cursor);

@@ -10,7 +10,7 @@
 
 
     <ImageView
-        android:id="@+id/image1"
+        android:id="@+id/launcher_shaker_imageView"
         android:layout_width="wrap_content"
         android:layout_height="329dp"
         android:layout_above="@+id/textView"

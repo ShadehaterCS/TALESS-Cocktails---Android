@@ -26,7 +26,7 @@ public class LauncherActivity extends AppCompatActivity {
         }
 
         launcher_shaker = AnimationUtils.loadAnimation(this, R.anim.shaker);
-        final ImageView shakerImage = findViewById(R.id.image1);
+        final ImageView shakerImage = findViewById(R.id.launcher_shaker_imageView);
         shakerImage.setAnimation(launcher_shaker);
 
         Intent intent = Utilities.restorePrefData(this.getApplicationContext())
@@ -39,6 +39,6 @@ public class LauncherActivity extends AppCompatActivity {
         new Handler().postDelayed(() -> {
             startActivity(intent);
             finish();
-        }, 1000);
+        }, 1500);
     }
 }

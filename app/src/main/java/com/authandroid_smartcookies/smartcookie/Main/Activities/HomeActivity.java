@@ -20,10 +20,10 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class HomeActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //clearApplicationDataDebugOnly();
-
         super.onCreate(savedInstanceState);
         SenpaiDB db = SenpaiDB.getInstance(this);
         db.openDatabase();

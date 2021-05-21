@@ -28,8 +28,6 @@ import com.bumptech.glide.request.RequestOptions;
 import java.util.ArrayList;
 
 //TODO long hold enlarges picture
-//TODO undo on snackbar
-
 public class MainMenuAdapter extends RecyclerView.Adapter<MainMenuAdapter.ViewHolder> {
     private final ArrayList<CocktailRecipe> dataset;
     private ArrayList<Integer> favorites;
