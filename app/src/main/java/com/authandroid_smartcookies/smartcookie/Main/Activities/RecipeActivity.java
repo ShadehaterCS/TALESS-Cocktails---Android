@@ -44,21 +44,26 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class RecipeActivity extends AppCompatActivity {
     private CocktailRecipe recipe;
 
+    //TODO fix visuals for cards and ingredients being left -> right instead of all together
+
     private Button calorieButton;
     private Button prepTimeButton;
     private ProgressBar progressBar;
+    private TextView titleTV;
+    private SenpaiDB db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe);
-        SenpaiDB db = SenpaiDB.getInstance(this);
+        db = SenpaiDB.getInstance(this);
         Objects.requireNonNull(getSupportActionBar()).hide();
         Utilities.setAnimationAndExcludeTargets(getWindow());
 
         recipe = (CocktailRecipe) getIntent().getSerializableExtra("recipe");
 
         ImageView imgView = findViewById(R.id.cocktailImage_recipe);
-        TextView titleTV = findViewById(R.id.title_recipe);
+        titleTV = findViewById(R.id.title_recipe);
         TextView descriptionTV = findViewById(R.id.description_recipe);
         recipe = getIntent().getParcelableExtra("recipe");
         int rid = getResources().getIdentifier(
@@ -71,20 +76,13 @@ public class RecipeActivity extends AppCompatActivity {
         //BUTTONS
         calorieButton = findViewById(R.id.caloriesButton);
         prepTimeButton = findViewById(R.id.preptime_button);
+        calorieButton.setText(recipe.get_calories());
+        prepTimeButton.setText(recipe.get_preptime());
 
         //INGREDIENTS CARD
-        //todo optimization
-        TextView v = findViewById(R.id.ingredientsTextView);
-        HashMap<String, String> m = db.getIngredients(recipe);
-        String a = "";
-        String b = "";
-        String c = "";
-        for (String s : m.keySet()) {
-            a = s;
-            b = m.get(s);
-            c += a + " " + b + "\n";
-        }
-        v.setText(c);
+        String ingredients = parseIngredients();
+        TextView ingredientsTV = findViewById(R.id.ingredientsTextView);
+        ingredientsTV.setText(ingredients);
 
         //STEPS(PREPARATION) CARD
         TextView stepsTextView = findViewById(R.id.stepsTextView);
@@ -113,7 +111,7 @@ public class RecipeActivity extends AppCompatActivity {
 
         if (recipe.get_timer() != -1) {
             timerCard.setOnClickListener(view -> {
-                if (!timerAlreadyPressed.get()) {
+                if (!timerAlreadyPressed.get()) {//todo change this to recipe.getTimer() instead of 5
                     CountDownTimer countDownTimer = new CountDownTimer(
                             5 * 1000 + 500, 1000) {
                         private final int future = recipe.get_timer();
@@ -152,16 +150,23 @@ public class RecipeActivity extends AppCompatActivity {
         //ENDIF
         setUpColors();
     }
-
+//todo actually implement this
     private String parseIngredients() {
         StringBuilder builder = new StringBuilder();
+        HashMap<String, String> ingredientsMap = db.getIngredients(recipe);
+        String ingredients = "";
+        for (String ingredient : ingredientsMap.keySet()) {
+            builder.append("•");
+            builder.append(ingredient);
+            builder.append(ingredientsMap.get(ingredient));
+            builder.append(System.getProperty("line.separator"));
+        }
         return builder.toString();
     }
 
     private void setUpColors(){
-        calorieButton.setText(recipe.get_calories());
-        prepTimeButton.setText(recipe.get_preptime());
         int colorId = Utilities.getColor(this,recipe.get_color());
+        titleTV.setTextColor(colorId);
         calorieButton.setBackgroundColor(colorId);
         prepTimeButton.setBackgroundColor(colorId);
 
@@ -169,12 +174,14 @@ public class RecipeActivity extends AppCompatActivity {
         GradientDrawable shape = (GradientDrawable)progressBarBG.getDrawable(0);
         shape.setColors(new int[]{colorId, colorId, colorId});
         if (recipe.get_color().equals("White")){
+            int snowColorId = getResources().getColor(R.color.cocktail_snow,getTheme());
             colorId = Color.DKGRAY;
             calorieButton.setTextColor(colorId);
             prepTimeButton.setTextColor(colorId);
-            calorieButton.setBackgroundColor(getResources().getColor(R.color.cocktail_snow,getTheme()));
-            prepTimeButton.setBackgroundColor(getResources().getColor(R.color.cocktail_snow,getTheme()));
+            calorieButton.setBackgroundColor(snowColorId);
+            prepTimeButton.setBackgroundColor(snowColorId);
             shape.setColors(new int[]{colorId, colorId, colorId});
+            titleTV.setTextColor(colorId);
         }
 
     }

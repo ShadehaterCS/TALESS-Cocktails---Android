@@ -22,7 +22,7 @@ public class SenpaiDB extends SQLiteOpenHelper {
     private static final String TAG = "SENPAI";
     public static String DB_PATH;
     public static String DB_NAME = "database.db";
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 20;
     public static boolean updated = false;
 
     public static SenpaiDB instance;
@@ -163,7 +163,8 @@ public class SenpaiDB extends SQLiteOpenHelper {
             return new HashMap<>();
         String query = "select ingredient, amount from INGREDIENTS_RECIPES\n" +
                 "left join INGREDIENTS on INGREDIENTS_RECIPES.ingredientid = INGREDIENTS.ingredientid\n" +
-                "where recipeid = " + recipe.get_id();
+                "where recipeid = " + recipe.get_id()+" "
+                +"order by amount";
         Cursor cursor = database.rawQuery(query, null);
         return DataclassTransformations.transformToIngredientsHashMap(cursor);
     }
