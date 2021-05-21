@@ -14,6 +14,15 @@
     <string name="teaspoons">tsp</string>
     <string name="tablespoons">tbsp</string>
 
+    <string-array name="empty_array"/>
+    <string-array name="themeOptions">
+        <item>Light Theme</item>
+        <item>Dark Theme</item>
+        <item>System (Default)</item>
+    </string-array>
+
+
+
     //Headings
     <string name="heading_one">Recipe</string>
     <string name="heading_two">Converter</string>

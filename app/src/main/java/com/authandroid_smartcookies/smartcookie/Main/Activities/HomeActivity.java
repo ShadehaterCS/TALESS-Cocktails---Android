@@ -5,7 +5,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
+import androidx.preference.PreferenceManager;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -23,6 +25,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class HomeActivity extends AppCompatActivity {
+    public static boolean pref_paintTitles;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +64,10 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         Utilities.setAnimationAndExcludeTargets(getWindow());
+        SharedPreferences sharedPreferences =
+                PreferenceManager.getDefaultSharedPreferences(this);
+
+        pref_paintTitles = sharedPreferences.getBoolean("coloredTitles", true);
     }
 
     /**

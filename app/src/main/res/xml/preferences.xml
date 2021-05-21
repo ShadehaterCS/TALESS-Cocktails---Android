@@ -1,12 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-<SwitchPreferenceCompat
-    android:key="notifications"
-    android:title="Enable Message Notifications" />
+<PreferenceScreen
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <Preference
-        android:key="feedback"
-        android:title="Send feedback"
-        android:summary="Report technical issues to us pls"/>
+    <PreferenceCategory
+        app:key="theme"
+        app:title="Theming">
+        <SwitchPreferenceCompat
+            app:key="coloredTitles"
+            app:title="Enable colored cocktail names"
+            app:defaultValue="true"/>
+
+        <ListPreference
+            app:key="pref_theme"
+            app:title="Theme"
+            app:summary="Select your theme"
+            app:entries="@array/themeOptions"
+            app:entryValues="@array/themeOptions"
+        />
+    </PreferenceCategory>
+    <PreferenceCategory
+        app:key="help_category"
+        app:title="Help">
+
+        <Preference
+            app:key="FAQ"
+            app:summary="Frequently Asked Questions"
+            app:title="FAQ"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="About"
+        app:title="About">
+
+        <Preference
+            app:key="theApp"
+            app:summary="Details about this app"
+            app:title="The App"/>
+        <Preference
+            app:key="theTeam"
+            app:summary="Details about the dev team"
+            app:title="The Team"/>
+
+    </PreferenceCategory>
 
 </PreferenceScreen>

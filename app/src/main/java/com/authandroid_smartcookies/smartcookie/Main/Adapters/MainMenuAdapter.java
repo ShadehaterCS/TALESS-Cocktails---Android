@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
 import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
+import com.authandroid_smartcookies.smartcookie.Main.Activities.HomeActivity;
 import com.authandroid_smartcookies.smartcookie.Main.Activities.RecipeActivity;
 import com.authandroid_smartcookies.smartcookie.R;
 import com.authandroid_smartcookies.smartcookie.Util.Utilities;
@@ -54,6 +55,9 @@ public class MainMenuAdapter extends RecyclerView.Adapter<MainMenuAdapter.ViewHo
         holder.getTitleTV().setText(recipe.get_title());
         holder.getDescTV().setText(recipe.get_description());
 
+        if (HomeActivity.pref_paintTitles)
+            Utilities.setTitleColor(holder.view.getContext(),holder.titleTV, recipe);
+
         int rid = holder.view.getContext().getResources()
                 .getIdentifier(recipe.get_imageid(), "drawable",
                         holder.view.getContext().getPackageName());
@@ -70,7 +74,7 @@ public class MainMenuAdapter extends RecyclerView.Adapter<MainMenuAdapter.ViewHo
             else {
                 db.insertRecipeIntoFavorites(recipe);
                 Utilities.make_show_SnackBar(holder.view,
-                        "Added "+recipe.get_title() + " from favorites",
+                        "Added "+recipe.get_title() + " to favorites",
                         1000);
                 favorites.add(recipe.get_id());
             }
@@ -110,7 +114,6 @@ public class MainMenuAdapter extends RecyclerView.Adapter<MainMenuAdapter.ViewHo
             descTV = view.findViewById(R.id.descriptionTextView);
             imgView = view.findViewById(R.id.cocktailImage);
             favoriteButton = view.findViewById(R.id.imageButton);
-
             //To handle moving to a new activity through shared element
             view.setOnClickListener(v -> {
                 Intent intent = new Intent(v.getContext(), RecipeActivity.class);

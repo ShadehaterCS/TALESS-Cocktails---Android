@@ -9,6 +9,7 @@ import android.transition.Fade;
 import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.TextView;
 
 import androidx.core.content.res.ResourcesCompat;
 
@@ -87,7 +88,12 @@ public class Utilities {
         }
         return colorId;
     }
-
+    public static void setTitleColor(Context context, TextView title, CocktailRecipe recipe){
+        if (recipe.get_color().equals("White"))
+            title.setTextColor(Color.DKGRAY);
+        else
+            title.setTextColor(getColor(context,recipe.get_color()));
+    }
     public static void clearGlideCache(Context applicationContext){
         new AsyncTask<Void, Void, Void>() {
             @Override
