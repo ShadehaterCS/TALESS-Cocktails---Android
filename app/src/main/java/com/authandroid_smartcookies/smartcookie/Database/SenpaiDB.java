@@ -22,7 +22,7 @@ public class SenpaiDB extends SQLiteOpenHelper {
     private static final String TAG = "SENPAI";
     public static String DB_PATH;
     public static String DB_NAME = "database.db";
-    public static final int DATABASE_VERSION = 20;
+    public static final int DATABASE_VERSION = 22;
     public static boolean updated = false;
 
     public static SenpaiDB instance;

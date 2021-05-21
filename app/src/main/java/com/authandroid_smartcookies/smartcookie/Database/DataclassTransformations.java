@@ -6,6 +6,7 @@ import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 /**
  * @apiNote This class handles transformations from the raw SQL queries to objects and vice versa
@@ -58,7 +59,8 @@ public class DataclassTransformations {
     }
 
     public static HashMap<String, String> transformToIngredientsHashMap(Cursor cursor){
-        HashMap<String, String> map = new HashMap<>();
+        LinkedHashMap<String, String> map = new LinkedHashMap<>();
+
         cursor.moveToFirst();
         for (int i = 0; i < cursor.getCount(); i++) {
             String ingredient = cursor.getString(0) + "\t";

@@ -33,7 +33,7 @@ public class ConvertersFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        View view = inflater.inflate(R.layout.fragment_converters_new, container, false);
+        View view = inflater.inflate(R.layout.fragment_converters, container, false);
 
         amountsText = view.findViewById(R.id.input);
         clearButton = view.findViewById(R.id.clear);
