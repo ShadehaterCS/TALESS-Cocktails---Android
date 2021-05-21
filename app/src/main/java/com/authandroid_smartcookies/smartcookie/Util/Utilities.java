@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.transition.Fade;
 import android.view.View;
 import android.view.Window;
@@ -13,6 +14,7 @@ import androidx.core.content.res.ResourcesCompat;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
 import com.authandroid_smartcookies.smartcookie.R;
+import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
 
 public class Utilities {
@@ -84,5 +86,15 @@ public class Utilities {
                 colorId = ResourcesCompat.getColor(context.getResources(), R.color.white, context.getTheme());
         }
         return colorId;
+    }
+
+    public static void clearGlideCache(Context applicationContext){
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                Glide.get(applicationContext).clearDiskCache();
+                return null;
+            }
+        };
     }
 }
