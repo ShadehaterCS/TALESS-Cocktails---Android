@@ -61,8 +61,10 @@ public class DataclassTransformations {
         HashMap<String, String> map = new HashMap<>();
         cursor.moveToFirst();
         for (int i = 0; i < cursor.getCount(); i++) {
-            String ingredient = cursor.getString(0);
+            String ingredient = cursor.getString(0) + "\t";
             String amount = cursor.getString(1);
+            if (amount.equals("FG"))
+                amount = "(For Garnish)";
             map.put(ingredient,amount);
             cursor.moveToNext();
         }

@@ -127,19 +127,21 @@
                         android:id="@+id/stepsTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
+                        android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
                         android:fontFamily="@font/courgette"
                         android:text="@string/preparation"
-                        android:textSize="25sp" />
+                        android:textSize="30sp" />
 
                     <Space
                         android:layout_width="match_parent"
-                        android:layout_height="10dp" />
+                        android:layout_height="5dp" />
 
                     <TextView
                         android:id="@+id/stepsTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
                         android:fontFamily="@font/allerta"
                         android:text="@string/cocktailSteps"
                         android:textSize="15sp" />
@@ -176,14 +178,11 @@
                         android:id="@+id/ingredientsTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
+                        android:layout_gravity="center"
                         android:layout_weight="1"
                         android:fontFamily="@font/courgette"
                         android:text="@string/ingredients"
-                        android:textSize="25sp" />
-
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="10dp" />
+                        android:textSize="30sp" />
 
                     <TextView
                         android:id="@+id/ingredientsTextView"
@@ -253,7 +252,6 @@
                 app:cardCornerRadius="15dp"
                 app:cardElevation="5dp"
                 app:cardPreventCornerOverlap="true"
-                app:contentPaddingBottom="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -270,6 +268,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="8dp"
                         android:fontFamily="@font/american_captain"
+                        android:gravity="center"
                         android:text="@string/recycler_view_mainmenuitem_title"
                         android:textAlignment="inherit"
                         android:textSize="30sp"
