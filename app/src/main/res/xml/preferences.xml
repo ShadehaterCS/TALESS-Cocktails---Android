@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
         app:key="theme"
@@ -26,8 +26,13 @@
         <Preference
             app:key="FAQ"
             app:summary="Frequently Asked Questions"
-            app:title="FAQ"/>
-
+            app:title="FAQ">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:targetPackage="com.authandroid_smartcookies.smartcookie"
+                android:targetClass="com.authandroid_smartcookies.smartcookie.Main.Activities.SettingsActivities.teamActivity"
+            />
+        </Preference>
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -37,7 +42,8 @@
         <Preference
             app:key="theApp"
             app:summary="Details about this app"
-            app:title="The App"/>
+            app:title="The App">/>
+        </Preference>
         <Preference
             app:key="theTeam"
             app:summary="Details about the dev team"

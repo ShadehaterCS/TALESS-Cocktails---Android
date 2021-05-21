@@ -40,7 +40,7 @@ public class IntroActivity extends AppCompatActivity {
             if (getItem(0) < 4)
                 mSLideViewPager.setCurrentItem(getItem(1),true);
             else {
-                Intent i = new Intent(IntroActivity.this,HomeActivity.class);
+                Intent i = new Intent(IntroActivity.this, MainActivity.class);
                 startActivity(i);
                 finish();
             }
@@ -49,14 +49,14 @@ public class IntroActivity extends AppCompatActivity {
         skipButton.setOnClickListener(v -> {
 
 
-            Intent i = new Intent(IntroActivity.this, HomeActivity.class);
+            Intent i = new Intent(IntroActivity.this, MainActivity.class);
             startActivity(i);
             finish();
 
         });
 
-        mSLideViewPager = (ViewPager) findViewById(R.id.slideViewPager);
-        laDots = (LinearLayout) findViewById(R.id.indicator_layout);
+        mSLideViewPager = findViewById(R.id.slideViewPager);
+        laDots = findViewById(R.id.indicator_layout);
 
         introViewPagerAdapter = new IntroViewPagerAdapter(this);
 

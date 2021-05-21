@@ -14,7 +14,7 @@
     <string name="teaspoons">tsp</string>
     <string name="tablespoons">tbsp</string>
 
-    <string-array name="empty_array"/>
+    <string-array name="empty_array" />
     <string-array name="themeOptionsKeys">
         <item>light</item>
         <item>dark</item>
@@ -25,7 +25,6 @@
         <item>Dark Theme</item>
         <item>System (Default)</item>
     </string-array>
-
 
 
     //Headings

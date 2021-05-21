@@ -3,6 +3,7 @@ package com.authandroid_smartcookies.smartcookie.Util;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.transition.Fade;
@@ -25,12 +26,12 @@ public class Utilities {
     }
 
     public static boolean restorePrefData(Context context) {
-        SharedPreferences pref = context.getSharedPreferences("myPrefs", context.MODE_PRIVATE);
+        SharedPreferences pref = context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
         return pref.getBoolean("isIntroOpened", false);
     }
 
     public static void savePrefsData(Context context) {
-        SharedPreferences pref = context.getSharedPreferences("myPrefs", context.MODE_PRIVATE);
+        SharedPreferences pref = context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         editor.putBoolean("isIntroOpened", true);
         editor.apply();
@@ -107,12 +108,19 @@ public class Utilities {
         };
     }
 
-    public static void setDeviceThemeMode(String selectedMode) {
+    public static void setDeviceThemeMode(Context context, String selectedMode) {
+        int mode;
         if (selectedMode.equals("light"))
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            mode = AppCompatDelegate.MODE_NIGHT_NO;
         else if (selectedMode.equals("dark"))
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            mode = AppCompatDelegate.MODE_NIGHT_YES;
         else
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
+            mode = AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
+
+        int currentMode = context.getResources().getConfiguration().uiMode &
+                Configuration.UI_MODE_NIGHT_MASK;
+        //don't ask
+        if (mode+15 != currentMode && mode + 17 != currentMode)
+            AppCompatDelegate.setDefaultNightMode(mode);
     }
 }

@@ -5,14 +5,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
-import androidx.preference.PreferenceManager;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
 import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
-import com.authandroid_smartcookies.smartcookie.Main.Fragments.MainMenuFragment;
+import com.authandroid_smartcookies.smartcookie.Main.Fragments.HomeFragment;
 import com.authandroid_smartcookies.smartcookie.R;
 import com.authandroid_smartcookies.smartcookie.Util.Utilities;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -20,7 +18,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.io.IOException;
 import java.util.Objects;
 
-public class HomeActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //clearApplicationDataDebugOnly();
@@ -50,8 +48,8 @@ public class HomeActivity extends AppCompatActivity {
 
         bottomNavigationView.setOnNavigationItemReselectedListener(item -> {
             if (item.getTitle().toString().contentEquals("Home")){
-                MainMenuFragment fragment =
-                        (MainMenuFragment) manager.findFragmentById(R.id.mainFragment)
+                HomeFragment fragment =
+                        (HomeFragment) manager.findFragmentById(R.id.mainFragment)
                         .getChildFragmentManager().getFragments().get(0);
                 fragment.scrollToTop();
             }

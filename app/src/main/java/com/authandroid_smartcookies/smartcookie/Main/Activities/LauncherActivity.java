@@ -15,7 +15,7 @@ import com.authandroid_smartcookies.smartcookie.R;
 import com.authandroid_smartcookies.smartcookie.Util.Utilities;
 
 public class LauncherActivity extends AppCompatActivity {
-    //todo move these to launcher
+    //TODO have tales for males thing be dynamic from string array?
     public static boolean pref_paintTitles;
     Animation launcher_shaker;
 
@@ -31,7 +31,8 @@ public class LauncherActivity extends AppCompatActivity {
                 PreferenceManager.getDefaultSharedPreferences(this);
         LauncherActivity.pref_paintTitles = sharedPreferences.getBoolean("coloredTitles", true);
         //Application theme override
-        Utilities.setDeviceThemeMode(sharedPreferences.getString("pref_theme", "auto"));
+        Utilities.setDeviceThemeMode(this,
+                sharedPreferences.getString("pref_theme", "auto"));
     }
 
     @Override
@@ -48,7 +49,7 @@ public class LauncherActivity extends AppCompatActivity {
         shakerImage.setAnimation(launcher_shaker);
 
         Intent intent = Utilities.restorePrefData(this.getApplicationContext())
-                ? new Intent(LauncherActivity.this, HomeActivity.class)
+                ? new Intent(LauncherActivity.this, MainActivity.class)
                 : new Intent(LauncherActivity.this, IntroActivity.class);
 
         Intent testingIntroIntent = new Intent(LauncherActivity.this, IntroActivity.class);

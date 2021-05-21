@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class MainMenuFragment extends Fragment {
+public class HomeFragment extends Fragment {
     private final String TAG = "MAIN_MENU_FRAGMENT";
     protected RecyclerView recyclerView;
     protected SenpaiDB db;

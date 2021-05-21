@@ -23,7 +23,7 @@
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/mainMenu"
-        android:name="com.authandroid_smartcookies.smartcookie.Main.Fragments.MainMenuFragment"
+        android:name="com.authandroid_smartcookies.smartcookie.Main.Fragments.HomeFragment"
         android:label="fragment_main_menu"
         tools:layout="@layout/fragment_main_menu" />
 </navigation>

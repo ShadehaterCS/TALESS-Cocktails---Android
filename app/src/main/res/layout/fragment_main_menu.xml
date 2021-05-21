@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Main.Fragments.MainMenuFragment"
+    tools:context=".Main.Fragments.HomeFragment"
     android:animateLayoutChanges="true"
     android:layoutAnimation="@anim/layout_animation">
 

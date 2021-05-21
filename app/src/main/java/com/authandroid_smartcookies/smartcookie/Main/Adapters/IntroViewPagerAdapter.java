@@ -16,7 +16,7 @@ import com.authandroid_smartcookies.smartcookie.R;
 
 public class IntroViewPagerAdapter extends PagerAdapter {
     Context context;
-    int images[] = {
+    int[] images = {
             R.drawable.intro_image_1,
             R.drawable.intro_image_2,
             R.drawable.intro_image_3,
@@ -24,7 +24,7 @@ public class IntroViewPagerAdapter extends PagerAdapter {
             R.drawable.intro_image_3,
     };
 
-    int headings[] = {
+    int[] headings = {
             R.string.heading_one,
             R.string.heading_two,
             R.string.heading_three,
@@ -32,7 +32,7 @@ public class IntroViewPagerAdapter extends PagerAdapter {
             R.string.heading_five
     };
 
-    int description[] = {
+    int[] description = {
             R.string.desc_one,
             R.string.desc_two,
             R.string.desc_three,
@@ -51,18 +51,18 @@ public class IntroViewPagerAdapter extends PagerAdapter {
 
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
-        return view == (LinearLayout) object;
+        return view == object;
     }
 
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.slider_layout,container,false);
 
-        ImageView slidetitleimage = (ImageView) view.findViewById(R.id.intro_img);
-        TextView slideHeading = (TextView) view.findViewById(R.id.intro_title);
-        TextView slideDesciption = (TextView) view.findViewById(R.id.intro_description);
+        ImageView slidetitleimage = view.findViewById(R.id.intro_img);
+        TextView slideHeading = view.findViewById(R.id.intro_title);
+        TextView slideDesciption = view.findViewById(R.id.intro_description);
 
         slidetitleimage.setImageResource(images[position]);
         slideHeading.setText(headings[position]);
