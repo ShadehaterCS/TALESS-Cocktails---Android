@@ -29,17 +29,15 @@
 
     //Headings
     <string name="heading_one">Recipe</string>
-    <string name="heading_two">Converter</string>
-    <string name="heading_three">Add to favorites</string>
-    <string name="heading_four">Smth else</string>
-    <string name="heading_five">Enjoy</string>
+    <string name="heading_two">Save your favorites</string>
+    <string name="heading_three">Converter</string>
+    <string name="heading_four">Enjoy</string>
 
     //Description
-    <string name="desc_one">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</string>
-    <string name="desc_two">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</string>
-    <string name="desc_three">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</string>
-    <string name="desc_four">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</string>
-    <string name="desc_five">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</string>
+    <string name="desc_one">Welcome to APP NAME, a place to explore cocktails for all tastes</string>
+    <string name="desc_two">You can save your favorite cocktail recipe by tapping the grey heart, it will turn red and automatically appear to the favorites section</string>
+    <string name="desc_three">The app provides an unit converter to make you life easier  </string>
+    <string name="desc_four">Remember to enjoy responsibly, DONT drink and drive</string>
 
     <string name="ingredients">Ingredients</string>
     <string name="calories">Calories</string>

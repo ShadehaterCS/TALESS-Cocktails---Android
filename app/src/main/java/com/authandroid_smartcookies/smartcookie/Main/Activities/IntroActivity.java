@@ -4,9 +4,11 @@ package com.authandroid_smartcookies.smartcookie.Main.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,58 +19,58 @@ import com.authandroid_smartcookies.smartcookie.Util.Utilities;
 
 public class IntroActivity extends AppCompatActivity {
 
-    ViewPager mSLideViewPager;
+    ViewPager slideViewPager;
     LinearLayout laDots;
-    Button nextButton, skipButton;
+    Button nextButton, skipButton, startButton;
 
     TextView[] dots;
     IntroViewPagerAdapter introViewPagerAdapter;
 
+    @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Utilities.savePrefsData(this.getApplicationContext());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.intro);
-        nextButton = findViewById(R.id.nextbtn);
+        nextButton = findViewById(R.id.nextButton);
         skipButton = findViewById(R.id.skipButton);
+        startButton = findViewById(R.id.startButton);
+
+        startButton.setVisibility(View.INVISIBLE);
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
 
         nextButton.setOnClickListener(v -> {
-            if (getItem(0) < 4)
-                mSLideViewPager.setCurrentItem(getItem(1),true);
-            else {
-                Intent i = new Intent(IntroActivity.this, MainActivity.class);
-                startActivity(i);
-                finish();
-            }
+            slideViewPager.setCurrentItem(getItem(1),true);
         });
 
         skipButton.setOnClickListener(v -> {
+            slideViewPager.setCurrentItem(3,true);
+        });
 
-
+        startButton.setOnClickListener(v -> {
             Intent i = new Intent(IntroActivity.this, MainActivity.class);
             startActivity(i);
             finish();
 
         });
 
-        mSLideViewPager = findViewById(R.id.slideViewPager);
+        slideViewPager = findViewById(R.id.slideViewPager);
         laDots = findViewById(R.id.indicator_layout);
 
         introViewPagerAdapter = new IntroViewPagerAdapter(this);
 
-        mSLideViewPager.setAdapter(introViewPagerAdapter);
+        slideViewPager.setAdapter(introViewPagerAdapter);
 
         setUpIndicator(0);
-        mSLideViewPager.addOnPageChangeListener(viewListener);
+        slideViewPager.addOnPageChangeListener(viewListener);
 
     }
 
     public void setUpIndicator(int position){
-        dots = new TextView[5];
+        dots = new TextView[4];
         laDots.removeAllViews();
 
         for (int i = 0 ; i < dots.length ; i++){
@@ -89,14 +91,31 @@ public class IntroActivity extends AppCompatActivity {
 
         @Override
         public void onPageSelected(int position) {
+            if (getItem(0) < 3){
+                nextButton.setVisibility(View.VISIBLE);
+                laDots.setVisibility(View.VISIBLE);
+                skipButton.setVisibility(View.VISIBLE);
+                startButton.setVisibility(View.INVISIBLE);
+             }
+            else {
+                nextButton.setVisibility(View.INVISIBLE);
+                laDots.setVisibility(View.INVISIBLE);
+                skipButton.setVisibility(View.INVISIBLE);
+                startButton.setVisibility(View.VISIBLE);
+            }
+
+
+
+
             setUpIndicator(position);
         }
         @Override
         public void onPageScrollStateChanged(int state) {
+
         }
     };
     private int getItem(int i){
-        return mSLideViewPager.getCurrentItem() + i;
+        return slideViewPager.getCurrentItem() + i;
     }
 
 }

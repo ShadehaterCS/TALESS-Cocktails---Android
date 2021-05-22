@@ -156,7 +156,7 @@ public class RecipeActivity extends AppCompatActivity {
         HashMap<String, String> ingredientsMap = db.getIngredients(recipe);
         String ingredients = "";
         for (String ingredient : ingredientsMap.keySet()) {
-            builder.append("•");
+            builder.append("• ");
             builder.append(ingredient);
             builder.append(ingredientsMap.get(ingredient));
             builder.append(System.getProperty("line.separator"));
