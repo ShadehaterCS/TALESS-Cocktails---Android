@@ -23,14 +23,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         //clearApplicationDataDebugOnly();
         super.onCreate(savedInstanceState);
-        SenpaiDB db = SenpaiDB.getInstance(this);
-        db.openDatabase();
-        if (SenpaiDB.updated)
-            Utilities.clearGlideCache(getApplicationContext());
 
         //ContentView
         setContentView(R.layout.activity_home);
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
         Objects.requireNonNull(getSupportActionBar()).hide();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
@@ -56,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Utilities.setAnimationAndExcludeTargets(getWindow());
-
     }
     /**
      * @why Clears the application data and crashes it

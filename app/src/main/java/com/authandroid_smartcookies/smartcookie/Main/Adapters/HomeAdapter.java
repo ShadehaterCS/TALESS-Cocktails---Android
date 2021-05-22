@@ -27,19 +27,19 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import java.util.ArrayList;
 
 //TODO long hold enlarges picture
-public class MainMenuAdapter extends RecyclerView.Adapter<MainMenuAdapter.ViewHolder> {
+public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     private final ArrayList<CocktailRecipe> dataset;
     private ArrayList<Integer> favorites;
     private final SenpaiDB db;
 
-    public MainMenuAdapter(Context context, ArrayList<CocktailRecipe> dataset) {
+    public HomeAdapter(Context context, ArrayList<CocktailRecipe> dataset) {
         this.dataset = dataset;
         db = SenpaiDB.getInstance(context);
     }
 
     @NonNull
     @Override
-    public MainMenuAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public HomeAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recyclerview_mainmenu_item, parent, false);
         return new ViewHolder(view);
@@ -47,7 +47,7 @@ public class MainMenuAdapter extends RecyclerView.Adapter<MainMenuAdapter.ViewHo
 
     //Fill the view
     @Override
-    public void onBindViewHolder(@NonNull MainMenuAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull HomeAdapter.ViewHolder holder, int position) {
         CocktailRecipe recipe = dataset.get(position);
 
         holder.recipe = recipe;

@@ -11,6 +11,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
 import com.authandroid_smartcookies.smartcookie.R;
 import com.authandroid_smartcookies.smartcookie.Util.Utilities;
 
@@ -39,6 +40,10 @@ public class LauncherActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.launcher);
+        SenpaiDB db = SenpaiDB.getInstance(this);
+        db.openDatabase();
+        if (SenpaiDB.updated)
+            Utilities.clearGlideCache(getApplicationContext());
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();

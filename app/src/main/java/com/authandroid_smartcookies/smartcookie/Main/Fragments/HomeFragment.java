@@ -1,13 +1,12 @@
 package com.authandroid_smartcookies.smartcookie.Main.Fragments;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,7 +19,7 @@ import android.widget.ImageButton;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
 import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
-import com.authandroid_smartcookies.smartcookie.Main.Adapters.MainMenuAdapter;
+import com.authandroid_smartcookies.smartcookie.Main.Adapters.HomeAdapter;
 import com.authandroid_smartcookies.smartcookie.Main.Activities.SearchActivity;
 import com.authandroid_smartcookies.smartcookie.R;
 
@@ -33,7 +32,7 @@ public class HomeFragment extends Fragment {
     protected RecyclerView recyclerView;
     protected SenpaiDB db;
 
-    protected MainMenuAdapter adapter;
+    protected HomeAdapter adapter;
     protected RecyclerView.LayoutManager mLayoutManager;
     protected ArrayList<CocktailRecipe> dataset;
 
@@ -54,7 +53,7 @@ public class HomeFragment extends Fragment {
                 db.openDatabase();
             }
             dataset = db.getAllRecipes();
-            adapter = new MainMenuAdapter(requireContext(), dataset);
+            adapter = new HomeAdapter(requireContext(), dataset);
             adapter.setFavorites(db.getFavoritesIds());
             //Run on UI thread
             handler.post(() -> {
@@ -92,7 +91,7 @@ public class HomeFragment extends Fragment {
         });
 
         //placeholder adapter while data is loading
-        recyclerView.setAdapter(new MainMenuAdapter(requireContext(), new ArrayList<>()));
+        recyclerView.setAdapter(new HomeAdapter(requireContext(), new ArrayList<>()));
         return root;
     }
 
