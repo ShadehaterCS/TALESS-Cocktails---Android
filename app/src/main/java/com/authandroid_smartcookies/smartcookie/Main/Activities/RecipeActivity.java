@@ -112,7 +112,7 @@ public class RecipeActivity extends AppCompatActivity {
         if (recipe.get_timer() != -1) {
             timerCard.setOnClickListener(view -> {
                 if (!timerAlreadyPressed.get()) {//todo change this to recipe.getTimer() instead of 5
-                    CountDownTimer countDownTimer = new CountDownTimer(
+                    new CountDownTimer(
                             5 * 1000 + 500, 1000) {
                         private final int future = recipe.get_timer();
 
@@ -133,7 +133,7 @@ public class RecipeActivity extends AppCompatActivity {
                             //Timer sound on finish
                             mediaPlayer.start();
                             mediaPlayer.seekTo(0);
-                            if (timerImage.getVisibility()==View.VISIBLE)
+                            if (timerImage.getVisibility() == View.VISIBLE)
                                 timerImage.clearAnimation();
                         }
                     }.start();

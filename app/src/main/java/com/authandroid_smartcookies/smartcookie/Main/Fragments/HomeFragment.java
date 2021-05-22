@@ -1,7 +1,6 @@
 package com.authandroid_smartcookies.smartcookie.Main.Fragments;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -66,7 +65,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View root = inflater.inflate(R.layout.fragment_main_menu, container, false);
+        View root = inflater.inflate(R.layout.fragment_home, container, false);
         root.setTag(TAG);
         recyclerView = root.findViewById(R.id.recyclerview);
         mLayoutManager = new LinearLayoutManager(getActivity());

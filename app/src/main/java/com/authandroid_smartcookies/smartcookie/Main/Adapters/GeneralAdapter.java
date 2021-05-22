@@ -20,26 +20,26 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.ViewHolder> {
+public class GeneralAdapter extends RecyclerView.Adapter<GeneralAdapter.ViewHolder> {
         private final ArrayList<CocktailRecipe> dataset;
 
-        public FavoritesAdapter(Context context, ArrayList<CocktailRecipe> dataset) {
+        public GeneralAdapter(Context context, ArrayList<CocktailRecipe> dataset) {
             this.dataset = dataset;
         }
 
 
         @NonNull
         @Override
-        public FavoritesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        public GeneralAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.recyclerview_favorites_and_search_item, parent, false);
-            return new FavoritesAdapter.ViewHolder(view);
+            return new GeneralAdapter.ViewHolder(view);
         }
 
 
         //Fill the view
         @Override
-        public void onBindViewHolder(@NonNull FavoritesAdapter.ViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull GeneralAdapter.ViewHolder holder, int position) {
             CocktailRecipe recipe = dataset.get(position);
             holder.recipe = recipe;
             holder.getTitleTV().setText(recipe.get_title());

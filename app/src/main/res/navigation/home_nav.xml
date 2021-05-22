@@ -25,5 +25,5 @@
         android:id="@+id/mainMenu"
         android:name="com.authandroid_smartcookies.smartcookie.Main.Fragments.HomeFragment"
         android:label="fragment_main_menu"
-        tools:layout="@layout/fragment_main_menu" />
+        tools:layout="@layout/fragment_home" />
 </navigation>

@@ -6,27 +6,22 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
-import android.widget.TextView;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
-import com.authandroid_smartcookies.smartcookie.Main.Adapters.SearchAdapter;
+import com.authandroid_smartcookies.smartcookie.Main.Adapters.GeneralAdapter;
 import com.authandroid_smartcookies.smartcookie.Util.GenericTextWatcher;
 import com.authandroid_smartcookies.smartcookie.R;
 import com.authandroid_smartcookies.smartcookie.Util.Utilities;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 public class SearchActivity extends AppCompatActivity {
     private AutoCompleteTextView searchAutoComplete;
 
@@ -61,7 +56,7 @@ public class SearchActivity extends AppCompatActivity {
         });
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new SearchAdapter(this, recipes));
+        recyclerView.setAdapter(new GeneralAdapter(this, recipes));
     }
 
     @MainThread
@@ -89,7 +84,7 @@ public class SearchActivity extends AppCompatActivity {
         else
             return;
         //Only runs if dataset changed
-        recyclerView.swapAdapter(new SearchAdapter(this,dataset), false);
+        recyclerView.swapAdapter(new GeneralAdapter(this,dataset), false);
     }
 
     @MainThread

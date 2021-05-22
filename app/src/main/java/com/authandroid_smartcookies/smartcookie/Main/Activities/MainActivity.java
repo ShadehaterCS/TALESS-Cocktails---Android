@@ -20,6 +20,15 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        SenpaiDB db = SenpaiDB.getInstance(this);
+        db.openDatabase();
+        if (SenpaiDB.updated)
+            Utilities.clearGlideCache(getApplicationContext());
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         //clearApplicationDataDebugOnly();
         super.onCreate(savedInstanceState);
