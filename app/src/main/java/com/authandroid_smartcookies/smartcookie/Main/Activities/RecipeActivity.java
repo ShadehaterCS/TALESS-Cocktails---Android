@@ -51,6 +51,7 @@ public class RecipeActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private TextView titleTV;
     private SenpaiDB db;
+    private CountDownTimer timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,7 +113,7 @@ public class RecipeActivity extends AppCompatActivity {
         if (recipe.get_timer() != -1) {
             timerCard.setOnClickListener(view -> {
                 if (!timerAlreadyPressed.get()) {//todo change this to recipe.getTimer() instead of 5
-                    new CountDownTimer(
+                    timer = new CountDownTimer(
                             5 * 1000 + 500, 1000) {
                         private final int future = recipe.get_timer();
 
@@ -124,7 +125,6 @@ public class RecipeActivity extends AppCompatActivity {
                             timerText.setText(String.format("%d", time));
                         }
 
-                        //todo add sound thingy
                         @Override
                         public void onFinish() {
                             timerText.setText(String.format("%d", recipe.get_timer()));
@@ -150,7 +150,7 @@ public class RecipeActivity extends AppCompatActivity {
         //ENDIF
         setUpColors();
     }
-//todo actually implement this
+
     private String parseIngredients() {
         StringBuilder builder = new StringBuilder();
         HashMap<String, String> ingredientsMap = db.getIngredients(recipe);
@@ -195,7 +195,7 @@ public class RecipeActivity extends AppCompatActivity {
             builder.append(steps[i]);
             builder.append(System.getProperty("line.separator"));
         }
-        //todo maybe remove this and put it inside the db?
+
         long timerType = Arrays.stream(steps)
                 .filter(s -> s.contains("shake") || s.contains("shaker"))
                 .count();
@@ -204,6 +204,16 @@ public class RecipeActivity extends AppCompatActivity {
         result[0] = builder.toString();
         result[1] = timerType > 0 ? "Shake" : "Stir";
         return result;
+    }
+
+    /**
+     * Stops the timer if it has started to avoid sound playing even though activity is destroyed
+     */
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (timer != null)
+            timer.cancel();
     }
 }
 

@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -22,13 +23,14 @@ public class SenpaiDB extends SQLiteOpenHelper {
     private static final String TAG = "SENPAI";
     public static String DB_PATH;
     public static String DB_NAME = "database.db";
-    public static final int DATABASE_VERSION = 22;
+    public static final int DATABASE_VERSION = 25;
     public static boolean updated = false;
 
     public static SenpaiDB instance;
     private SQLiteDatabase database;
     public Context context;
 
+    //todo save favorites
     /*
     Using singleton pattern to avoid leaks and constant openings
     */
@@ -38,12 +40,14 @@ public class SenpaiDB extends SQLiteOpenHelper {
         }
         return instance;
     }
-    public SQLiteDatabase getDatabase(){
+
+    public SQLiteDatabase getDatabase() {
         return database;
     }
 
     /**
      * todo add documentation
+     *
      * @return
      */
     public boolean openDatabase() {
@@ -51,18 +55,28 @@ public class SenpaiDB extends SQLiteOpenHelper {
             String path = DB_PATH + DB_NAME;
             database = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READWRITE);
             int version = database.getVersion();
-            if (version < DATABASE_VERSION){
-                context.deleteDatabase(DB_NAME);
-                createDatabase(context);
-                database = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READWRITE);
-                database.setVersion(DATABASE_VERSION);
-                updated = true;
-            }
+            if (version < DATABASE_VERSION)
+                upgradeDatabase(context, path, true);
             return true;
         } catch (SQLException s) {
             s.printStackTrace();
             return false;
         }
+    }
+
+
+    public void upgradeDatabase(Context context, String path, boolean saveFavorites) {
+        ArrayList<Integer> favorites = null;
+        if (saveFavorites)
+            favorites = getFavoritesIds();
+
+        context.deleteDatabase(DB_NAME);
+        createDatabase(context);
+        database = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READWRITE);
+        database.setVersion(DATABASE_VERSION);
+        updated = true;
+        if (saveFavorites)
+            restoreFavoritesDuringUpgrade(favorites);
     }
 
     public synchronized void close() {
@@ -78,6 +92,7 @@ public class SenpaiDB extends SQLiteOpenHelper {
     }
 
     public void createDatabase(Context context) {
+        //this is some magic line idk? remove it and first load fails
         this.getReadableDatabase();
         try {
             copyDatabase(context);
@@ -93,10 +108,6 @@ public class SenpaiDB extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        if (instance != null) {
-            instance.context.deleteDatabase(DB_NAME);
-            createDatabase(context);
-        }
     }
 
     public static void copyDatabase(Context context) {
@@ -121,6 +132,18 @@ public class SenpaiDB extends SQLiteOpenHelper {
         }
     }
 
+    /**
+     * @param favorites the ArrayList containing the favorites
+     *                  Whenever the database upgrades the file needs to be deleted and the new schema is to be
+     *                  deployed.
+     *                  Assuming FAVORITES table won't change (why would it) then this won't be a problem
+     * @caution if FAVORITES schema changes this needs to be refactored to reflect that change
+     */
+    private void restoreFavoritesDuringUpgrade(ArrayList<Integer> favorites) {
+        if (database != null)
+            for (int recipe_id : favorites)
+                database.execSQL("INSERT INTO FAVORITES(recipeid) values (" + recipe_id + ")");
+    }
 
     public ArrayList<CocktailRecipe> getAllRecipes() {
         if (database == null)
@@ -163,8 +186,8 @@ public class SenpaiDB extends SQLiteOpenHelper {
             return new HashMap<>();
         String query = "select ingredient, amount from INGREDIENTS_RECIPES\n" +
                 "left join INGREDIENTS on INGREDIENTS_RECIPES.ingredientid = INGREDIENTS.ingredientid\n" +
-                "where recipeid = " + recipe.get_id()+" "
-                +"order by amount";
+                "where recipeid = " + recipe.get_id() + " "
+                + "order by amount";
         Cursor cursor = database.rawQuery(query, null);
         return DataclassTransformations.transformToIngredientsHashMap(cursor);
     }

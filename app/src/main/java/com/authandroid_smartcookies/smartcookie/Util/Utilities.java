@@ -1,7 +1,9 @@
 package com.authandroid_smartcookies.smartcookie.Util;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -10,12 +12,14 @@ import android.transition.Fade;
 import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
+import com.authandroid_smartcookies.smartcookie.Main.Activities.RecipeActivity;
 import com.authandroid_smartcookies.smartcookie.R;
 import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
@@ -89,6 +93,17 @@ public class Utilities {
                 colorId = ResourcesCompat.getColor(context.getResources(), R.color.white, context.getTheme());
         }
         return colorId;
+    }
+
+    public static void setOnClickListenerOnViewForIntentToRecipeActivity(Context context, View view, ImageView imgView, CocktailRecipe recipe){
+        view.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), RecipeActivity.class);
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation
+                    ((Activity)context,
+                            imgView, "cocktail_recipe_transition");
+            intent.putExtra("recipe", recipe);
+            v.getContext().startActivity(intent,options.toBundle());
+        });
     }
 
     public static void setTitleColorForTextView(Context context, TextView title, CocktailRecipe recipe) {

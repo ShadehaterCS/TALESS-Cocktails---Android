@@ -25,6 +25,7 @@ public class LauncherActivity extends AppCompatActivity {
         super.onAttachedToWindow();
         initSharedPrefs();
     }
+
     //SHARED PREFERENCES INITIALIZATIONS
     private void initSharedPrefs(){
         //Colored Titles for recipes

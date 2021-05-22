@@ -22,9 +22,10 @@ import java.util.ArrayList;
 
 public class GeneralAdapter extends RecyclerView.Adapter<GeneralAdapter.ViewHolder> {
         private final ArrayList<CocktailRecipe> dataset;
-
+        private final Context context;
         public GeneralAdapter(Context context, ArrayList<CocktailRecipe> dataset) {
             this.dataset = dataset;
+            this.context = context;
         }
 
 
@@ -41,17 +42,19 @@ public class GeneralAdapter extends RecyclerView.Adapter<GeneralAdapter.ViewHold
         @Override
         public void onBindViewHolder(@NonNull GeneralAdapter.ViewHolder holder, int position) {
             CocktailRecipe recipe = dataset.get(position);
-            holder.recipe = recipe;
             holder.getTitleTV().setText(recipe.get_title());
             holder.getDescTV().setText(recipe.get_description());
 
             if (LauncherActivity.pref_paintTitles)
-                Utilities.setTitleColorForTextView(holder.view.getContext(),holder.titleTV, recipe);
+                Utilities.setTitleColorForTextView(context,holder.titleTV, recipe);
 
             int rid = holder.view.getContext().getResources()
                     .getIdentifier(recipe.get_imageid(), "drawable",
-                            holder.view.getContext().getPackageName());
+                            context.getPackageName());
             Glide.with(holder.view).load(rid).into(holder.getImgView());
+
+            Utilities.setOnClickListenerOnViewForIntentToRecipeActivity(
+                    context, holder.view, holder.getImgView(), recipe);
         }
 
         @Override
@@ -64,7 +67,6 @@ public class GeneralAdapter extends RecyclerView.Adapter<GeneralAdapter.ViewHold
             private final TextView descTV;
             private final ImageView imgView;
             private final View view;
-            public CocktailRecipe recipe;
 
             public ViewHolder(View view) {
                 super(view);
@@ -73,18 +75,8 @@ public class GeneralAdapter extends RecyclerView.Adapter<GeneralAdapter.ViewHold
                 titleTV = view.findViewById(R.id.favoritesRVTItle);
                 descTV = view.findViewById(R.id.favoritesRVDescription);
                 imgView = view.findViewById(R.id.favoritesRecipeImage);
-
-                //To handle moving to a new activity through shared element
-                //todo move this inside utilities as static. used too many times
-                view.setOnClickListener(v -> {
-                    Intent intent = new Intent(v.getContext(), RecipeActivity.class);
-                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation
-                            ((Activity)view.getContext(),
-                                    imgView, "cocktail_recipe_transition");
-                    intent.putExtra("recipe", recipe);
-                    v.getContext().startActivity(intent,options.toBundle());
-                });
             }
+
             public TextView getTitleTV() {
                 return titleTV;
             }

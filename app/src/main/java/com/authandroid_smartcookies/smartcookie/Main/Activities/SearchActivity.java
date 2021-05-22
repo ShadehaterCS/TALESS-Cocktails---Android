@@ -28,7 +28,7 @@ public class SearchActivity extends AppCompatActivity {
     private ArrayList<String> DRINKS;
     private ArrayList<String> NAMES;
     private ArrayList<String> PARTIAL_NAMES;
-    private ArrayList<String> complete;
+    private ArrayList<String> completeStringDataset;
 
     private ArrayList<CocktailRecipe> recipes;
 
@@ -75,7 +75,7 @@ public class SearchActivity extends AppCompatActivity {
                     .filter(r -> r.get_title().equals(searchable))
                     .collect(Collectors.toCollection(ArrayList::new));
         else if (PARTIAL_NAMES.contains(searchable)){
-            dataset = recipes.stream()
+            dataset = recipes.  stream()
                     .filter(r -> Arrays.asList(r.get_title().split(" ")).contains(searchable))
                     .collect(Collectors.toCollection(ArrayList::new));
         }
@@ -103,11 +103,11 @@ public class SearchActivity extends AppCompatActivity {
                 .flatMap(fullDrinkName -> Arrays.stream(fullDrinkName.split(" ").clone()))
                 .distinct().collect(Collectors.toCollection(ArrayList::new));
 
-        complete = new ArrayList<>(DRINKS);
-        complete.addAll(NAMES);
+        completeStringDataset = new ArrayList<>(DRINKS);
+        completeStringDataset.addAll(PARTIAL_NAMES);
+        completeStringDataset.addAll(NAMES);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_dropdown_item_1line, complete);
-        searchAutoComplete.setAdapter(adapter);
+        searchAutoComplete.setAdapter(new ArrayAdapter<>(this,
+                android.R.layout.simple_dropdown_item_1line, completeStringDataset));
     }
 }

@@ -10,26 +10,35 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartCookie">
-        <activity android:name=".Main.Activities.SettingsActivities.appInfoActivity"></activity>
-        <activity android:name=".Main.Activities.SettingsActivities.teamInfoActivity" />
-        <activity android:name=".Main.Activities.SettingsActivities.faqActivity" />
-        <activity android:name=".Main.Activities.SearchActivity" />
-        <activity android:name=".Main.Activities.RecipeActivity" />
-        <activity android:name=".Main.Activities.LauncherActivity">
+
+        <activity android:name=".Main.Activities.SettingsActivities.appInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Main.Activities.SettingsActivities.teamInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Main.Activities.SettingsActivities.faqActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Main.Activities.SearchActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Main.Activities.RecipeActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Main.Activities.LauncherActivity"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Main.Activities.MainActivity">
+        <activity android:name=".Main.Activities.MainActivity"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
 
                 <action android:name="android.intent.action.HomeActivity" />
             </intent-filter>
         </activity>
-        <activity android:name=".Main.Activities.IntroActivity" />
+        <activity android:name=".Main.Activities.IntroActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

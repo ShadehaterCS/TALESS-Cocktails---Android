@@ -11,7 +11,7 @@ import java.util.LinkedHashMap;
 /**
  * @apiNote This class handles transformations from the raw SQL queries to objects and vice versa
  * @implNote All functions should be named after their transformations and accept Cursor objects
- * Always return a whole non-null object even if the cursor failed.
+ * Always return a whole non-null object even if the cursor failed (such as empty ArrayList)
  */
 public class DataclassTransformations {
     public static ArrayList<CocktailRecipe> transformToCocktailRecipeList(Cursor cursor) {
@@ -60,7 +60,6 @@ public class DataclassTransformations {
 
     public static HashMap<String, String> transformToIngredientsHashMap(Cursor cursor){
         LinkedHashMap<String, String> map = new LinkedHashMap<>();
-
         cursor.moveToFirst();
         for (int i = 0; i < cursor.getCount(); i++) {
             String ingredient = cursor.getString(0) + "\t";

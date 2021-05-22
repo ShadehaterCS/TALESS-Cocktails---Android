@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager manager = this.getSupportFragmentManager();
         //Don't reload the fragment if it's already there
         bottomNavigationView.setOnNavigationItemSelectedListener(item->{
-            //todo figure this out, although it's now working as intended tbh
             navController.popBackStack();
             navController.navigate(item.getItemId());
             return true;

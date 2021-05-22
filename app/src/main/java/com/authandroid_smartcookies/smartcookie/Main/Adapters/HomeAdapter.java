@@ -26,14 +26,15 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 
 import java.util.ArrayList;
 
-//TODO long hold enlarges picture
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     private final ArrayList<CocktailRecipe> dataset;
     private ArrayList<Integer> favorites;
+    private final Context context;
     private final SenpaiDB db;
 
     public HomeAdapter(Context context, ArrayList<CocktailRecipe> dataset) {
         this.dataset = dataset;
+        this.context = context;
         db = SenpaiDB.getInstance(context);
     }
 
@@ -50,7 +51,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull HomeAdapter.ViewHolder holder, int position) {
         CocktailRecipe recipe = dataset.get(position);
 
-        holder.recipe = recipe;
         holder.favorited = favorites.contains(recipe.get_id());
         holder.getTitleTV().setText(recipe.get_title());
         holder.getDescTV().setText(recipe.get_description());
@@ -62,6 +62,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
                 .getIdentifier(recipe.get_imageid(), "drawable",
                         holder.view.getContext().getPackageName());
         Glide.with(holder.view).load(rid).transform(new CenterCrop()).into(holder.getImgView());
+
+        Utilities.setOnClickListenerOnViewForIntentToRecipeActivity(
+                context, holder.view, holder.getImgView(), recipe);
 
         holder.getFavoriteButton().setOnClickListener(v -> {
             if (holder.favorited) {
@@ -102,10 +105,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         private final ImageView imgView;
         private final View view;
         private final ImageButton favoriteButton;
-        public CocktailRecipe recipe;
 
         public boolean favorited;
-
         public ViewHolder(View view) {
             super(view);
             this.view = view;
@@ -115,14 +116,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             imgView = view.findViewById(R.id.cocktailImage);
             favoriteButton = view.findViewById(R.id.imageButton);
             //To handle moving to a new activity through shared element
-            view.setOnClickListener(v -> {
-                Intent intent = new Intent(v.getContext(), RecipeActivity.class);
-                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation
-                        ((Activity)view.getContext(),
-                        imgView, "cocktail_recipe_transition");
-                intent.putExtra("recipe", recipe);
-                v.getContext().startActivity(intent,options.toBundle());
-            });
         }
 
         private void setFavoriteButtonImage(View v, boolean favorited) {
