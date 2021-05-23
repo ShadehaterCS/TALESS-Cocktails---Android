@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:gravity="center"
-    tools:context=".Main.Activities.LauncherActivity">
+    tools:context=".Main.Activities.LauncherActivity"
+    android:backgroundTint="?android:attr/colorBackground"
+    >
 
 
     <ImageView
@@ -22,6 +24,7 @@
         android:contentDescription="@string/app_name"
         android:rotation="18"
         android:src="@drawable/shaker"
+        app:tint="?android:attr/textColorPrimary"
         android:transitionName="imageTransition" />
 
     <TextView
@@ -32,10 +35,10 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="100dp"
         android:fontFamily="@font/american_captain"
-        android:text="Tales for males"
-        android:textColor="@color/black"
+        android:text="@string/talesformales"
+        android:textColor="?android:textColorPrimary"
         android:textSize="40sp"
-        android:textStyle="bold"
-        android:transitionName="textTransition" />
+        android:textStyle="normal"
+        android:transitionName="textTransition"/>
 
 </RelativeLayout>

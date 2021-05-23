@@ -47,5 +47,6 @@
     <string name="timer">Timer</string>
     <string name="exampleIngredients">1 ounce\n2 ounces\n3 something</string>
     <string name="exampleIngredientNames">Vodka\nsomethingalcohol\neven more alcohol</string>
+    <string name="talesformales">Tales For Males</string>
 
 </resources>
