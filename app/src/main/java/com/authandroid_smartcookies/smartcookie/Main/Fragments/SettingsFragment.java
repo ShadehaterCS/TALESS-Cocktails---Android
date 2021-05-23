@@ -11,8 +11,6 @@ import com.authandroid_smartcookies.smartcookie.R;
 import com.authandroid_smartcookies.smartcookie.Util.Utilities;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
-
-    //todo fix title dark theme integration
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.preferences, rootKey);

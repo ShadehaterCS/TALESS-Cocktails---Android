@@ -1,5 +1,6 @@
 package com.authandroid_smartcookies.smartcookie.Database;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -13,9 +14,14 @@ import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * This class works as the connection between the application and the database file.
+ *
+ */
 public class SenpaiDB extends SQLiteOpenHelper {
     private static final String TAG = "SENPAI";
     public static String DB_PATH;
@@ -25,8 +31,7 @@ public class SenpaiDB extends SQLiteOpenHelper {
 
     public static SenpaiDB instance;
     private SQLiteDatabase database;
-    public Context context;
-
+    private WeakReference<Context> context;
     /*
     Using singleton pattern to avoid leaks and constant openings
     */
@@ -35,6 +40,13 @@ public class SenpaiDB extends SQLiteOpenHelper {
             instance = new SenpaiDB(context.getApplicationContext());
         }
         return instance;
+    }
+
+    @SuppressLint("SdCardPath")
+    public SenpaiDB(@NonNull Context context) {
+        super(context, DB_NAME, null, DATABASE_VERSION);
+        DB_PATH = "/data/data/" + context.getPackageName() + "/" + "databases/";
+        this.context = new WeakReference<>(context);
     }
 
     public SQLiteDatabase getDatabase() {
@@ -52,7 +64,7 @@ public class SenpaiDB extends SQLiteOpenHelper {
             database = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READWRITE);
             int version = database.getVersion();
             if (version < DATABASE_VERSION)
-                upgradeDatabase(context, path, true);
+                upgradeDatabase(context.get(), path, true);
             return true;
         } catch (SQLException s) {
             s.printStackTrace();
@@ -79,12 +91,6 @@ public class SenpaiDB extends SQLiteOpenHelper {
         assert database != null;
         database.close();
         super.close();
-    }
-
-    public SenpaiDB(@NonNull Context context) {
-        super(context, DB_NAME, null, DATABASE_VERSION);
-        DB_PATH = "/data/data/" + context.getPackageName() + "/" + "databases/";
-        this.context = context;
     }
 
     public void createDatabase(Context context) {

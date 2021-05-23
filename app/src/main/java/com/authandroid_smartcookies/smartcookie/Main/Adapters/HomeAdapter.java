@@ -119,9 +119,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
         private void setFavoriteButtonImage(View v, boolean favorited) {
             if (favorited)
-                v.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.icon_favorite_button_on));
+                v.setForeground(ContextCompat.getDrawable(v.getContext(), R.drawable.icon_favorite_button_on));
             else
-                v.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.icon_favorite_button_off));
+                v.setForeground(ContextCompat.getDrawable(v.getContext(), R.drawable.icon_favorite_button_off));
         }
 
         public ImageButton getFavoriteButton() {
