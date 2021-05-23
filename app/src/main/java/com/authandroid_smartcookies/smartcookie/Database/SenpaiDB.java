@@ -23,7 +23,7 @@ public class SenpaiDB extends SQLiteOpenHelper {
     private static final String TAG = "SENPAI";
     public static String DB_PATH;
     public static String DB_NAME = "database.db";
-    public static final int DATABASE_VERSION = 25;
+    public static final int DATABASE_VERSION = 27;
     public static boolean updated = false;
 
     public static SenpaiDB instance;
@@ -171,7 +171,6 @@ public class SenpaiDB extends SQLiteOpenHelper {
         return DataclassTransformations.transformFavoritesToList(cursor);
     }
 
-    //todo fix onconfiguration change crash favorites
     public ArrayList<CocktailRecipe> getFavoriteRecipes() {
         getReadableDatabase();
         if (database == null || !database.isOpen())

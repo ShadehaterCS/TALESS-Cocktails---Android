@@ -22,9 +22,9 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+//todo autocomplete requests focus
 public class SearchActivity extends AppCompatActivity {
     private AutoCompleteTextView searchAutoComplete;
-
     private ArrayList<String> DRINKS;
     private ArrayList<String> NAMES;
     private ArrayList<String> PARTIAL_NAMES;

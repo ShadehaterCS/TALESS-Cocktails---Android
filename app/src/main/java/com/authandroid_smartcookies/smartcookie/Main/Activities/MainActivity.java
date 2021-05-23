@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
 
         FragmentManager manager = this.getSupportFragmentManager();
+        //todo documentation pls
         //Don't reload the fragment if it's already there
         bottomNavigationView.setOnNavigationItemSelectedListener(item->{
             navController.popBackStack();
