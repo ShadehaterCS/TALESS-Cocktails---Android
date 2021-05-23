@@ -29,7 +29,7 @@
 
 
     //Headings
-    <string name="heading_one">Welcome to TALESS</string>
+    <string name="heading_one">Welcome to TALESS </string>
     <string name="heading_two">Find your favorites</string>
     <string name="heading_three">Converter</string>
     <string name="heading_four">Enjoy</string>
