@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -21,7 +22,8 @@ public class IntroActivity extends AppCompatActivity {
 
     ViewPager slideViewPager;
     LinearLayout laDots;
-    Button nextButton, skipButton, startButton;
+    Button skipButton, startButton;
+    ImageButton nextButton;
 
     TextView[] dots;
     IntroViewPagerAdapter introViewPagerAdapter;
@@ -42,13 +44,9 @@ public class IntroActivity extends AppCompatActivity {
             getSupportActionBar().hide();
         }
 
-        nextButton.setOnClickListener(v -> {
-            slideViewPager.setCurrentItem(getItem(1),true);
-        });
+        nextButton.setOnClickListener(v -> slideViewPager.setCurrentItem(getItem(1),true));
 
-        skipButton.setOnClickListener(v -> {
-            slideViewPager.setCurrentItem(3,true);
-        });
+        skipButton.setOnClickListener(v -> slideViewPager.setCurrentItem(3,true));
 
         startButton.setOnClickListener(v -> {
             Intent i = new Intent(IntroActivity.this, MainActivity.class);

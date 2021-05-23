@@ -72,7 +72,7 @@ public class GeneralAdapter extends RecyclerView.Adapter<GeneralAdapter.ViewHold
                 super(view);
                 this.view = view;
 
-                titleTV = view.findViewById(R.id.favoritesRVTItle);
+                titleTV = view.findViewById(R.id.favoritesRVTitle);
                 descTV = view.findViewById(R.id.favoritesRVDescription);
                 imgView = view.findViewById(R.id.favoritesRecipeImage);
             }

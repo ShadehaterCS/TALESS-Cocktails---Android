@@ -30,17 +30,18 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@tools:sample/avatars"
+            android:contentDescription="@string/favorites_Image" />
 
         <TextView
-            android:id="@+id/favoritesRVTItle"
+            android:id="@+id/favoritesRVTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:fontFamily="@font/courgette"
             android:gravity="center"
-            android:text="@string/recycler_view_mainmenuitem_title"
+            android:text="@string/recycler_view_main_menu_item_title"
             android:textSize="21sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -55,12 +56,12 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/quicksand_medium"
-            android:text="@string/recycler_view_mainmenuitem_description"
+            android:text="@string/recycler_view_main_menu_item_description"
             android:textAlignment="center"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/favoritesRecipeImage"
-            app:layout_constraintTop_toBottomOf="@+id/favoritesRVTItle" />
+            app:layout_constraintTop_toBottomOf="@+id/favoritesRVTitle" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

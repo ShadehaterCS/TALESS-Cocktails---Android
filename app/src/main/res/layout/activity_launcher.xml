@@ -35,7 +35,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="100dp"
         android:fontFamily="@font/american_captain"
-        android:text="@string/talesformales"
+        android:text="@string/tales_for_males"
         android:textColor="?android:textColorPrimary"
         android:textSize="40sp"
         android:textStyle="normal"

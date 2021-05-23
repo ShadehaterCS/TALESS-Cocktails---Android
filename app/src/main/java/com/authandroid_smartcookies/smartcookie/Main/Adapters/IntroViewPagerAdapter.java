@@ -57,13 +57,13 @@ public class IntroViewPagerAdapter extends PagerAdapter {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.slider_layout,container,false);
 
-        ImageView slidetitleimage = view.findViewById(R.id.intro_img);
+        ImageView slideTitleImage = view.findViewById(R.id.intro_img);
         TextView slideHeading = view.findViewById(R.id.intro_title);
-        TextView slideDesciption = view.findViewById(R.id.intro_description);
+        TextView slideDescription = view.findViewById(R.id.intro_description);
 
-        slidetitleimage.setImageResource(images[position]);
+        slideTitleImage.setImageResource(images[position]);
         slideHeading.setText(headings[position]);
-        slideDesciption.setText(description[position]);
+        slideDescription.setText(description[position]);
 
         container.addView(view);
         return view;

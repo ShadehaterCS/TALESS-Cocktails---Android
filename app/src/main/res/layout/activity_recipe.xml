@@ -93,7 +93,8 @@
                         app:layout_constraintBottom_toBottomOf="@+id/timerTitle"
                         app:layout_constraintStart_toEndOf="@+id/timerTitle"
                         app:layout_constraintTop_toTopOf="@+id/timerTitle"
-                        app:srcCompat="@drawable/shaker" />
+                        app:srcCompat="@drawable/shaker"
+                        android:contentDescription="@string/Animation_image" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
@@ -165,7 +166,7 @@
                 app:contentPaddingTop="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/calories_preptime_cardView">
+                app:layout_constraintTop_toBottomOf="@+id/calories_preparation_time_cardView">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -187,7 +188,6 @@
 
                     <TextView
                         android:id="@+id/ingredientNamesTV"
-                        style="@style/ingredientNamesTV"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
@@ -199,7 +199,6 @@
 
                     <TextView
                         android:id="@+id/ingredientValuesTV"
-                        style="@style/ingredientNamesTV"
                         android:layout_width="100dp"
                         android:layout_height="0dp"
                         android:layout_marginStart="8dp"
@@ -213,7 +212,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/calories_preptime_cardView"
+                android:id="@+id/calories_preparation_time_cardView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -255,7 +254,7 @@
                         android:layout_height="80dp"
                         android:layout_weight="1"
                         android:clickable="false"
-                        android:text="@string/preptime"
+                        android:text="@string/preparation_time"
                         app:cornerRadius="30dp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -286,7 +285,7 @@
                         android:layout_marginEnd="8dp"
                         android:fontFamily="@font/american_captain"
                         android:gravity="center"
-                        android:text="@string/recycler_view_mainmenuitem_title"
+                        android:text="@string/recycler_view_main_menu_item_title"
                         android:textAlignment="inherit"
                         android:textSize="30sp"
                         app:layout_constraintEnd_toStartOf="@+id/cocktailImage_recipe"
