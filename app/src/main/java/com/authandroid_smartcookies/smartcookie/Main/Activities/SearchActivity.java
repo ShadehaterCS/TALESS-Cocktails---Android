@@ -54,7 +54,6 @@ public class SearchActivity extends AppCompatActivity {
                 Utilities.hideKeyboard(this);
             return true;
         });
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new GeneralAdapter(this, recipes));
     }
@@ -109,5 +108,11 @@ public class SearchActivity extends AppCompatActivity {
 
         searchAutoComplete.setAdapter(new ArrayAdapter<>(this,
                 android.R.layout.simple_dropdown_item_1line, completeStringDataset));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        searchAutoComplete.clearFocus();
     }
 }

@@ -13,6 +13,8 @@ import com.authandroid_smartcookies.smartcookie.Main.Activities.LauncherActivity
 import com.authandroid_smartcookies.smartcookie.R;
 import com.authandroid_smartcookies.smartcookie.Util.Utilities;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners;
 
 import java.util.ArrayList;
 
@@ -47,7 +49,9 @@ public class GeneralAdapter extends RecyclerView.Adapter<GeneralAdapter.ViewHold
             int rid = holder.view.getContext().getResources()
                     .getIdentifier(recipe.get_imageid(), "drawable",
                             context.getPackageName());
-            Glide.with(holder.view).load(rid).into(holder.getImgView());
+            Glide.with(holder.view).load(rid).transform(new CenterCrop(),
+                    new GranularRoundedCorners(15,0,0,15))
+                    .into(holder.getImgView());
 
             Utilities.setOnClickListenerOnViewForIntentToRecipeActivity(
                     context, holder.view, holder.getImgView(), recipe);

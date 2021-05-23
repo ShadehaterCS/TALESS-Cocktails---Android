@@ -62,7 +62,7 @@ public class LauncherActivity extends AppCompatActivity {
         Intent testingIntroIntent = new Intent(LauncherActivity.this, IntroActivity.class);
 
         new Handler().postDelayed(() -> {
-            startActivity(testingIntroIntent);
+            startActivity(intent);
             finish();
         }, DELAY);
 
@@ -75,17 +75,13 @@ public class LauncherActivity extends AppCompatActivity {
 
         stringTimer = new CountDownTimer(DELAY, 200) {
             int i = 0;
-
             @Override
             public void onTick(long millisUntilFinished) {
                 title.setText(strings.get(i));
                 i++;
             }
-
             @Override
-            public void onFinish() {
-
-            }
+            public void onFinish() {}
         }.start();
     }
 

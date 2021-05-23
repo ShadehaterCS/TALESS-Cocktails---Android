@@ -16,6 +16,7 @@
         android:layout_marginBottom="96dp"
         android:fontFamily="@font/american_captain"
         android:text="@string/Unit_Converter"
+        android:textColor="@color/pastelRed"
         android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/input"
         app:layout_constraintEnd_toEndOf="parent"

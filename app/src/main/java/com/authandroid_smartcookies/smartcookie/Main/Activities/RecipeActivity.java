@@ -24,6 +24,8 @@ import com.authandroid_smartcookies.smartcookie.R;
 import com.authandroid_smartcookies.smartcookie.Util.Utilities;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -55,7 +57,7 @@ public class RecipeActivity extends AppCompatActivity {
         recipe = getIntent().getParcelableExtra("recipe");
         int rid = getResources().getIdentifier(
                 recipe.get_imageid(), "drawable", getPackageName());
-        Glide.with(this).load(rid).transform(new CenterCrop()).into(imgView);
+        Glide.with(this).load(rid).transform(new CenterCrop(), new GranularRoundedCorners(15,0,0,15)).into(imgView);
         //MAIN
         titleTV.setText(recipe.get_title());
         descriptionTV.setText(recipe.get_description());
@@ -101,9 +103,9 @@ public class RecipeActivity extends AppCompatActivity {
 
         if (recipe.get_timer() != -1) {
             timerCard.setOnClickListener(view -> {
-                if (!timerAlreadyPressed.get()) {//todo change this to recipe.getTimer() instead of 5
+                if (!timerAlreadyPressed.get()) {
                     timer = new CountDownTimer(
-                            5 * 1000 + 500, 1000) {
+                            recipe.get_timer() * 1000 + 500, 1000) {
                         private final int future = recipe.get_timer();
 
                         @Override

@@ -309,7 +309,7 @@
 
                     <ImageView
                         android:id="@+id/cocktailImage_recipe"
-                        android:layout_width="170dp"
+                        android:layout_width="140dp"
                         android:layout_height="0dp"
                         android:contentDescription="@string/image_of_the_cocktail"
                         android:scaleType="centerCrop"
