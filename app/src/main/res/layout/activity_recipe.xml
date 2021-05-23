@@ -167,31 +167,48 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/calories_preptime_cardView">
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clipToPadding="true"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content">
 
                     <TextView
                         android:id="@+id/ingredientsTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/courgette"
                         android:text="@string/ingredients"
-                        android:textSize="30sp" />
+                        android:textSize="30sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/ingredientsTextView"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/ingredientNamesTV"
+                        style="@style/ingredientNamesTV"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/allerta"
-                        android:text="@string/description"
-                        android:textSize="15sp" />
-                </LinearLayout>
+                        android:layout_marginEnd="8dp"
+                        android:text="@string/exampleIngredientNames"
+                        app:layout_constraintEnd_toStartOf="@+id/ingredientValuesTV"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/ingredientsTitle" />
+
+                    <TextView
+                        android:id="@+id/ingredientValuesTV"
+                        style="@style/ingredientNamesTV"
+                        android:layout_width="100dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/exampleIngredients"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/ingredientNamesTV"
+                        app:layout_constraintTop_toBottomOf="@+id/ingredientsTitle" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
 

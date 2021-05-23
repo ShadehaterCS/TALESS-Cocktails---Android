@@ -30,7 +30,6 @@ public class SenpaiDB extends SQLiteOpenHelper {
     private SQLiteDatabase database;
     public Context context;
 
-    //todo save favorites
     /*
     Using singleton pattern to avoid leaks and constant openings
     */

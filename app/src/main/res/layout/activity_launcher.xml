@@ -13,7 +13,7 @@
         android:id="@+id/launcher_shaker_imageView"
         android:layout_width="wrap_content"
         android:layout_height="329dp"
-        android:layout_above="@+id/textView"
+        android:layout_above="@+id/launcherTV"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="94dp"
@@ -25,7 +25,7 @@
         android:transitionName="imageTransition" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/launcherTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

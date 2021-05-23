@@ -6,18 +6,27 @@ import androidx.preference.PreferenceManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.TextView;
 
-import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
 import com.authandroid_smartcookies.smartcookie.R;
 import com.authandroid_smartcookies.smartcookie.Util.Utilities;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 public class LauncherActivity extends AppCompatActivity {
-    //TODO have tales for males thing be dynamic from string array?
     public static boolean pref_paintTitles;
+    private final int DELAY = 1500;
+
+    private CountDownTimer stringTimer;
+    private TextView title;
     Animation launcher_shaker;
 
     @Override
@@ -40,11 +49,13 @@ public class LauncherActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.launcher);
+        setContentView(R.layout.activity_launcher);
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
+
+        title = findViewById(R.id.launcherTV);
 
         launcher_shaker = AnimationUtils.loadAnimation(this, R.anim.shaker);
         final ImageView shakerImage = findViewById(R.id.launcher_shaker_imageView);
@@ -56,10 +67,36 @@ public class LauncherActivity extends AppCompatActivity {
 
         Intent testingIntroIntent = new Intent(LauncherActivity.this, IntroActivity.class);
 
-        //todo change this to 1500, debug only 0 for now so we get inside the app quickly
         new Handler().postDelayed(() -> {
             startActivity(intent);
             finish();
-        }, 1500);
+        }, DELAY);
+
+        List<String> strings = Arrays.asList("Classic Aviation", "Floradora",
+                "Bloody Caesar", "Blue Hawaii","Brown Derby", "Whiskey Smash",
+                "Classic Daiquiri", "Limoncello Mojito", "Apple Martini", "Bloody Maria",
+                "Agave Margarita", "Basil Gimlet","Classic Mojito",
+                "Tequila Sour", "TALES FOR MALES");
+        Collections.shuffle(strings);
+
+        stringTimer = new CountDownTimer(DELAY, 200) {
+            int i = 0;
+            @Override
+            public void onTick(long millisUntilFinished) {
+                title.setText(strings.get(i));
+                i++;
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        }.start();
+    }
+
+    @Override
+    protected void onDestroy() {
+        stringTimer.cancel();
+        super.onDestroy();
     }
 }

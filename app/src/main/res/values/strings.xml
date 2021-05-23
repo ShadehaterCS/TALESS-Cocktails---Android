@@ -45,5 +45,7 @@
     <string name="preparation">Preparation</string>
     <string name="cocktailSteps">1.Add the gin, lemon juice, maraschino liqueur, and creme de violette to a cocktail shaker. Fill it with ice and shake it for 30sec.\n2.Strain into a cocktail glass. Garnish with a Luxardo cherry, if desired.</string>
     <string name="timer">Timer</string>
+    <string name="exampleIngredients">1 ounce\n2 ounces\n3 something</string>
+    <string name="exampleIngredientNames">Vodka\nsomethingalcohol\neven more alcohol</string>
 
 </resources>

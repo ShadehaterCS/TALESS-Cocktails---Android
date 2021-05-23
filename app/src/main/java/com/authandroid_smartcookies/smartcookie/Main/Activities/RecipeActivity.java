@@ -2,19 +2,11 @@ package com.authandroid_smartcookies.smartcookie.Main.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.helper.widget.Layer;
 import androidx.core.content.res.ResourcesCompat;
 
-import android.graphics.BlendMode;
-import android.graphics.BlendModeColorFilter;
 import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.ColorMatrixColorFilter;
-import android.graphics.LinearGradient;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
-import android.graphics.drawable.ShapeDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -31,10 +23,7 @@ import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
 import com.authandroid_smartcookies.smartcookie.R;
 import com.authandroid_smartcookies.smartcookie.Util.Utilities;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-
-import org.w3c.dom.Text;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -43,9 +32,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class RecipeActivity extends AppCompatActivity {
     private CocktailRecipe recipe;
-
-    //TODO fix visuals for cards and ingredients being left -> right instead of all together
-
     private Button calorieButton;
     private Button prepTimeButton;
     private ProgressBar progressBar;
@@ -81,9 +67,12 @@ public class RecipeActivity extends AppCompatActivity {
         prepTimeButton.setText(recipe.get_preptime());
 
         //INGREDIENTS CARD
-        String ingredients = parseIngredients();
-        TextView ingredientsTV = findViewById(R.id.ingredientsTextView);
-        ingredientsTV.setText(ingredients);
+        String[] ingredients = parseIngredients();
+        TextView ingredientNamesTv = findViewById(R.id.ingredientNamesTV);
+        TextView ingredientValuesTV = findViewById(R.id.ingredientValuesTV);
+
+        ingredientNamesTv.setText(ingredients[0]);
+        ingredientValuesTV.setText(ingredients[1]);
 
         //STEPS(PREPARATION) CARD
         TextView stepsTextView = findViewById(R.id.stepsTextView);
@@ -151,17 +140,19 @@ public class RecipeActivity extends AppCompatActivity {
         setUpColors();
     }
 
-    private String parseIngredients() {
-        StringBuilder builder = new StringBuilder();
+    private String[] parseIngredients() {
+        StringBuilder namesBuilder = new StringBuilder();
+        StringBuilder valuesBuilder = new StringBuilder();
         HashMap<String, String> ingredientsMap = db.getIngredients(recipe);
-        String ingredients = "";
         for (String ingredient : ingredientsMap.keySet()) {
-            builder.append("• ");
-            builder.append(ingredient);
-            builder.append(ingredientsMap.get(ingredient));
-            builder.append(System.getProperty("line.separator"));
+            namesBuilder.append("• ");
+            namesBuilder.append(ingredient);
+            namesBuilder.append("\n");
+            valuesBuilder.append(ingredientsMap.get(ingredient));
+            valuesBuilder.append("\n");
         }
-        return builder.toString();
+
+        return new String[] {namesBuilder.toString(), valuesBuilder.toString() };
     }
 
     private void setUpColors(){
