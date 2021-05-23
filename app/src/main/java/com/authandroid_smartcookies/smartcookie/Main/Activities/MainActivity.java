@@ -7,7 +7,6 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
-import android.view.View;
 
 import com.authandroid_smartcookies.smartcookie.Database.SenpaiDB;
 import com.authandroid_smartcookies.smartcookie.Main.Fragments.HomeFragment;
@@ -34,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         //ContentView
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_main);
 
         Objects.requireNonNull(getSupportActionBar()).hide();
 

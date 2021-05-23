@@ -174,8 +174,8 @@ public class SenpaiDB extends SQLiteOpenHelper {
     //todo fix onconfiguration change crash favorites
     public ArrayList<CocktailRecipe> getFavoriteRecipes() {
         getReadableDatabase();
-        if (database == null)
-            return new ArrayList<>();
+        if (database == null || !database.isOpen())
+            openDatabase();
         String query = "SELECT id, title,description,steps,drink,imageid, color, preptime,calories,timer" +
                 " FROM RECIPES INNER JOIN FAVORITES ON RECIPES.recipeid= FAVORITES.recipeid";
         Cursor cursor = database.rawQuery(query, null);
