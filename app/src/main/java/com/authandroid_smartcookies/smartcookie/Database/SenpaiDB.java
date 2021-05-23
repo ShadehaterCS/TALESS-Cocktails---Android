@@ -171,7 +171,9 @@ public class SenpaiDB extends SQLiteOpenHelper {
         return DataclassTransformations.transformFavoritesToList(cursor);
     }
 
+    //todo fix onconfiguration change crash favorites
     public ArrayList<CocktailRecipe> getFavoriteRecipes() {
+        getReadableDatabase();
         if (database == null)
             return new ArrayList<>();
         String query = "SELECT id, title,description,steps,drink,imageid, color, preptime,calories,timer" +

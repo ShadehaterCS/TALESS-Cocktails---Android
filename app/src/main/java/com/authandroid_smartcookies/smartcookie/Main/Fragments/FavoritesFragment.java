@@ -33,12 +33,15 @@ public class FavoritesFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         return inflater.inflate(R.layout.fragment_favourites, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        db = SenpaiDB.getInstance(requireContext());
+        recipes = db.getFavoriteRecipes();
         background = view.findViewById(R.id.FavoritesConstraintLayout);
         if (!recipes.isEmpty())
             background.setBackground(null);
@@ -50,7 +53,6 @@ public class FavoritesFragment extends Fragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        db = SenpaiDB.getInstance(context);
-        recipes = db.getFavoriteRecipes();
+
     }
 }

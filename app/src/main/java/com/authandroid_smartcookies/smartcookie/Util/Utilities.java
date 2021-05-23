@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
@@ -44,9 +45,9 @@ public class Utilities {
     public static void setAnimationAndExcludeTargets(Window window) {
         Fade fade = new Fade();
         View decor = window.getDecorView();
-        fade.excludeTarget(decor.findViewById(R.id.action_bar_container), true);
         fade.excludeTarget(android.R.id.statusBarBackground, true);
         fade.excludeTarget(android.R.id.navigationBarBackground, true);
+        fade.excludeTarget(decor.findViewById(R.id.bottomNavigationView),true);
         window.setEnterTransition(fade);
         window.setExitTransition(fade);
     }

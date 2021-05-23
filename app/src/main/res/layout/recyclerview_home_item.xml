@@ -74,7 +74,8 @@
             android:background="@drawable/icon_favorite_button_on"
             android:contentDescription="@string/favbuttondesc"
             android:paddingHorizontal="10dp"
-            android:paddingVertical="10dp" />
+            android:paddingVertical="10dp"
+            />
 
 
     </RelativeLayout>

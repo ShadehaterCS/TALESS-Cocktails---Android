@@ -30,6 +30,7 @@ import java.util.HashMap;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+//todo add favorite button in this
 public class RecipeActivity extends AppCompatActivity {
     private CocktailRecipe recipe;
     private Button calorieButton;
