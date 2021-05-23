@@ -186,11 +186,9 @@ public class RecipeActivity extends AppCompatActivity {
             builder.append(steps[i]);
             builder.append(System.getProperty("line.separator"));
         }
-
         long timerType = Arrays.stream(steps)
                 .filter(s -> s.contains("shake") || s.contains("shaker"))
                 .count();
-
         String[] result = new String[2];
         result[0] = builder.toString();
         result[1] = timerType > 0 ? "Shake" : "Stir";
