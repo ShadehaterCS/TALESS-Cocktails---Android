@@ -123,6 +123,11 @@ public class Utilities {
         };
     }
 
+    /**
+     * @param selectedMode the mode selected inside the Settings Fragment
+     *
+     * @return false if a theme change should happen
+     */
     public static void setDeviceThemeMode(Context context, String selectedMode) {
         int mode;
         if (selectedMode.equals("light"))
@@ -134,8 +139,18 @@ public class Utilities {
 
         int currentMode = context.getResources().getConfiguration().uiMode &
                 Configuration.UI_MODE_NIGHT_MASK;
-        //don't ask
-        if (mode+15 != currentMode && mode + 17 != currentMode)
-            AppCompatDelegate.setDefaultNightMode(mode);
+
+
+        switch (currentMode) {
+            case Configuration.UI_MODE_NIGHT_NO:
+                if (mode != 1)
+                    AppCompatDelegate.setDefaultNightMode(mode);
+                break;
+            case Configuration.UI_MODE_NIGHT_YES:
+                if (mode != 2)
+                    AppCompatDelegate.setDefaultNightMode(mode);
+                break;
+        }
+        AppCompatDelegate.setDefaultNightMode(mode);
     }
 }

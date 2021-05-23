@@ -16,7 +16,6 @@ import android.widget.TextView;
 import com.authandroid_smartcookies.smartcookie.R;
 import com.authandroid_smartcookies.smartcookie.Util.Utilities;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -29,14 +28,8 @@ public class LauncherActivity extends AppCompatActivity {
     private TextView title;
     Animation launcher_shaker;
 
-    @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        initSharedPrefs();
-    }
-
     //SHARED PREFERENCES INITIALIZATIONS
-    private void initSharedPrefs(){
+    private void initSharedPrefs() {
         //Colored Titles for recipes
         SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(this);
@@ -48,6 +41,7 @@ public class LauncherActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        initSharedPrefs();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
 
@@ -73,14 +67,15 @@ public class LauncherActivity extends AppCompatActivity {
         }, DELAY);
 
         List<String> strings = Arrays.asList("Classic Aviation", "Floradora",
-                "Bloody Caesar", "Blue Hawaii","Brown Derby", "Whiskey Smash",
+                "Bloody Caesar", "Blue Hawaii", "Brown Derby", "Whiskey Smash",
                 "Classic Daiquiri", "Limoncello Mojito", "Apple Martini", "Bloody Maria",
-                "Agave Margarita", "Basil Gimlet","Classic Mojito",
+                "Agave Margarita", "Basil Gimlet", "Classic Mojito",
                 "Tequila Sour", "TALES FOR MALES");
         Collections.shuffle(strings);
 
         stringTimer = new CountDownTimer(DELAY, 200) {
             int i = 0;
+
             @Override
             public void onTick(long millisUntilFinished) {
                 title.setText(strings.get(i));

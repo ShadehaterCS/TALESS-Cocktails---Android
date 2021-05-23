@@ -24,9 +24,9 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             });
         }
 
-        ListPreference themePrefrence = findPreference("pref_theme");
-        if (themePrefrence != null) {
-            themePrefrence.setOnPreferenceChangeListener((preference, newValue) -> {
+        ListPreference themePreference = findPreference("pref_theme");
+        if (themePreference != null) {
+            themePreference.setOnPreferenceChangeListener((preference, newValue) -> {
                 Utilities.setDeviceThemeMode(requireContext(),(String)newValue);
                 return true;
             });
