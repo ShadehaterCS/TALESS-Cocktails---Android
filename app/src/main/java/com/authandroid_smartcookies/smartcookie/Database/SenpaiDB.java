@@ -7,15 +7,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.authandroid_smartcookies.smartcookie.DataClasses.CocktailRecipe;
-import com.bumptech.glide.Glide;
 
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
