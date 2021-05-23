@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.authandroid_smartcookies.smartcookie.Util.GenericTextWatcher;
@@ -21,8 +20,6 @@ import com.authandroid_smartcookies.smartcookie.R;
 
 public class ConvertersFragment extends Fragment {
     EditText amountsText;
-    Spinner from_sp;
-    Spinner to_sp;
     Button clearButton;
     TextView resultTV;
     HashMap<String, HashMap<String,Double>> maps;

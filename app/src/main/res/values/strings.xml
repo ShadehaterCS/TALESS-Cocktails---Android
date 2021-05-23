@@ -2,12 +2,13 @@
     <string name="app_name">SmartCookie</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="main_menu_header">Welcome to Cocktails</string>
-    <string name="recycler_view_mainmenuitem_title">Title</string>
-    <string name="recycler_view_mainmenuitem_description">This is a fake description. Simulating lots of words rather than just one</string>
-    <string name="description">Something used or included temporarily or as a substitute for something that is not known or must remain generic; that which holds, denotes or reserves a place for something to come later. This is placeholder data, so you\'ll want to include the real numbers as soon as you have them.</string>
+    <string name="recycler_view_main_menu_item_title">Title</string>
+    <string name="recycler_view_main_menu_item_description">This is a fake description. Simulating lots of words rather than just one</string>
     <string name="autocompleteAssist">Try "Gin", "Bourbon", "Daiquiri"..</string>
     <string name="image_of_the_cocktail">Image of the cocktail</string>
-    <string name="favbuttondesc">Button with heart. Adds recipe to favorites</string>
+    <string name="favorites_button">Button with heart. Adds recipe to favorites</string>
+    <string name="favorites_Image">favorites_Image</string>
+    favorites_Image
     <string name="grams">gr</string>
     <string name="millilitres">ml</string>
     <string name="ounces">oz</string>
@@ -41,12 +42,34 @@
 
     <string name="ingredients">Ingredients</string>
     <string name="calories">Calories</string>
-    <string name="preptime">Prep time</string>
+    <string name="preparation_time">Prep time</string>
     <string name="preparation">Preparation</string>
     <string name="cocktailSteps">1.Add the gin, lemon juice, maraschino liqueur, and creme de violette to a cocktail shaker. Fill it with ice and shake it for 30sec.\n2.Strain into a cocktail glass. Garnish with a Luxardo cherry, if desired.</string>
     <string name="timer">Timer</string>
     <string name="exampleIngredients">1 ounce\n2 ounces\n3 something</string>
-    <string name="exampleIngredientNames">Vodka\nsomethingalcohol\neven more alcohol</string>
-    <string name="talesformales">Tales For Males</string>
+    <string name="exampleIngredientNames">Vodka something alcohol even more alcohol</string>
+    <string name="tales_for_males">Tales For Males</string>
+
+    //Intro
+    <string name="Description">Description</string>
+    <string name="Title">Title</string>
+    <string name="Get_started">Get started</string>
+    <string name="Skip">Skip</string>
+    <string name="Intro_next_imageButton">Intro_next_imageButton</string>
+
+    <string name="Settings">Settings</string>
+    <string name="Search_imageButton">Search_imageButton</string>
+    <string name="Hint_for_conversion">"2 ".5", "2/3", "1/8"</string>
+
+    //Converter
+    <string name="Unit_Converter">Unit Converter</string>
+    <string name="To">To</string>
+    <string name="From">From</string>
+    <string name="Clear">Clear</string>
+    <string name="Results">Results will be printed here</string>
+    <string name="Enter_Here">Enter Here</string>
+
+
+    <string name="Animation_image">Animation image for stir or shake</string>
 
 </resources>

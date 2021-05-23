@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:backgroundTint="?android:attr/colorBackground"
     tools:context=".Main.Activities.IntroActivity">
 
     <Button
@@ -14,8 +14,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:background="#00000000"
-        android:text="Skip"
-        android:textColor="@color/black"
+        android:text="@string/Skip"
+        android:textColor="?android:textColorPrimary"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -33,17 +33,18 @@
 
     </androidx.viewpager.widget.ViewPager>
 
-    <Button
+    <ImageButton
         android:id="@+id/nextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:drawableRight="@drawable/icon_intro_arrow_forward"
-        android:layout_marginBottom="8dp"
-        android:background="#00000000"
-        android:textColor="@color/black"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:backgroundTint="?android:attr/colorBackground"
+        app:tint="?android:attr/textColorPrimary"
+        app:srcCompat="@drawable/icon_intro_arrow_forward"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/Intro_next_imageButton" />
 
     <LinearLayout
         android:id="@+id/indicator_layout"
@@ -53,19 +54,18 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/slideViewPager"></LinearLayout>
+        app:layout_constraintStart_toStartOf="@+id/slideViewPager" />
 
     <Button
         android:id="@+id/startButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Get started"
+        android:text="@string/Get_started"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.50"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.90" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

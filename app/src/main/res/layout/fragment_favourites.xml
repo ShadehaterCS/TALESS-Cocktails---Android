@@ -5,7 +5,8 @@
     android:id="@+id/FavoritesConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backround"
+    android:background="@drawable/empty_favorites"
+    app:tint="?android:attr/textColorPrimary"
     tools:context=".Main.Fragments.FavoritesFragment"
     android:animateLayoutChanges="true"
     android:layoutAnimation="@anim/layout_animation">
