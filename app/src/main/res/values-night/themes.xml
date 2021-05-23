@@ -16,6 +16,13 @@
         <item name="android:navigationBarColor">@color/kafetiblackopwsleeioantonis</item>
         <item name="android:windowLightNavigationBar">true</item>
         <item name="backgroundTint">@color/kafetiblackopwsleeioantonis</item>
+
+        <item name="cardViewStyle">@style/Theme.SmartCookie.CardviewStyle</item>
+    </style>
+
+    <style name="Theme.SmartCookie.CardviewStyle" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/kafetiblackopwsleeioantonis</item>
+        <item name="backgroundTint">@color/kafetiblackopwsleeioantonis</item>
     </style>
 
 </resources>

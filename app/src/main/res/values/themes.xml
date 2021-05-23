@@ -16,6 +16,13 @@
         <item name="android:windowActivityTransitions">true</item>
         <item name="android:windowLightNavigationBar">true</item>
         <item name="android:navigationBarColor">?android:textColorPrimaryInverse</item>
+
+        <item name="cardViewStyle">@style/Theme.SmartCookie.CardviewStyle</item>
+    </style>
+
+    <style name="Theme.SmartCookie.CardviewStyle" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/white</item>
+        <item name="backgroundTint">@color/white</item>
     </style>
 
 </resources>
