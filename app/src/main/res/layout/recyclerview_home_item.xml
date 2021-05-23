@@ -23,7 +23,6 @@
             android:layout_width="match_parent"
             android:layout_height="180dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_launcher_background"
             android:transitionName="cocktail_recipe_transition"
             android:contentDescription="@string/image_of_the_cocktail" />
 

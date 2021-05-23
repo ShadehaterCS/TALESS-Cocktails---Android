@@ -49,10 +49,4 @@ public class FavoritesFragment extends Fragment {
         rv.setLayoutManager(new LinearLayoutManager(requireActivity()));
         rv.setAdapter(new GeneralAdapter(requireContext(), recipes));
     }
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-
-    }
 }
