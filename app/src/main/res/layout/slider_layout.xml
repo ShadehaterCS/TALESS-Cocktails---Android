@@ -3,40 +3,42 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:backgroundTint="?android:attr/colorBackground"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
     app:flow_horizontalAlign="center">
 
     <ImageView
         android:id="@+id/intro_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_gravity="center|center_vertical"
         android:layout_marginTop="25dp"
-        app:tint="?android:attr/textColorPrimary"
+        android:contentDescription="@string/Intro_Image"
         android:src="@drawable/ic_intro_image_3"
-        android:contentDescription="@string/Intro_Image" />
+        app:tint="?android:attr/textColorPrimary" />
 
     <TextView
         android:id="@+id/intro_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:text="@string/Title"
-        android:textColor="?android:textColorPrimary"
         android:textAlignment="center"
-        android:textSize="28sp"/>
+        android:textColor="?android:textColorPrimary"
+        android:textSize="28sp" />
 
     <TextView
         android:id="@+id/intro_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginHorizontal="35dp"
         android:text="@string/Description"
-        android:layout_gravity="center"
         android:textAlignment="center"
         android:textColor="?android:textColorPrimary"
-        android:textSize="16sp"/>
+        android:textSize="16sp" />
 
 
 </LinearLayout>
