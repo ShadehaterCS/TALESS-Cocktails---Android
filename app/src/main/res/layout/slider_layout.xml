@@ -14,7 +14,8 @@
         android:layout_gravity="center"
         android:layout_marginTop="25dp"
         app:tint="?android:attr/textColorPrimary"
-        android:src="@drawable/ic_intro_image_3"/>
+        android:src="@drawable/ic_intro_image_3"
+        android:contentDescription="@string/Intro_Image" />
 
     <TextView
         android:id="@+id/intro_title"
