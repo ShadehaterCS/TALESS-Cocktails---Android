@@ -56,7 +56,6 @@ public class SenpaiDB extends SQLiteOpenHelper {
     /**
      * todo add documentation
      *
-     * @return
      */
     public boolean openDatabase() {
         try {

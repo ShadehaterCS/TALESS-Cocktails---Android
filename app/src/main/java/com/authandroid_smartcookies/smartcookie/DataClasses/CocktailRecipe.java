@@ -3,8 +3,6 @@ package com.authandroid_smartcookies.smartcookie.DataClasses;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.io.Serializable;
-
 /*
 Data class for cocktail recipes, only getter and setters, no utilities
  */
