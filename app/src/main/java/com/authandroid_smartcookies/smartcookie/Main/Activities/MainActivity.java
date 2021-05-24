@@ -17,24 +17,24 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * Class acts as the anchor point for the application.
+ * If a configuration change happens this is the first thing that will be loaded
+ * If destroyed it closes the previous connection to the database.
+ */
 public class MainActivity extends AppCompatActivity {
     @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
+    protected void onCreate(Bundle savedInstanceState) {
         SenpaiDB db = SenpaiDB.getInstance(this);
-        db.openDatabase();
+        if (db.getDatabase() == null)
+            db.openDatabase();
         if (SenpaiDB.updated)
             Utilities.clearGlideCache(getApplicationContext());
-    }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
         //clearApplicationDataDebugOnly();
+
         super.onCreate(savedInstanceState);
-
-        //ContentView
         setContentView(R.layout.activity_main);
-
         Objects.requireNonNull(getSupportActionBar()).hide();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
 
         FragmentManager manager = this.getSupportFragmentManager();
-        //todo documentation pls
+
         //Don't reload the fragment if it's already there
         bottomNavigationView.setOnNavigationItemSelectedListener(item->{
             navController.popBackStack();
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /*
-    Close the database when app closes :)
+    Close the database when app closes
      */
     @Override
     protected void onDestroy() {

@@ -4,7 +4,10 @@ import android.text.Editable;
 import android.text.TextWatcher;
 
 /**
- * Documentation
+ * Implements the TextWatcher Interface
+ * Main use is to be unobtrusive inside the other classes that need to use it
+ * Constructor takes a Runnable (use case: a method) that runs every time the text has been
+ * changed inside a TextView that can take a TextWatcher.
  */
 public class GenericTextWatcher implements TextWatcher {
     private final Runnable method;

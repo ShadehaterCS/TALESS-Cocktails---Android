@@ -23,6 +23,14 @@ import com.authandroid_smartcookies.smartcookie.R;
 import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
 
+/**
+ * @class A utilities class.
+ * Used as the place to put obtrusive methods to help with the clutter inside other classes'
+ * implementations and to reduce code rewriting.
+ * All methods must be declared as public static
+ * Methods should be usable by at least 2 classes.
+ * @caution Contexts should never be preserved. Use it where you need and return, never save.
+ */
 public class Utilities {
     public static void make_show_SnackBar(View view, String message, int duration) {
         Snackbar.make(view, message, duration).show();

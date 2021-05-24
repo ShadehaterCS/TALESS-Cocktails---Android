@@ -31,6 +31,11 @@ import java.util.HashMap;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * Class implements the Activity that opens when a CocktailRecipe is to be displayed
+ * SenpaiDB object is required to load the ingredients for that object since they live on a separate
+ * table.
+ */
 public class RecipeActivity extends AppCompatActivity {
     private CocktailRecipe recipe;
     private Button calorieButton;
@@ -91,10 +96,12 @@ public class RecipeActivity extends AppCompatActivity {
         ImageView timerImage = findViewById(R.id.timerTypeImageView);
         Animation shake = AnimationUtils.loadAnimation(this, R.anim.shaker);
 
+        //todo remove this and load a new animation into it for Stirring
         if (preparationInfo[1].equals("Stir")){
             timerImage.setVisibility(View.INVISIBLE);
         }
 
+        //Load the sound file from res/raw
         String audioFileName = "timersound";
         MediaPlayer mediaPlayer =
                 MediaPlayer.create(this, this.getResources().getIdentifier(
@@ -141,6 +148,12 @@ public class RecipeActivity extends AppCompatActivity {
         setUpColors();
     }
 
+    /**
+     * Goes through the ingredients HashMap and creates two different Strings for the two
+     * TextViews that live inside the IngredientsCardView.
+     * @return a String[2], [0] are the ingredient titles, [1] are the values for each ingredient
+     * Both Strings will be the same size and have the same newLines in order to be equal in height.
+     */
     private String[] parseIngredients() {
         StringBuilder namesBuilder = new StringBuilder();
         StringBuilder valuesBuilder = new StringBuilder();
@@ -156,6 +169,13 @@ public class RecipeActivity extends AppCompatActivity {
         return new String[] {namesBuilder.toString(), valuesBuilder.toString() };
     }
 
+    /**
+     * Method handles the different colors for every CocktailRecipe
+     * Access any object that should be a different color and assign the appropriate colors to the
+     * background and/or text.
+     * Special case for recipes that have "White" as their color as that should be handled differently
+     * for light / dark theme.
+     */
     private void setUpColors(){
         int colorId = Utilities.getColor(this,recipe.get_color());
         titleTV.setTextColor(colorId);
@@ -175,6 +195,15 @@ public class RecipeActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Goes through the "_steps" String of the CocktailRecipe object.
+     * Every different step starts with the pattern "X. " where X a number between 1-9 thus
+     * the regular expression "([1-9])\\." is used to split that string.
+     * timerType is used to find out what type of timer should be presented to the user by
+     * going through every word in the steps and if it encounters "shake" or "shaker" it sets
+     * the appropriate String to the returning array.
+     * @return a String[2] where [0] are the Steps as a String with newLines and [1] the timerType.
+     */
     private String[] parseStepsData() {
         StringBuilder builder = new StringBuilder();
         String[] steps = recipe.get_steps().split("([1-9])\\.");
@@ -196,6 +225,8 @@ public class RecipeActivity extends AppCompatActivity {
     /**
      * Stops the timer if it has started to avoid sound playing even though activity is destroyed
      */
+
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

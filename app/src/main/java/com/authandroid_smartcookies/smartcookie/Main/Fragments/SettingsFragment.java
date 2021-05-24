@@ -10,6 +10,12 @@ import com.authandroid_smartcookies.smartcookie.Main.Activities.LauncherActivity
 import com.authandroid_smartcookies.smartcookie.R;
 import com.authandroid_smartcookies.smartcookie.Util.Utilities;
 
+/**
+ * Implements the Settings Fragment View
+ * Uses PreferenceFragment
+ * Layout at res/xml/preferences.xml
+ * Some functionality inside the .xml file
+ */
 public class SettingsFragment extends PreferenceFragmentCompat {
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {

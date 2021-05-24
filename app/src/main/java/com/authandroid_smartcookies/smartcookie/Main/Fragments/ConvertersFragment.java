@@ -18,6 +18,11 @@ import android.widget.TextView;
 import com.authandroid_smartcookies.smartcookie.Util.GenericTextWatcher;
 import com.authandroid_smartcookies.smartcookie.R;
 
+/**
+ * Implements the Converters Fragment View
+ * Uses multiple hashmaps to map each value to another
+ * Uses a HashMap to connect the individual Maps
+ */
 public class ConvertersFragment extends Fragment {
     EditText amountsText;
     Button clearButton;

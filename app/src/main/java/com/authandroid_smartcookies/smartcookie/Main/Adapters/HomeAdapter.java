@@ -23,6 +23,12 @@ import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners;
 
 import java.util.ArrayList;
 
+/**
+ * Adapts an ArrayList of CocktailRecipe objects
+ * Uses recyclerview_home_item.xml for its elements' layout
+ * @link RecipeActivity when an element is clicked on
+ * @link SenpaiDB when the FavoriteButton is clicked on an element
+ */
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     private final ArrayList<CocktailRecipe> dataset;
     private ArrayList<Integer> favorites;
@@ -65,6 +71,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         Utilities.setOnClickListenerOnViewForIntentToRecipeActivity(
                 context, holder.view, holder.getImgView(), recipe);
 
+        //Handle the user clicking on the heart shaped button on the element
         holder.getFavoriteButton().setOnClickListener(v -> {
             if (holder.favorited) {
                 db.removeRecipeFromFavorites(recipe);

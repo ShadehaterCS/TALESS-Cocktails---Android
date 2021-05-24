@@ -1,11 +1,14 @@
 package com.authandroid_smartcookies.smartcookie.Main.Activities;
 
 import androidx.annotation.MainThread;
+import androidx.annotation.WorkerThread;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -22,17 +25,19 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-//todo autocomplete requests focus
+/**
+ * Class implements the Search Activity.
+ * Comprised of an AutoCompleteTextView with a dynamically created dataset and a RecyclerView using
+ * the GeneralAdapter class.
+ * @link GeneralAdapter
+ * @link GenericTextWatcher
+ */
 public class SearchActivity extends AppCompatActivity {
     private AutoCompleteTextView searchAutoComplete;
     private ArrayList<String> DRINKS;
     private ArrayList<String> NAMES;
     private ArrayList<String> PARTIAL_NAMES;
-    private ArrayList<String> completeStringDataset;
-
     private ArrayList<CocktailRecipe> recipes;
-
-    private ArrayList<CocktailRecipe> dataset;
     private RecyclerView recyclerView;
 
     @Override
@@ -58,61 +63,87 @@ public class SearchActivity extends AppCompatActivity {
         recyclerView.setAdapter(new GeneralAdapter(this, recipes));
     }
 
-    @MainThread
-    private void getNewRecipesAndUpdateDataset(){
-        String dirtyInput = searchAutoComplete.getText().toString();
-        String searchable = !dirtyInput.isEmpty()
-                ? dirtyInput.substring(0, 1).toUpperCase(Locale.getDefault()) + dirtyInput.substring(1)
-                : "";
+    /**
+     * Dynamically creates the ArrayList<CocktailRecipe> to be used by the RecyclerView adapter
+     * Transforms the input text to have capital first letter as all ingredients and recipes use that pattern.
+     * Searches in every ArrayList if the searchText is contained in them and adds the elements that
+     * match that searchText to the new dataset.
+     * Matches are distinct so if they're found in one then it's guaranteed to not be found in the others.
+     * Sets the adapter to the combined ArrayList named "dataset".
+     * @caution if search is empty sets the adapter to the complete dataset that comes with the Intent.
+     * @caution works on background thread
+     */
+    @WorkerThread
+    private void getNewRecipesAndUpdateDataset() {
+        new Handler(Looper.getMainLooper()).post(() -> {
+            String dirtyInput = searchAutoComplete.getText().toString();
+            String searchable = !dirtyInput.isEmpty()
+                    ? dirtyInput.substring(0, 1).toUpperCase(Locale.getDefault()) + dirtyInput.substring(1)
+                    : "";
 
-        if (DRINKS.contains(searchable))
-            dataset = recipes.stream()
-                    .filter(r -> r.get_drink().equals(searchable))
-                    .collect(Collectors.toCollection(ArrayList::new));
-        else if (NAMES.contains(searchable))
-            dataset = recipes.stream()
-                    .filter(r -> r.get_title().equals(searchable))
-                    .collect(Collectors.toCollection(ArrayList::new));
-        else if (PARTIAL_NAMES.contains(searchable)){
-            dataset = recipes.  stream()
-                    .filter(r -> Arrays.asList(r.get_title().split(" ")).contains(searchable))
-                    .collect(Collectors.toCollection(ArrayList::new));
-        }
-        else if (searchable.isEmpty())
-            dataset = new ArrayList<>(recipes);
-        else
-            return;
-        //Only runs if dataset changed
-        recyclerView.swapAdapter(new GeneralAdapter(this,dataset), false);
+            ArrayList<CocktailRecipe> dataset;
+            if (DRINKS.contains(searchable))
+                dataset = recipes.stream()
+                        .filter(r -> r.get_drink().equals(searchable))
+                        .collect(Collectors.toCollection(ArrayList::new));
+            else if (NAMES.contains(searchable))
+                dataset = recipes.stream()
+                        .filter(r -> r.get_title().equals(searchable))
+                        .collect(Collectors.toCollection(ArrayList::new));
+            else if (PARTIAL_NAMES.contains(searchable)) {
+                dataset = recipes.stream()
+                        .filter(r -> Arrays.asList(r.get_title().split(" ")).contains(searchable))
+                        .collect(Collectors.toCollection(ArrayList::new));
+            } else if (searchable.isEmpty())
+                dataset = new ArrayList<>(recipes);
+            else
+                return;
+            //Only runs if dataset changed
+            recyclerView.swapAdapter(new GeneralAdapter(this, dataset), false);
+        });
     }
 
-    @MainThread
+    /**
+     * Initializes the dataset for the Activity.
+     * Builds the separate ArrayLists for the possible searches, main ingredient(DRINK), names and
+     * partial names (such as 'Classic' || 'Daiquiri' in 'Classic Daiquiri')
+     * Combines the ArrayLists to one and sets that as the adapter for the AutoComplete TextView
+     */
+    @WorkerThread
     @SuppressWarnings("unchecked")
     private void initDataset(){
         recipes = (ArrayList<CocktailRecipe>) getIntent().getSerializableExtra("recipes");
-        DRINKS = recipes.stream()
-                .map(CocktailRecipe::get_drink)
-                .distinct().collect(Collectors.toCollection(ArrayList::new));
+        new Handler(Looper.getMainLooper()).post(() -> {
+            DRINKS = recipes.stream()
+                    .map(CocktailRecipe::get_drink)
+                    .distinct().collect(Collectors.toCollection(ArrayList::new));
 
-        NAMES = recipes.stream()
-                .map(CocktailRecipe::get_title)
-                .distinct().collect(Collectors.toCollection(ArrayList::new));
+            NAMES = recipes.stream()
+                    .map(CocktailRecipe::get_title)
+                    .distinct().collect(Collectors.toCollection(ArrayList::new));
 
-        PARTIAL_NAMES = NAMES.stream()
-                .flatMap(fullDrinkName -> Arrays.stream(fullDrinkName.split(" ").clone()))
-                .distinct().collect(Collectors.toCollection(ArrayList::new));
+            PARTIAL_NAMES = NAMES.stream()
+                    .flatMap(fullDrinkName -> Arrays.stream(fullDrinkName.split(" ").clone()))
+                    .distinct().collect(Collectors.toCollection(ArrayList::new));
 
-        completeStringDataset = new ArrayList<>(DRINKS);
-        completeStringDataset.addAll(PARTIAL_NAMES);
-        completeStringDataset.addAll(NAMES);
+            final ArrayList<String> completeStringDataset = new ArrayList<>(DRINKS);
+            completeStringDataset.addAll(PARTIAL_NAMES);
+            completeStringDataset.addAll(NAMES);
 
-        searchAutoComplete.setAdapter(new ArrayAdapter<>(this,
-                android.R.layout.simple_dropdown_item_1line, completeStringDataset));
+            searchAutoComplete.setAdapter(new ArrayAdapter<>(this,
+                    android.R.layout.simple_dropdown_item_1line, completeStringDataset));
+        });
+
     }
 
+    /**
+     * Clears the focus so SoftKeyboard doesn't open up again after user has clicked on a searched
+     * recipe. Assumes that they may want to press on another one in the same search.
+     */
     @Override
     protected void onResume() {
         super.onResume();
-        searchAutoComplete.clearFocus();
+        if (!searchAutoComplete.getText().toString().isEmpty())
+            searchAutoComplete.clearFocus();
     }
 }

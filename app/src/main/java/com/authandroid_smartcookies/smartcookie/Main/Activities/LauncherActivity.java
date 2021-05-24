@@ -20,6 +20,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Used as the entry point to the application
+ * Shared preferences are initialized here and are able to be accessed throughout the application
+ * An intent is created dynamically based on if the app is opened for the first time.
+ * If it's the first time then the user is redirected to the Intro Activity before going to MainActivity
+ */
 public class LauncherActivity extends AppCompatActivity {
     public static boolean pref_paintTitles;
     private final int DELAY = 1500;
@@ -62,7 +68,7 @@ public class LauncherActivity extends AppCompatActivity {
         Intent testingIntroIntent = new Intent(LauncherActivity.this, IntroActivity.class);
 
         new Handler().postDelayed(() -> {
-            startActivity(testingIntroIntent);
+            startActivity(intent);
             finish();
         }, DELAY);
 

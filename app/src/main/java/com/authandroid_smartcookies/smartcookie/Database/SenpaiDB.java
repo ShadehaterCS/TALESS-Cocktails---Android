@@ -32,8 +32,9 @@ public class SenpaiDB extends SQLiteOpenHelper {
     public static SenpaiDB instance;
     private SQLiteDatabase database;
     private WeakReference<Context> context;
-    /*
-    Using singleton pattern to avoid leaks and constant openings
+    /**
+     * Using singleton pattern to avoid leaks and constant openings
+     * only one object will be statically accessible throughout the lifetime of the app
     */
     public static SenpaiDB getInstance(Context context) {
         if (instance == null) {
@@ -42,6 +43,11 @@ public class SenpaiDB extends SQLiteOpenHelper {
         return instance;
     }
 
+    /**
+     * The only constructor needed
+     * Path to the database is dynamically created
+     * @param context creates a WeakReference to the context to avoid context leaking
+     */
     @SuppressLint("SdCardPath")
     public SenpaiDB(@NonNull Context context) {
         super(context, DB_NAME, null, DATABASE_VERSION);
@@ -54,12 +60,16 @@ public class SenpaiDB extends SQLiteOpenHelper {
     }
 
     /**
-     * todo add documentation
-     *
+     * Opens a connection to the database. Always closes the previous connection if it exists.
+     * @throws SQLException if database object fails to be created from method upgradeDatabase()
+     * Database versioning works by setting the final int to a higher number than the previous.
+     * @link upgradeDatabase()
      */
     public boolean openDatabase() {
         try {
             String path = DB_PATH + DB_NAME;
+            if (database != null)
+                database.close();
             database = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READWRITE);
             int version = database.getVersion();
             if (version < DATABASE_VERSION)
@@ -71,7 +81,13 @@ public class SenpaiDB extends SQLiteOpenHelper {
         }
     }
 
-
+    /**
+     * Upgrade the database to the next version by deleting the previous .db file inside the app's
+     * internal folder. Then calls createDatabase() to copy the new .db file.
+     * @param context always use applicationContext
+     * @param path path to the database, will exists through the constructor
+     * @param saveFavorites saves the favorites ArrayList through upgrading.
+     */
     public void upgradeDatabase(Context context, String path, boolean saveFavorites) {
         ArrayList<Integer> favorites = null;
         if (saveFavorites)
@@ -85,12 +101,22 @@ public class SenpaiDB extends SQLiteOpenHelper {
             restoreFavoritesDuringUpgrade(favorites);
     }
 
+    /**
+     * Closes the connection to the database.
+     * Synchronized as it could be executed from a background thread
+     */
     public synchronized void close() {
         assert database != null;
         database.close();
         super.close();
     }
 
+    /**
+     * Creates the database if it doesn't already exists.
+     * Should only be used if openDatabase() failed.
+     * @param context always use application context
+     * @throws SQLException if copying of .db file failed
+     */
     public void createDatabase(Context context) {
         //this is some magic line idk? remove it and first load fails
         this.getReadableDatabase();
@@ -110,6 +136,10 @@ public class SenpaiDB extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
 
+    /**
+     * Copies the .db filed from the assets folder into the internal app directory on the device
+     * @param context always use application context
+     */
     public static void copyDatabase(Context context) {
         try {
             InputStream myInput = context.getAssets().open(DB_NAME);
@@ -145,6 +175,15 @@ public class SenpaiDB extends SQLiteOpenHelper {
                 database.execSQL("INSERT INTO FAVORITES(recipeid) values (" + recipe_id + ")");
     }
 
+    /* All methods below use the same pattern of running an SQL Query on the database object
+       and passing the Cursor returned from that Query to the DataclassTransformations class
+       to be transformed to a usable object for the application
+    */
+
+    /**
+     * Runs an SQL query on the database object
+     * @return a DataClassTransformation method by passing the Cursor returned from the Query.
+     */
     public ArrayList<CocktailRecipe> getAllRecipes() {
         if (database == null)
             return new ArrayList<>();

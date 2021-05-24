@@ -3,9 +3,10 @@ package com.authandroid_smartcookies.smartcookie.DataClasses;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/*
-Data class for cocktail recipes, only getter and setters, no utilities
+/**
+ * Data class for cocktail recipes, only getter and setters, no utilities
  */
+
 public class CocktailRecipe implements Parcelable {
     private int _id;
     private String _title;
@@ -36,7 +37,7 @@ public class CocktailRecipe implements Parcelable {
         this._timer = _timer;
     }
 
-    public CocktailRecipe(String _title, String _description, String _steps, String _drink, String _imageid, String _color, int _timer) {
+    public CocktailRecipe(String _title, String _description, String _steps, String _drink, String _imageid, String _color, String _calories, String _preptime, int _timer) {
         this._title = _title;
         this._description = _description;
         this._steps = _steps;
@@ -146,6 +147,9 @@ public class CocktailRecipe implements Parcelable {
         dest.writeInt(_timer);
     }
 
+    /**
+     * Used to parcelize the object
+     */
     public static final Parcelable.Creator<CocktailRecipe> CREATOR =
             new Parcelable.Creator<CocktailRecipe>() {
                 public CocktailRecipe createFromParcel(Parcel in) {
@@ -156,6 +160,10 @@ public class CocktailRecipe implements Parcelable {
                 }
             };
 
+    /**
+     * Used to be able to pass a parcelable single Object through Intents
+     * @param in
+     */
     private CocktailRecipe(Parcel in){
         _id = in.readInt();
         _title = in.readString();
