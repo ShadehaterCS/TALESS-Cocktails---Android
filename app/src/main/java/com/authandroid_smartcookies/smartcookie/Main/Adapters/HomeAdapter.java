@@ -68,8 +68,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
                 new CenterCrop(), new GranularRoundedCorners(20,20,20,20))
                 .into(holder.getImgView());
 
-        Utilities.setOnClickListenerOnViewForIntentToRecipeActivity(
-                context, holder.view, holder.getImgView(), recipe);
+        Utilities.setOnClickListenerOnViewForIntentToRecipeActivity
+                (context, holder.view, holder.getImgView(), recipe);
 
         //Handle the user clicking on the heart shaped button on the element
         holder.getFavoriteButton().setOnClickListener(v -> {

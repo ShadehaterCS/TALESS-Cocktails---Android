@@ -64,6 +64,7 @@ public class SenpaiDB extends SQLiteOpenHelper {
      * @throws SQLException if database object fails to be created from method upgradeDatabase()
      * Database versioning works by setting the final int to a higher number than the previous.
      * @link upgradeDatabase()
+     * @return true if connection was established
      */
     public boolean openDatabase() {
         try {

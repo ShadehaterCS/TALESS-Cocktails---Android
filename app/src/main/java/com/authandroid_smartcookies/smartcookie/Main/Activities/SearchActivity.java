@@ -84,7 +84,9 @@ public class SearchActivity extends AppCompatActivity {
                     : "";
 
             ArrayList<CocktailRecipe> dataset;
-            if (DRINKS.contains(searchable))
+            if (searchable.isEmpty())
+                dataset = new ArrayList<>(recipes);
+            else if (DRINKS.contains(searchable))
                 dataset = recipes.stream()
                         .filter(r -> r.get_drink().equals(searchable))
                         .collect(Collectors.toCollection(ArrayList::new));
@@ -92,12 +94,10 @@ public class SearchActivity extends AppCompatActivity {
                 dataset = recipes.stream()
                         .filter(r -> r.get_title().equals(searchable))
                         .collect(Collectors.toCollection(ArrayList::new));
-            else if (PARTIAL_NAMES.contains(searchable)) {
+            else if (PARTIAL_NAMES.contains(searchable))
                 dataset = recipes.stream()
                         .filter(r -> Arrays.asList(r.get_title().split(" ")).contains(searchable))
                         .collect(Collectors.toCollection(ArrayList::new));
-            } else if (searchable.isEmpty())
-                dataset = new ArrayList<>(recipes);
             else
                 return;
             //Only runs if dataset changed

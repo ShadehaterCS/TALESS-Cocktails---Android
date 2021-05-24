@@ -1,5 +1,6 @@
 package com.authandroid_smartcookies.smartcookie.Main.Fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -41,7 +42,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         }
 
         //Set the various click listeners with the correct extra for the Intent
-
         Preference faq = findPreference("FAQ");
         faq.setOnPreferenceClickListener(preference -> {
             Intent intent = new Intent(requireActivity(), generalInfoActivity.class);
