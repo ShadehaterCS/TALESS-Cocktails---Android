@@ -193,7 +193,7 @@ public class SenpaiDB extends SQLiteOpenHelper {
         return DataclassTransformations.transformToCocktailRecipeList(cursor);
     }
 
-    public void insertRecipeIntoFavorites(CocktailRecipe recipe) {
+    public void addRecipeIntoFavorites(CocktailRecipe recipe) {
         if (database != null)
             database.execSQL("INSERT INTO FAVORITES(recipeid) values (" + recipe.get_id() + ")");
     }

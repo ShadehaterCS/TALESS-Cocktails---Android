@@ -71,5 +71,6 @@
     <string name="Intro_Image">Intro Image</string>
 
     <string name="Animation_image">Animation image for stir or shake</string>
+    <string name="favourite">Add this recipe to your favorites</string>
 
 </resources>

@@ -81,7 +81,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
                 favorites.removeIf(i -> i == recipe.get_id());
             }
             else {
-                db.insertRecipeIntoFavorites(recipe);
+                db.addRecipeIntoFavorites(recipe);
                 Utilities.make_show_SnackBar(holder.view,
                         "Added "+recipe.get_title() + " to favorites",
                         1000);

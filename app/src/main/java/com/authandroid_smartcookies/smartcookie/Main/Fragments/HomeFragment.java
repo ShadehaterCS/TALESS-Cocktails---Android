@@ -90,20 +90,14 @@ public class HomeFragment extends Fragment {
         ConstraintLayout layout = root.findViewById(R.id.mainMenuTitlesConLayout);
         final int threshold = 20;
         //Used to show or hide the top 'app bar' containing the logo and the SearchButton
-        Animation fadeOut_Up = AnimationUtils.loadAnimation(requireContext(), R.anim.fast_fade_out_and_up);
-        Animation fadeIn_Down = AnimationUtils.loadAnimation(requireContext(), R.anim.fast_fade_in_and_down);
         recyclerView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
             int dy = scrollY - oldScrollY;
             //Positive scroll, show layout
             if (dy < -threshold && layout.getVisibility() == View.GONE) {
-                layout.clearAnimation();
-                layout.startAnimation(fadeIn_Down);
                 layout.setVisibility(View.VISIBLE);
             }
             //Negative scroll, hide layout
             else if (dy > threshold && layout.getVisibility() == View.VISIBLE) {
-                layout.clearAnimation();
-                layout.startAnimation(fadeOut_Up);
                 layout.setVisibility(View.GONE);
             }
         });
