@@ -65,5 +65,13 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             startActivity(intent);
             return true;
         });
+
+        Preference tac = findPreference("TAC");
+        tac.setOnPreferenceClickListener(preference -> {
+            Intent intent = new Intent(requireActivity(), generalInfoActivity.class);
+            intent.putExtra("type", "TAC");
+            startActivity(intent);
+            return true;
+        });
     }
 }

@@ -44,7 +44,15 @@
             app:key="theTeam"
             app:summary="Details about the dev team"
             app:title="The Team"/>
-
+    </PreferenceCategory>
+    <PreferenceCategory
+        app:key="terms"
+        app:title="Terms and Conditions">
+        <Preference
+            app:key="TAC"
+            app:summary=""
+            app:title="Terms and Conditions">/>
+        </Preference>
     </PreferenceCategory>
 
 </PreferenceScreen>

@@ -3,6 +3,8 @@ package com.authandroid_smartcookies.smartcookie.Main.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.Environment;
+import android.webkit.WebView;
 import android.widget.ImageView;
 
 import com.authandroid_smartcookies.smartcookie.R;
@@ -11,6 +13,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.RequestOptions;
 
+import java.io.File;
 import java.util.Objects;
 
 public class generalInfoActivity extends AppCompatActivity {
@@ -23,11 +26,17 @@ public class generalInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String type = getIntent().getStringExtra("type");
+
         if (type.equals("FAQ"))
             setContentView(R.layout.settings_faq);
         else if (type.equals("APP"))
             setContentView(R.layout.settings_app);
-        else {
+        else if (type.equals("TAC")) {
+            setContentView(R.layout.terms_and_conditions);
+            WebView webView = findViewById(R.id.settingsWebView);
+            File lFile = new File(Environment.getExternalStorageDirectory() + "/assets/terms.html");
+            webView.loadUrl("file:///android_asset/terms.html");
+        } else {
             setContentView(R.layout.settings_team);
             ImageView elias = findViewById(R.id.liakosImage);
             ImageView alket = findViewById(R.id.alketImage);
@@ -39,8 +48,9 @@ public class generalInfoActivity extends AppCompatActivity {
 
         Objects.requireNonNull(getSupportActionBar()).hide();
     }
-    private void glide(ImageView view, int id){
+
+    private void glide(ImageView view, int id) {
         Glide.with(this).load(id)
-                .diskCacheStrategy(DiskCacheStrategy.NONE).transform(new CircleCrop()).into(view);
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE).transform(new CircleCrop()).into(view);
     }
 }

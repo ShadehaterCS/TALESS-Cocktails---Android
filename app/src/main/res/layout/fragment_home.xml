@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
-            android:fontFamily="@font/rubik_medium"
+            android:fontFamily="@font/revival_modern"
             android:text="@string/app_name"
             android:textColor="@color/cocktail_crimson"
             android:textSize="35sp"

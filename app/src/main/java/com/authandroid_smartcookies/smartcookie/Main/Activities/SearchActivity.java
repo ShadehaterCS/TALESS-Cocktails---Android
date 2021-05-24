@@ -1,7 +1,6 @@
 package com.authandroid_smartcookies.smartcookie.Main.Activities;
 
-import androidx.annotation.MainThread;
-import androidx.annotation.WorkerThread;
+import androidx.annotation.AnyThread;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,6 +20,8 @@ import com.authandroid_smartcookies.smartcookie.Util.Utilities;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -49,7 +50,7 @@ public class SearchActivity extends AppCompatActivity {
 
         searchAutoComplete = findViewById(R.id.searchAutoComplete);
         recyclerView = findViewById(R.id.searchRecyclerView);
-        initDataset();
+        initAutoCompleteDataset();
 
         searchAutoComplete.addTextChangedListener(
                 new GenericTextWatcher(this::getNewRecipesAndUpdateDataset));
@@ -59,6 +60,7 @@ public class SearchActivity extends AppCompatActivity {
                 Utilities.hideKeyboard(this);
             return true;
         });
+        recipes.sort(Comparator.comparing(CocktailRecipe::get_title));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new GeneralAdapter(this, recipes));
     }
@@ -73,7 +75,7 @@ public class SearchActivity extends AppCompatActivity {
      * @caution if search is empty sets the adapter to the complete dataset that comes with the Intent.
      * @caution works on background thread
      */
-    @WorkerThread
+    @AnyThread
     private void getNewRecipesAndUpdateDataset() {
         new Handler(Looper.getMainLooper()).post(() -> {
             String dirtyInput = searchAutoComplete.getText().toString();
@@ -99,6 +101,7 @@ public class SearchActivity extends AppCompatActivity {
             else
                 return;
             //Only runs if dataset changed
+            dataset.sort(Comparator.comparing((CocktailRecipe::get_title)));
             recyclerView.swapAdapter(new GeneralAdapter(this, dataset), false);
         });
     }
@@ -109,9 +112,9 @@ public class SearchActivity extends AppCompatActivity {
      * partial names (such as 'Classic' || 'Daiquiri' in 'Classic Daiquiri')
      * Combines the ArrayLists to one and sets that as the adapter for the AutoComplete TextView
      */
-    @WorkerThread
+    @AnyThread
     @SuppressWarnings("unchecked")
-    private void initDataset(){
+    private void initAutoCompleteDataset(){
         recipes = (ArrayList<CocktailRecipe>) getIntent().getSerializableExtra("recipes");
         new Handler(Looper.getMainLooper()).post(() -> {
             DRINKS = recipes.stream()
@@ -133,7 +136,6 @@ public class SearchActivity extends AppCompatActivity {
             searchAutoComplete.setAdapter(new ArrayAdapter<>(this,
                     android.R.layout.simple_dropdown_item_1line, completeStringDataset));
         });
-
     }
 
     /**

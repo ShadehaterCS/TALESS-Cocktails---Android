@@ -81,9 +81,9 @@
     <string name="whyQuestion">Why is the name \'TALESS\'?</string>
     <string name="devTimeQuestion">How long did it take to develop TALESS?</string>
     <string name="devTimeAnswer">It took some amount of time and the extension may or may not have helped, who knows</string>
-    <string name="antonis_name">Antonis Papavasiliou</string>
 
     <string name="the_team_title">The Team</string>
+    <string name="antonis_name">Antonios Papavasileiou</string>
     <string name="antonis_description">The man with the plan. He wanted to create an AI by doing if else statements so deep you\'d probably find diamonds. Instead he spent half his week doing SQL inserts for this app. The design and the team have no one else to thank but him.</string>
     <string name="alket_name">Saliai Alket</string>
     <string name="alket_description">Quite the mystery this man. He speak little, codes a lot. He creates Java but surprisingly, doesn\'t drink it. Prefers juice.</string>
