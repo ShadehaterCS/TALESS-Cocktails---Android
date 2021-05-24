@@ -167,13 +167,10 @@ public class RecipeActivity extends AppCompatActivity {
         shape.setColors(new int[]{colorId, colorId, colorId});
 
         if (recipe.get_color().equals("White")){
-            int snowColorId = getResources().getColor(R.color.cocktail_white,getTheme());
-            calorieButton.setTextColor(Color.DKGRAY);
-            prepTimeButton.setTextColor(Color.DKGRAY);
+            int snowColorId = getResources().getColor(R.color.cocktail_contrast,getTheme());
             calorieButton.setBackgroundColor(snowColorId);
             prepTimeButton.setBackgroundColor(snowColorId);
             shape.setColors(new int[]{colorId, colorId, colorId});
-            titleTV.setTextColor(Color.DKGRAY);
         }
 
     }

@@ -18,6 +18,7 @@
         <item name="backgroundTint">@color/kafetiblackopwsleeioantonis</item>
 
         <item name="cardViewStyle">@style/Theme.SmartCookie.CardviewStyle</item>
+        <item name="android:textViewStyle">@style/Theme.TextViewStyle</item>
     </style>
 
     <style name="Theme.SmartCookie.CardviewStyle" parent="Widget.MaterialComponents.CardView">
@@ -25,4 +26,7 @@
         <item name="backgroundTint">@color/kafetiblackopwsleeioantonis</item>
     </style>
 
+    <style name="Theme.TextViewStyle" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textColor">@color/cocktail_snow</item>
+    </style>
 </resources>

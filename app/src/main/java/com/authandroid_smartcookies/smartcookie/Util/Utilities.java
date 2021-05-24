@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.transition.Fade;
 import android.view.View;
@@ -90,7 +89,7 @@ public class Utilities {
                 colorId = ResourcesCompat.getColor(context.getResources(), R.color.cocktail_red, context.getTheme());
                 break;
             default:
-                colorId = ResourcesCompat.getColor(context.getResources(), R.color.cocktail_white, context.getTheme());
+                colorId = ResourcesCompat.getColor(context.getResources(), R.color.cocktail_contrast, context.getTheme());
                 break;
         }
         return colorId;

@@ -190,8 +190,11 @@
                         android:id="@+id/ingredientNamesTV"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/allerta"
                         android:text="@string/exampleIngredientNames"
+                        android:textSize="15sp"
                         app:layout_constraintEnd_toStartOf="@+id/ingredientValuesTV"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
@@ -202,7 +205,10 @@
                         android:layout_width="100dp"
                         android:layout_height="0dp"
                         android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/allerta"
                         android:text="@string/exampleIngredients"
+                        android:textSize="15sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toEndOf="@+id/ingredientNamesTV"
@@ -240,6 +246,7 @@
                         android:layout_weight="1"
                         android:clickable="false"
                         android:text="165 calories"
+                        android:textColor="?android:textColorPrimaryInverse"
                         app:cornerRadius="30dp" />
 
                     <Space
@@ -255,7 +262,8 @@
                         android:layout_weight="1"
                         android:clickable="false"
                         android:text="@string/preparation_time"
-                        app:cornerRadius="30dp" />
+                        app:cornerRadius="30dp"
+                        android:textColor="?android:textColorPrimaryInverse"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 

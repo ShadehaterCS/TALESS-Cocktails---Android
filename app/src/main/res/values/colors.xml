@@ -25,5 +25,5 @@
     <color name="cocktail_red">#F3584F</color>
     <color name="cocktail_blue">#03c6b8</color>
     <color name="cocktail_brown">#ac6901</color>
-    <color name="cocktail_white">#1a1a1a</color>
+    <color name="cocktail_contrast">#1a1a1a</color>
 </resources>

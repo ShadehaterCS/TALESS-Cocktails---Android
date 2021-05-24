@@ -18,11 +18,16 @@
         <item name="android:navigationBarColor">?android:textColorPrimaryInverse</item>
 
         <item name="cardViewStyle">@style/Theme.SmartCookie.CardviewStyle</item>
+        <item name="android:textViewStyle">@style/Theme.TextViewStyle</item>
     </style>
 
     <style name="Theme.SmartCookie.CardviewStyle" parent="Widget.MaterialComponents.CardView">
         <item name="cardBackgroundColor">@color/white</item>
         <item name="backgroundTint">@color/white</item>
+    </style>
+
+    <style name="Theme.TextViewStyle" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textColor">?android:textColorPrimary</item>
     </style>
 
 </resources>
