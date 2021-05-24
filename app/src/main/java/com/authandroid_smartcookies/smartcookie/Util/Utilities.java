@@ -135,8 +135,6 @@ public class Utilities {
 
         int currentMode = context.getResources().getConfiguration().uiMode &
                 Configuration.UI_MODE_NIGHT_MASK;
-
-
         switch (currentMode) {
             case Configuration.UI_MODE_NIGHT_NO:
                 if (mode != 1)
