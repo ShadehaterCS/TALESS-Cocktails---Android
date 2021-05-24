@@ -70,9 +70,8 @@
             android:layout_marginBottom="28dp"
             android:background="@drawable/icon_favorite_button_on"
             android:contentDescription="@string/favorites_button"
-            android:paddingHorizontal="10dp"
-            android:paddingVertical="10dp"
-            />
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="15dp" />
 
 
     </RelativeLayout>

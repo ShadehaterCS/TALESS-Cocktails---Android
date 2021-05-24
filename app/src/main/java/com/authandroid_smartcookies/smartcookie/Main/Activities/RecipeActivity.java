@@ -165,15 +165,15 @@ public class RecipeActivity extends AppCompatActivity {
         LayerDrawable progressBarBG = (LayerDrawable) ResourcesCompat.getDrawable(getResources(),R.drawable.circular_progress,getTheme());
         GradientDrawable shape = (GradientDrawable)progressBarBG.getDrawable(0);
         shape.setColors(new int[]{colorId, colorId, colorId});
+
         if (recipe.get_color().equals("White")){
-            int snowColorId = getResources().getColor(R.color.cocktail_snow,getTheme());
-            colorId = Color.DKGRAY;
-            calorieButton.setTextColor(colorId);
-            prepTimeButton.setTextColor(colorId);
+            int snowColorId = getResources().getColor(R.color.cocktail_white,getTheme());
+            calorieButton.setTextColor(Color.DKGRAY);
+            prepTimeButton.setTextColor(Color.DKGRAY);
             calorieButton.setBackgroundColor(snowColorId);
             prepTimeButton.setBackgroundColor(snowColorId);
             shape.setColors(new int[]{colorId, colorId, colorId});
-            titleTV.setTextColor(colorId);
+            titleTV.setTextColor(Color.DKGRAY);
         }
 
     }
@@ -195,7 +195,7 @@ public class RecipeActivity extends AppCompatActivity {
         result[1] = timerType > 0 ? "Shake" : "Stir";
         return result;
     }
-
+//todo add a favorite this recipe cardview
     /**
      * Stops the timer if it has started to avoid sound playing even though activity is destroyed
      */

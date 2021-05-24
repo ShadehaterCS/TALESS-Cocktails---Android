@@ -46,7 +46,7 @@ public class Utilities {
         View decor = window.getDecorView();
         fade.excludeTarget(android.R.id.statusBarBackground, true);
         fade.excludeTarget(android.R.id.navigationBarBackground, true);
-        fade.excludeTarget(decor.findViewById(R.id.bottomNavigationView),true);
+        fade.excludeTarget(decor.findViewById(R.id.bottomNavigationView), true);
         window.setEnterTransition(fade);
         window.setExitTransition(fade);
     }
@@ -90,27 +90,25 @@ public class Utilities {
                 colorId = ResourcesCompat.getColor(context.getResources(), R.color.cocktail_red, context.getTheme());
                 break;
             default:
-                colorId = ResourcesCompat.getColor(context.getResources(), R.color.white, context.getTheme());
+                colorId = ResourcesCompat.getColor(context.getResources(), R.color.cocktail_white, context.getTheme());
+                break;
         }
         return colorId;
     }
 
-    public static void setOnClickListenerOnViewForIntentToRecipeActivity(Context context, View view, ImageView imgView, CocktailRecipe recipe){
+    public static void setOnClickListenerOnViewForIntentToRecipeActivity(Context context, View view, ImageView imgView, CocktailRecipe recipe) {
         view.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), RecipeActivity.class);
             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation
-                    ((Activity)context,
+                    ((Activity) context,
                             imgView, "cocktail_recipe_transition");
             intent.putExtra("recipe", recipe);
-            v.getContext().startActivity(intent,options.toBundle());
+            v.getContext().startActivity(intent, options.toBundle());
         });
     }
 
     public static void setTitleColorForTextView(Context context, TextView title, CocktailRecipe recipe) {
-        if (recipe.get_color().equals("White"))
-            title.setTextColor(Color.DKGRAY);
-        else
-            title.setTextColor(getColor(context, recipe.get_color()));
+        title.setTextColor(getColor(context, recipe.get_color()));
     }
 
     public static void clearGlideCache(Context applicationContext) {
@@ -125,7 +123,6 @@ public class Utilities {
 
     /**
      * @param selectedMode the mode selected inside the Settings Fragment
-     *
      * @return false if a theme change should happen
      */
     public static void setDeviceThemeMode(Context context, String selectedMode) {

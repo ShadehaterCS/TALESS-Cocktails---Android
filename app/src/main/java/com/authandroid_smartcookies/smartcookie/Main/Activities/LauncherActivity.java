@@ -62,7 +62,7 @@ public class LauncherActivity extends AppCompatActivity {
         Intent testingIntroIntent = new Intent(LauncherActivity.this, IntroActivity.class);
 
         new Handler().postDelayed(() -> {
-            startActivity(intent);
+            startActivity(testingIntroIntent);
             finish();
         }, DELAY);
 

@@ -76,7 +76,6 @@ public class SenpaiDB extends SQLiteOpenHelper {
         ArrayList<Integer> favorites = null;
         if (saveFavorites)
             favorites = getFavoritesIds();
-
         context.deleteDatabase(DB_NAME);
         createDatabase(context);
         database = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READWRITE);
