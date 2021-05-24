@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.authandroid_smartcookies.smartcookie">
+    package="com.auth.TALESS">
 
     <application
         android:allowBackup="true"
@@ -13,16 +13,16 @@
         android:theme="@style/Theme.SmartCookie"
         tools:ignore="AllowBackup">
 
-        <activity android:name=".Main.Activities.generalInfoActivity"
+        <activity android:name="com.auth.TALESS.Main.Activities.generalInfoActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name=".Main.Activities.SearchActivity"
+        <activity android:name="com.auth.TALESS.Main.Activities.SearchActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name=".Main.Activities.RecipeActivity"
+        <activity android:name="com.auth.TALESS.Main.Activities.RecipeActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name=".Main.Activities.LauncherActivity"
+        <activity android:name="com.auth.TALESS.Main.Activities.LauncherActivity"
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,11 +31,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Main.Activities.MainActivity"
+        <activity android:name="com.auth.TALESS.Main.Activities.MainActivity"
             android:screenOrientation="portrait" >
         </activity>
 
-        <activity android:name=".Main.Activities.IntroActivity"
+        <activity android:name="com.auth.TALESS.Main.Activities.IntroActivity"
             android:screenOrientation="portrait" />
 
         <meta-data
