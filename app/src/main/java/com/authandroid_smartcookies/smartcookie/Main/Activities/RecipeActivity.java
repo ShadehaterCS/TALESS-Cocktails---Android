@@ -25,7 +25,6 @@ import com.authandroid_smartcookies.smartcookie.Util.Utilities;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 
 import java.util.Arrays;
 import java.util.HashMap;
