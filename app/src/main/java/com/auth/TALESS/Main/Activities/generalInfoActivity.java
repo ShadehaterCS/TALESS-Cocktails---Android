@@ -41,7 +41,7 @@ public class generalInfoActivity extends AppCompatActivity {
             ImageView alket = findViewById(R.id.alketImage);
             ImageView antonis = findViewById(R.id.antonisImage);
             glide(elias, R.drawable.img_elias_kordoulas);
-            glide(alket, R.drawable.img_alket_saliai);
+            glide(alket, R.drawable.img_alket_saliaj);
             glide(antonis, R.drawable.img_antonis_papavasiliou);
         }
 
