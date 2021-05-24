@@ -1,12 +1,15 @@
 package com.authandroid_smartcookies.smartcookie.Main.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.preference.ListPreference;
+import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SwitchPreferenceCompat;
 
 import com.authandroid_smartcookies.smartcookie.Main.Activities.LauncherActivity;
+import com.authandroid_smartcookies.smartcookie.Main.Activities.generalInfoActivity;
 import com.authandroid_smartcookies.smartcookie.R;
 import com.authandroid_smartcookies.smartcookie.Util.Utilities;
 
@@ -37,6 +40,30 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             });
         }
 
+        //Set the various click listeners with the correct extra for the Intent
 
+        Preference faq = findPreference("FAQ");
+        faq.setOnPreferenceClickListener(preference -> {
+            Intent intent = new Intent(requireActivity(), generalInfoActivity.class);
+            intent.putExtra("type", "FAQ");
+            startActivity(intent);
+            return true;
+        });
+
+        Preference app = findPreference("theApp");
+        app.setOnPreferenceClickListener(preference -> {
+            Intent intent = new Intent(requireActivity(), generalInfoActivity.class);
+            intent.putExtra("type", "APP");
+            startActivity(intent);
+            return true;
+        });
+
+        Preference team = findPreference("theTeam");
+        team.setOnPreferenceClickListener(preference -> {
+            Intent intent = new Intent(requireActivity(), generalInfoActivity.class);
+            intent.putExtra("type", "TEAM");
+            startActivity(intent);
+            return true;
+        });
     }
 }

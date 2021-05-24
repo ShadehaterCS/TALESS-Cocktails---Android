@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.authandroid_smartcookies.smartcookie">
 
     <application
@@ -9,18 +10,18 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SmartCookie">
+        android:theme="@style/Theme.SmartCookie"
+        tools:ignore="AllowBackup">
 
-        <activity android:name=".Main.Activities.SettingsActivities.appInfoActivity"
+        <activity android:name=".Main.Activities.generalInfoActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".Main.Activities.SettingsActivities.teamInfoActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name=".Main.Activities.SettingsActivities.faqActivity"
-            android:screenOrientation="portrait" />
+
         <activity android:name=".Main.Activities.SearchActivity"
             android:screenOrientation="portrait" />
+
         <activity android:name=".Main.Activities.RecipeActivity"
             android:screenOrientation="portrait" />
+
         <activity android:name=".Main.Activities.LauncherActivity"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -29,14 +30,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".Main.Activities.MainActivity"
             android:screenOrientation="portrait" >
-            <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER" />
-
-                <action android:name="android.intent.action.HomeActivity" />
-            </intent-filter>
         </activity>
+
         <activity android:name=".Main.Activities.IntroActivity"
             android:screenOrientation="portrait" />
 

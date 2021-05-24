@@ -221,12 +221,9 @@ public class RecipeActivity extends AppCompatActivity {
         result[1] = timerType > 0 ? "Shake" : "Stir";
         return result;
     }
-//todo add a favorite this recipe cardview
     /**
      * Stops the timer if it has started to avoid sound playing even though activity is destroyed
      */
-
-
     @Override
     protected void onDestroy() {
         super.onDestroy();

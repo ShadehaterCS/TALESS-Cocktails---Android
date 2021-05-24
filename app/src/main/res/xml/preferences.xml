@@ -28,11 +28,6 @@
             app:key="FAQ"
             app:summary="Frequently Asked Questions"
             app:title="FAQ">
-            <intent
-                android:action="android.intent.action.VIEW"
-                android:targetPackage="com.authandroid_smartcookies.smartcookie"
-                android:targetClass="com.authandroid_smartcookies.smartcookie.Main.Activities.SettingsActivities.teamActivity"
-            />
         </Preference>
     </PreferenceCategory>
 
