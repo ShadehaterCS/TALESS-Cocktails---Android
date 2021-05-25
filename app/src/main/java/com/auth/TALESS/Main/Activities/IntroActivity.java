@@ -1,6 +1,5 @@
 package com.auth.TALESS.Main.Activities;
 
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
@@ -20,6 +19,10 @@ import com.auth.TALESS.R;
 import com.auth.TALESS.Main.Adapters.IntroViewPagerAdapter;
 import com.auth.TALESS.Util.Utilities;
 
+/**
+ * This is the intro activity , the first time that the user will open the app
+ * he will be shown a brief description of what he can do
+ */
 public class IntroActivity extends AppCompatActivity {
 
     ViewPager slideViewPager;
@@ -45,7 +48,9 @@ public class IntroActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
-
+        /**
+         * Buttons functions
+         */
         nextButton.setOnClickListener(v -> slideViewPager.setCurrentItem(getItem(1),true));
 
         skipButton.setOnClickListener(v -> slideViewPager.setCurrentItem(3,true));
@@ -67,7 +72,9 @@ public class IntroActivity extends AppCompatActivity {
         slideViewPager.addOnPageChangeListener(viewListener);
 
     }
-
+    /**
+     * Creating la dots
+     */
     public void setUpIndicator(int position){
         dots = new TextView[4];
         laDots.removeAllViews();
@@ -83,7 +90,9 @@ public class IntroActivity extends AppCompatActivity {
         }
         dots[position].setTextColor(getResources().getColor(R.color.pastelRed,getApplicationContext().getTheme()));
     }
-
+    /**
+     * Setting up visibility of buttons and animations
+     */
     private void lastScreen(){
         Animation fadeInUp = AnimationUtils.loadAnimation(this, R.anim.fast_fade_in_and_up);
         Animation fadeOut = AnimationUtils.loadAnimation(this, R.anim.fast_fade_out);
@@ -95,6 +104,9 @@ public class IntroActivity extends AppCompatActivity {
         laDots.setVisibility(View.INVISIBLE);
         nextButton.setVisibility(View.INVISIBLE);
     }
+    /**
+     * Setting up visibility of buttons and animations
+     */
     private void exitedLastScreen(){
         Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fast_fade_in);
         Animation fadeOut = AnimationUtils.loadAnimation(this, R.anim.fast_fade_out);
@@ -123,17 +135,14 @@ public class IntroActivity extends AppCompatActivity {
             else if (position == 2){
                 exitedLastScreen();
             }
-
-
-
-
             setUpIndicator(position);
         }
         @Override
-        public void onPageScrollStateChanged(int state) {
-
-        }
+        public void onPageScrollStateChanged(int state) {}
     };
+    /**
+     * Get the activity that is active
+     */
     private int getItem(int i){
         return slideViewPager.getCurrentItem() + i;
     }

@@ -19,7 +19,6 @@ import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners;
 import java.util.ArrayList;
 
 /**
- * <p></p>
  * Adapts the dataset of an ArrayList of CocktailRecipe objects
  * Uses recyclerview_favorites_and_search_item.xml for its elements layout
  * @link RecipeActivity when an element is clicked on.

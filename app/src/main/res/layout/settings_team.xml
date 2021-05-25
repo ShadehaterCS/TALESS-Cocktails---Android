@@ -45,7 +45,8 @@
                 android:scaleType="centerCrop"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/img_elias_kordoulas" />
+                app:srcCompat="@drawable/img_elias_kordoulas"
+                android:contentDescription="@string/Elias_Kodoulas_image" />
 
             <TextView
                 android:id="@+id/liakosName"
@@ -100,7 +101,8 @@
                 android:scaleType="centerCrop"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/img_antonis_papavasiliou" />
+                app:srcCompat="@drawable/img_antonis_papavasiliou"
+                android:contentDescription="@string/Antonios_Papavasileiou_image" />
 
             <TextView
                 android:id="@+id/antonisName"
@@ -153,7 +155,8 @@
                 android:scaleType="centerCrop"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/img_alket_saliaj" />
+                app:srcCompat="@drawable/img_alket_saliaj"
+                android:contentDescription="@string/Alket_Saliaj_image" />
 
             <TextView
                 android:id="@+id/alketName"
@@ -163,7 +166,7 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/rubik_medium"
                 android:text="@string/alket_name"
-                android:textColor="@color/cocktail_orange"
+                android:textColor="@color/cocktail_yellow"
                 android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/alketImage"
                 app:layout_constraintTop_toTopOf="parent" />

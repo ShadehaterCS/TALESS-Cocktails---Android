@@ -18,7 +18,11 @@ import com.auth.TALESS.Main.Adapters.GeneralAdapter;
 import com.auth.TALESS.R;
 
 import java.util.ArrayList;
-
+/**
+ *This fragment sets a background if favorites are empty
+ * and if they are not it takes all favorites from SenpaiDB
+ * and shows them in a RecyclerView
+ */
 public class FavoritesFragment extends Fragment {
     private SenpaiDB db;
     private ArrayList<CocktailRecipe> recipes;

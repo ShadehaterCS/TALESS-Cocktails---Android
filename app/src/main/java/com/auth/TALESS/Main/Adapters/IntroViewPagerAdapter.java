@@ -13,7 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.auth.TALESS.R;
-
+/**
+ * This is a part of the IntroActivity, it defines the images and the texts that will be needed for the intro
+ */
 public class IntroViewPagerAdapter extends PagerAdapter {
     Context context;
     int[] images = {
