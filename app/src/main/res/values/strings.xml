@@ -84,16 +84,17 @@
 
     <string name="the_team_title">The Team</string>
     <string name="antonis_name">Antonios Papavasileiou</string>
-    <string name="antonis_description">The man with the plan. He wanted to create an AI by doing if else statements so deep you\'d probably find diamonds. Instead he spent half his week doing SQL inserts for this app. The design and the team have no one else to thank but him.</string>
+    <string name="antonis_description">The man with the plan. He wanted to create an AI by doing if else statements so deep you\'d probably find diamonds. Instead he spent his week writing SQL inserts for this app. The design and the team have no one else to thank but him.</string>
     <string name="alket_name">Alket Saliaj</string>
     <string name="alket_description">Quite the mystery this man. He speak little, codes a lot. He creates Java but surprisingly, doesn\'t drink it. He prefers Gin and Juice like a true gentleman.</string>
     <string name="liakos_name">Elias Kodoulas</string>
-    <string name="liakos_description">A visionary. Dude writes java almost as good as the one he drinks. Developing is to him like photosynthesizing is to plants. Friends constantly tell him \"Den ise edo\" because honestly, he never is there to play with them, he\'s either androiding or making bolognese.</string>
+    <string name="liakos_description">A visionary. Dude writes java as good as the one he drinks. Developing is to him like photosynthesizing is to plants. He likes bolognese a little too much.</string>
 
 
     <string name="Elias_Kodoulas_image">Elias Kodoulas image</string>
     <string name="Alket_Saliaj_image">Alket Saliaj image</string>
     <string name="Antonios_Papavasileiou_image">Antonios Papavasileiou image</string>
+    <string name="pressAgainTV">Long press to restart the timer.</string>
 
 
 </resources>

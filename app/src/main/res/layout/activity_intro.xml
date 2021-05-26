@@ -58,9 +58,10 @@
 
     <Button
         android:id="@+id/startButton"
+        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="150dp"
         android:layout_height="70dp"
-        android:backgroundTint="@color/pastelRed"
+        android:background="?android:colorPrimary"
         android:text="@string/Get_started"
         android:textColor="?android:textColorPrimary"
         app:cornerRadius="20dp"

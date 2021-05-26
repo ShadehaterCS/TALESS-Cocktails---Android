@@ -107,6 +107,9 @@ public class ConvertersFragment extends Fragment {
             toType = button.getText().toString();
             convert();
         });
+
+        fromRB.check(R.id.frommlRB);
+        toRB.check(R.id.toozRB);
         return view;
     }
 

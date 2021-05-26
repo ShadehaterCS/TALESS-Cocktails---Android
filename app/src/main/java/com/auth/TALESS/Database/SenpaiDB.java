@@ -20,13 +20,13 @@ import java.util.HashMap;
 
 /**
  * This class works as the connection between the application and the database file.
- *
+ * Force upgrade of database by incrementing DATABASE_VERSION
  */
 public class SenpaiDB extends SQLiteOpenHelper {
     private static final String TAG = "SENPAI";
     public static String DB_PATH;
     public static String DB_NAME = "database.db";
-    public static final int DATABASE_VERSION = 32;
+    public static final int DATABASE_VERSION = 1;
     public static boolean updated = false;
 
     public static SenpaiDB instance;

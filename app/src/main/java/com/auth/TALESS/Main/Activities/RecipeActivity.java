@@ -106,6 +106,7 @@ public class RecipeActivity extends AppCompatActivity {
                 MediaPlayer.create(this, this.getResources().getIdentifier(
                         audioFileName, "raw", this.getPackageName()));
 
+        TextView longPressIndicator = findViewById(R.id.pressAgainTextView);
         if (recipe.get_timer() != -1) {
             timerCard.setOnClickListener(view -> {
                 if (!timerAlreadyPressed.get()) {
@@ -131,19 +132,30 @@ public class RecipeActivity extends AppCompatActivity {
                             mediaPlayer.seekTo(0);
                             if (timerImage.getVisibility() == View.VISIBLE)
                                 timerImage.clearAnimation();
+                            longPressIndicator.setVisibility(View.INVISIBLE);
                         }
                     }.start();
                     if (timerImage.getVisibility()==View.VISIBLE)
                         timerImage.startAnimation(shake);
+
+                    longPressIndicator.setVisibility(View.VISIBLE);
                     timerAlreadyPressed.set(true);
                 }
                 //ENDIF
+            });
+            timerCard.setOnLongClickListener(view -> {
+                if (timerAlreadyPressed.get()){
+                    timer.cancel();
+                    timer.start();
+                }
+                return true;
             });
         } else {
             progressBar.setVisibility(View.GONE);
             timerCard.setVisibility(View.INVISIBLE);
         }
         //ENDIF
+
         setUpColors();
     }
 
@@ -211,6 +223,8 @@ public class RecipeActivity extends AppCompatActivity {
             builder.append(". ");
             builder.append(steps[i]);
             builder.append(System.getProperty("line.separator"));
+            if (i+1 !=steps.length)
+                builder.append(System.getProperty("line.separator"));
         }
         long timerType = Arrays.stream(steps)
                 .filter(s -> s.contains("shake") || s.contains("shaker"))
