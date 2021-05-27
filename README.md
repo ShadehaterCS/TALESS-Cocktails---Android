@@ -43,13 +43,13 @@
 <br />
 <p align="center">
   <h3 align="center">Light Theme</h3>
-    <img src="git-images/theme-light.jpg" alt="Logo" width="1000" height="480">
+    <img src="git-images/theme-light.jpg" alt="Logo" width="1000" height="450">
     </p>
  <br />
  <br />
 <p align="center">
   <h3 align="center">Dark Theme</h3>
-    <img src="git-images/theme-dark.jpg" alt="Logo" width="1000" height="480">
+    <img src="git-images/theme-dark.jpg" alt="Logo" width="1000" height="530">
     </p>
  <br />
 
