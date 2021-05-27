@@ -49,7 +49,7 @@
  <br />
 <p align="center">
   <h3 align="center">Dark Theme</h3>
-    <img src="git-images/theme-dark.jpg" alt="Logo" width="1000" height="530">
+    <img src="git-images/theme-dark.jpg" alt="Logo" width="1000" height="480">
     </p>
  <br />
 
