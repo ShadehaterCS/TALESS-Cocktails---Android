@@ -26,9 +26,7 @@
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
-* [Contributing](#contributing)
 * [License](#license)
-* [Showcase](#example-visualization)
 
 
 <!-- ABOUT THE PROJECT -->
@@ -60,10 +58,11 @@
 ```sh
 git clone https://github.com/ShadehaterCS/TALESS-Cocktails.git
 ```
-2. Emulator with at least API 27
+2. Emulator with at least API 27  
 3. Sync gradle project
 
-## License
+### License
+Distributed under the Apache License. See `LICENSE` for more information.
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [issues-url]: https://github.com/ShadehaterCS/TALESS-Cocktails/issues
