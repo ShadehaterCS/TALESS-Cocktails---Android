@@ -67,4 +67,4 @@ git clone https://github.com/ShadehaterCS/TALESS-Cocktails.git
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [issues-url]: https://github.com/ShadehaterCS/TALESS-Cocktails/issues
-[license-url]: https://github.com/ShadehaterCS/TALESS-Cocktails/blob/master/LICENSE.txt
+[license-url]: https://github.com/ShadehaterCS/TALESS-Cocktails/blob/master/LICENSE
