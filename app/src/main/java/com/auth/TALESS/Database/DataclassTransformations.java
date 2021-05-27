@@ -66,6 +66,8 @@ public class DataclassTransformations {
             String amount = cursor.getString(1);
             if (amount.equals("FG"))
                 amount = "(For Garnish)";
+            if (amount.equals("FS"))
+                amount = "(For Serving)";
             map.put(ingredient,amount);
             cursor.moveToNext();
         }
