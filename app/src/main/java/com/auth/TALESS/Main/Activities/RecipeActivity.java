@@ -108,6 +108,7 @@ public class RecipeActivity extends AppCompatActivity {
 
         TextView longPressIndicator = findViewById(R.id.pressAgainTextView);
         if (recipe.get_timer() != -1) {
+            timerText.setText(Integer.toString(recipe.get_timer()));
             timerCard.setOnClickListener(view -> {
                 if (!timerAlreadyPressed.get()) {
                     timer = new CountDownTimer(
