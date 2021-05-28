@@ -95,7 +95,6 @@ public class RecipeActivity extends AppCompatActivity {
         ImageView timerImage = findViewById(R.id.timerTypeImageView);
         Animation shake = AnimationUtils.loadAnimation(this, R.anim.shaker);
 
-        //todo remove this and load a new animation into it for Stirring
         if (preparationInfo[1].equals("Stir")){
             timerImage.setVisibility(View.INVISIBLE);
         }

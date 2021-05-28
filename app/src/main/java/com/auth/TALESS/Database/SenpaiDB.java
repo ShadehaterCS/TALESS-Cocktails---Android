@@ -31,7 +31,7 @@ public class SenpaiDB extends SQLiteOpenHelper {
 
     public static SenpaiDB instance;
     private SQLiteDatabase database;
-    private WeakReference<Context> context;
+    private final WeakReference<Context> context;
     /**
      * Using singleton pattern to avoid leaks and constant openings
      * only one object will be statically accessible throughout the lifetime of the app
