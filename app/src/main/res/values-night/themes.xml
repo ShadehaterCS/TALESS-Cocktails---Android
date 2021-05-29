@@ -15,7 +15,9 @@
         <!-- Customize your theme here. -->
         <item name="android:navigationBarColor">@color/kafetiblackopwsleeioantonis</item>
         <item name="android:windowLightNavigationBar">true</item>
-        <item name="backgroundTint">@color/kafetiblackopwsleeioantonis</item>
+        <item name="backgroundTint">@color/cocktail_crimson</item>
+
+        <item name="bottomNavigationStyle">@style/Theme.BottoNavStyle</item>
 
         <item name="cardViewStyle">@style/Theme.SmartCookie.CardviewStyle</item>
         <item name="android:textViewStyle">@style/Theme.TextViewStyle</item>
@@ -31,6 +33,9 @@
         <item name="android:textColor">@color/cocktail_snow</item>
     </style>
 
+    <style name="Theme.BottoNavStyle" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="backgroundTint">@color/kafetiblackopwsleeioantonis</item>
+    </style>
     <style name="Theme.Snackbar" parent="Widget.MaterialComponents.Snackbar.TextView">
         <item name="android:textColor">?android:textColorPrimary</item>
     </style>
