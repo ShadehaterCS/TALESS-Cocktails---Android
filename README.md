@@ -61,7 +61,7 @@ Fork the project and create a pull request. It will be promtly reviewed and merg
     </p>
     
  <br />
-
+ 
 ### Installation
 1. Clone the repo
 ```sh
