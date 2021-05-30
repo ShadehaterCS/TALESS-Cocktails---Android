@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="101dp"
         android:fontFamily="@font/american_captain"
         android:text="@string/tales_for_males"
         android:textColor="?android:textColorPrimary"
